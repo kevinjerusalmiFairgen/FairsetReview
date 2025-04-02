@@ -44,11 +44,17 @@ def main():
 
     st.markdown("Upload train set, fairset and prior file")
 
-    train_file = st.file_uploader("Upload Train Set", type=["csv", "xlsx", "sav"])
-    fairset_file = st.file_uploader("Upload Fairset", type=["csv", "xlsx", "sav"])
-    priorfile_file = st.file_uploader("Upload Prior file from notion", type=["csv"])
+    with st.sidebar:
+        st.markdown("## Upload Train Set")
+        train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav"])
+        st.markdown("## Upload Fairset")
+        fairset_file = st.file_uploader("  ", type=["csv", "xlsx", "sav"])
+        st.markdown("## Upload Prior file")
+        priorfile_file = st.file_uploader("   ", type=["csv"])
 
     if st.button("Run Analysis"):
+        if train_file is None or fairset_file is None or priorfile_file is None:
+            st.warning("Upload train, fairset and prior file before running analysis!")
         if train_file is not None and fairset_file is not None and priorfile_file is not None:
             def load_file(uploaded_file):            
                 if uploaded_file.name.endswith(".csv"):
@@ -83,7 +89,7 @@ def main():
 
             df = run_fairset_analysis(**config)
 
-            st.dataframe(df)
+            st.dataframe(df, width=1000)
 
             with open("outputs/template.xlsx", "rb") as file:
                 file_bytes = file.read()

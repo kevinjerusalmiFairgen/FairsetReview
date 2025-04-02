@@ -2,6 +2,7 @@ import math
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
+from stqdm import stqdm
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -1067,7 +1068,7 @@ class LogicFunctions:
             ("custom", constraints.get("custom", [])),
         ]
 
-        for constraint_type, constraint_list in tqdm(all_constraints, desc=f"Processing Constraints for {self.name}"):
+        for constraint_type, constraint_list in stqdm(all_constraints, desc=f"Processing Constraints for {self.name}"):
             for constraint in constraint_list:
                 if constraint_type in ["BF_SS", "BF_SM"]:
                     if constraint[3] == "block_force":
