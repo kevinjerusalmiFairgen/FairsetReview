@@ -1,58 +1,7 @@
 import pandas as pd
-from notion_client import Client
 from collections import OrderedDict
 import re
-
-
-TOKEN = "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"
-
-
-def extract_property(prop):
-    """
-    Extract a display value from a Notion property based on its type.
-    """
-    prop_type = prop.get("type")
-    if prop_type == "title":
-        return " ".join(item.get("plain_text", "") for item in prop.get("title", []))
-    elif prop_type == "rich_text":
-        return " ".join(item.get("plain_text", "") for item in prop.get("rich_text", []))
-    elif prop_type == "number":
-        return prop.get("number")
-    elif prop_type == "select":
-        select_obj = prop.get("select")
-        return select_obj.get("name") if select_obj else None
-    elif prop_type == "multi_select":
-        return ", ".join(item.get("name", "") for item in prop.get("multi_select", []))
-    elif prop_type == "date":
-        date_obj = prop.get("date")
-        return date_obj.get("start") if date_obj else None
-    elif prop_type == "checkbox":
-        return prop.get("checkbox")
-    elif prop_type == "url":
-        return prop.get("url")
-    elif prop_type == "formula":
-        # Formula can return different types; here we try to extract a string representation.
-        formula_val = prop.get("formula", {})
-        for key in ["string", "number", "boolean"]:
-            if key in formula_val and formula_val[key] is not None:
-                return formula_val[key]
-        return None
-    elif prop_type == "relation":
-        # Relation returns a list of objects (each with an "id")
-        return ", ".join(item.get("id", "") for item in prop.get("relation", []))
-    else:
-        # Fallback: return the raw property
-        return prop.get(prop_type)
-
-
-def extract_properties(properties):
-    """
-    Given the properties dict from a page, extract a flat dict of property names and their display values.
-    """
-    extracted = OrderedDict()
-    for key, prop in properties.items():
-        extracted[key] = extract_property(prop)
-    return extracted
+import numpy as np
 
 
 def cleaning_lists(target_str):
@@ -66,23 +15,12 @@ def cleaning_lists(target_str):
         return target_str
 
 
-def extractAndPreprocessing(database_id, index_order=None):
-    token = TOKEN
-    notion = Client(auth=token)
-    response = notion.databases.query(database_id=database_id)
-    extracted_pages = [extract_properties(page["properties"]) for page in response["results"]]
-    df = pd.DataFrame(extracted_pages)[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
+def priorFileExtract(path):
+    df = pd.read_csv(path)[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
     df["Target"] = df["Target"].apply(cleaning_lists)
     df["Source"] = df["Source"].apply(cleaning_lists)
     df['ID'] = df['ID'].apply(lambda x: x['number'] if isinstance(x, dict) else x)
 
-    if index_order is not None:
-        df = df.set_index('ID')
-        df = df.loc[index_order]
-    return df
-
-
-def createJSONs(df):
     constraints_json = {
         "BF_SS": [],
         "BF_SM": [],
@@ -117,7 +55,7 @@ def createJSONs(df):
         row["Target"] = normalize_quotes(row["Target"])
 
         
-        if row["Custom Query"] != '':
+        if row["Custom Query"] not in  ['', np.nan]:
             constraints_json["custom"].append([
                 row["Constraint"],
                 row["Comment"],
