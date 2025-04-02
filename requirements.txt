@@ -1,0 +1,5 @@
+notion_client==2.3.0
+numpy==2.2.4
+pandas==2.2.3
+tqdm==4.67.1
+XlsxWriter==3.2.2
