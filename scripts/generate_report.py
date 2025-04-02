@@ -4,6 +4,7 @@ import xlsxwriter
 import math
 import re
 
+
 def convert_type(s):
     if s.startswith("Block"):
         parts = s.split(" ")
@@ -33,10 +34,18 @@ def convert_type(s):
 
     return translation.get(s, s)
 
+
 def readOuput(path):
     with open(path, 'r') as file:
         data = json.load(file)
-    data = [item for item in data if item.get("is_valid") == False]
+        data = [
+            {
+                **item, 
+                "Detail": item["Description"] if not item.get("Detail") else item["Detail"]
+            }
+            for item in data
+            if item.get("is_valid") == False
+        ]    
 
     df = pd.DataFrame(data)[["Type", "is_supported", "Dataframe", "Detail", "Percentage_of_valid_rows", "Rows"]]
 
@@ -56,11 +65,14 @@ def readOuput(path):
         axis=1
     )
 
-    df["Supported"] = df["is_supported"]
+    df["Columns"] = df["Dataframe"].apply(lambda x: ", ".join(map(str, pd.DataFrame(x).columns)))
 
-    return df[["Logic Type", "Description", "Percentage of rows impacted", "Number of impacted rows", "Wrong rows's index", "Supported"]]
+    df["Supported"] = df["is_supported"] .apply(lambda x: "No" if x == False else "Yes")
 
-def export_to_excel(df, filename):
+    return df[["Logic Type", "Description", "Columns", "Percentage of rows impacted", "Number of impacted rows", "Wrong rows's index", "Supported"]]
+
+
+def export_to_excel(df, filename="outputs/template.xlsx"):
     workbook = xlsxwriter.Workbook(filename, {'nan_inf_to_errors': True})
     worksheet = workbook.add_worksheet('Table')
 

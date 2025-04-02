@@ -986,6 +986,7 @@ class LogicFunctions:
         json = {
             "Type": constraint_type,
             "Description": f"{constraint_type} - {description}",
+            "Detail": description,
             "is_valid": True if dataframe.empty else False,
             "is_supported": is_supported,
             "Dataframe": dataframe.to_dict(orient="records"),
@@ -1041,7 +1042,7 @@ class LogicFunctions:
             dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset, code)
             if not dataframe.empty:
                 self.wrong_rows.update(dataframe.index.tolist())
-            result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset)
+            result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset, is_supported=is_implemented)
             return result
         else:
             raise ValueError(f"Unknown constraint type: {constraint_type}")

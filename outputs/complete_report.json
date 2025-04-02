@@ -3,7 +3,7 @@
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q4 to Q5)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q5 if Q4 is Quebec",
         "Occurrences_train": 0,
@@ -14,14 +14,14 @@
             "Q5",
             "Answer Q5 if Q4 is Quebec",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q4 to Q5)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q5 if Q4 is Quebec",
         "Occurrences_train": 0,
@@ -32,14 +32,14 @@
             "Q5",
             "Answer Q5 if Q4 is Quebec",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q4 to Q6)",
         "is_valid": false,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": [
             {
                 "Q4": "Nunavut",
@@ -72,14 +72,14 @@
             "Q6",
             "Answer Q6 if Q4 is Ontario",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q4 to Q6)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q6 if Q4 is Ontario",
         "Occurrences_train": 0,
@@ -90,14 +90,14 @@
             "Q6",
             "Answer Q6 if Q4 is Ontario",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q4 to Q7)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q7 if Q4 is British Columbia",
         "Occurrences_train": 0,
@@ -108,14 +108,14 @@
             "Q7",
             "Answer Q7 if Q4 is British Columbia",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q4 to Q7)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q7 if Q4 is British Columbia",
         "Occurrences_train": 0,
@@ -126,14 +126,14 @@
             "Q7",
             "Answer Q7 if Q4 is British Columbia",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q4 to Q8)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q8 if Q4 is Alberta",
         "Occurrences_train": 0,
@@ -144,14 +144,14 @@
             "Q8",
             "Answer Q8 if Q4 is Alberta",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q4 to Q8)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Answer Q8 if Q4 is Alberta",
         "Occurrences_train": 0,
@@ -162,14 +162,14 @@
             "Q8",
             "Answer Q8 if Q4 is Alberta",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q39 to Q40)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q40 if Q39 is NOT \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -180,14 +180,14 @@
             "Q40",
             "Block Q40 if Q39 is NOT \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q39 to Q40)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q40 if Q39 is NOT \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -198,14 +198,14 @@
             "Q40",
             "Block Q40 if Q39 is NOT \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q39 to Q41)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q41 if Q39 is NOT  \u201cBills only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -216,14 +216,14 @@
             "Q41",
             "Block Q41 if Q39 is NOT  \u201cBills only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q39 to Q41)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q41 if Q39 is NOT  \u201cBills only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -234,14 +234,14 @@
             "Q41",
             "Block Q41 if Q39 is NOT  \u201cBills only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q46 to Q47)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q47 if Q46 is NOT \u201cYou are setting money aside to save for future\u2026\u201d or \u201cYou are stuck with change from a transaction a\u2026\u201d",
         "Occurrences_train": 0,
@@ -252,14 +252,14 @@
             "Q47",
             "Block Q47 if Q46 is NOT \u201cYou are setting money aside to save for future\u2026\u201d or \u201cYou are stuck with change from a transaction a\u2026\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q46 to Q47)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q47 if Q46 is NOT \u201cYou are setting money aside to save for future\u2026\u201d or \u201cYou are stuck with change from a transaction a\u2026\u201d",
         "Occurrences_train": 0,
@@ -270,14 +270,14 @@
             "Q47",
             "Block Q47 if Q46 is NOT \u201cYou are setting money aside to save for future\u2026\u201d or \u201cYou are stuck with change from a transaction a\u2026\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q48r97 to Q49)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q49 if Q48r97 selected",
         "Occurrences_train": 0,
@@ -288,14 +288,14 @@
             "Q49",
             "Block Q49 if Q48r97 selected",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q48r97 to Q49)",
         "is_valid": false,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": [
             {
                 "Q48r97": "NO TO: No plans to spend/convert the set aside coins",
@@ -313,14 +313,14 @@
             "Q49",
             "Block Q49 if Q48r97 selected",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q50r97 to Q51)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q51 if Q50r97 is NOT \u201cNo plans to spend/convert the set aside\u2026\u201d",
         "Occurrences_train": 0,
@@ -331,14 +331,14 @@
             "Q51",
             "Block Q51 if Q50r97 is NOT \u201cNo plans to spend/convert the set aside\u2026\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q50r97 to Q51)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q51 if Q50r97 is NOT \u201cNo plans to spend/convert the set aside\u2026\u201d",
         "Occurrences_train": 0,
@@ -349,14 +349,14 @@
             "Q51",
             "Block Q51 if Q50r97 is NOT \u201cNo plans to spend/convert the set aside\u2026\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q39 to Q56)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q56 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -367,14 +367,14 @@
             "Q56",
             "Block Q56 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q39 to Q56)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q56 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -385,14 +385,14 @@
             "Q56",
             "Block Q56 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q39 to Q59)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -403,14 +403,14 @@
             "Q59",
             "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q39 to Q59)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -421,14 +421,14 @@
             "Q59",
             "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q63 to Q64)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q64 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
         "Occurrences_train": 0,
@@ -439,14 +439,14 @@
             "Q64",
             "Block Q64 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q63 to Q64)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q64 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
         "Occurrences_train": 0,
@@ -457,14 +457,14 @@
             "Q64",
             "Block Q64 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q63 to Q65)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q65 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
         "Occurrences_train": 0,
@@ -475,14 +475,14 @@
             "Q65",
             "Block Q65 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q63 to Q65)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q65 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
         "Occurrences_train": 0,
@@ -493,14 +493,14 @@
             "Q65",
             "Block Q65 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q78A to Q78B)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q76B if Q76A is NOT \u201cYes\u201d",
         "Occurrences_train": 0,
@@ -511,14 +511,14 @@
             "Q78B",
             "Block Q76B if Q76A is NOT \u201cYes\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q78A to Q78B)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q76B if Q76A is NOT \u201cYes\u201d",
         "Occurrences_train": 0,
@@ -529,14 +529,14 @@
             "Q78B",
             "Block Q76B if Q76A is NOT \u201cYes\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Single",
         "Description": "Block Single-to-Single (Q39 to Q85)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -547,14 +547,14 @@
             "Q85",
             "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Single",
         "Description": "Force Single-to-Single (Q39 to Q85)",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 0,
@@ -565,14 +565,14 @@
             "Q85",
             "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q24 to ['Q25r1', 'Q25r2', 'Q25r3', 'Q25r4', 'Q25r5', 'Q25r6', 'Q25r96', 'Q25r97'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q25 if Q24 is not \u201cYes, I prefer using bills over coins\u201d",
         "Occurrences_train": 1094,
@@ -592,14 +592,14 @@
             ],
             "Block Q25 if Q24 is not \u201cYes, I prefer using bills over coins\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q24 to ['Q25r1', 'Q25r2', 'Q25r3', 'Q25r4', 'Q25r5', 'Q25r6', 'Q25r96', 'Q25r97'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q25 if Q24 is not \u201cYes, I prefer using bills over coins\u201d",
         "Occurrences_train": 1094,
@@ -619,14 +619,14 @@
             ],
             "Block Q25 if Q24 is not \u201cYes, I prefer using bills over coins\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q24 to ['Q26r1', 'Q26r2', 'Q26r3', 'Q26r4', 'Q26r5', 'Q26r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q26 if Q24 is not 'Yes, I prefer using coins over bills'",
         "Occurrences_train": 2440,
@@ -644,14 +644,14 @@
             ],
             "Block Q26 if Q24 is not 'Yes, I prefer using coins over bills'",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q24 to ['Q26r1', 'Q26r2', 'Q26r3', 'Q26r4', 'Q26r5', 'Q26r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q26 if Q24 is not 'Yes, I prefer using coins over bills'",
         "Occurrences_train": 2440,
@@ -669,14 +669,14 @@
             ],
             "Block Q26 if Q24 is not 'Yes, I prefer using coins over bills'",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q47 to ['Q48r1', 'Q48r2', 'Q48r3', 'Q48r4', 'Q48r5', 'Q48r6', 'Q48r7', 'Q48r8', 'Q48r9', 'Q48r10', 'Q48r96', 'Q48r97', 'Q48r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q48 group if Q47 is NOT \u201cA combination of saving approaches, some set a\u2026\u201d or \u201cLong-term saving - set aside with no intention\u2026\u201d  ",
         "Occurrences_train": 1721,
@@ -701,14 +701,14 @@
             ],
             "Block Q48 group if Q47 is NOT \u201cA combination of saving approaches, some set a\u2026\u201d or \u201cLong-term saving - set aside with no intention\u2026\u201d  ",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q47 to ['Q48r1', 'Q48r2', 'Q48r3', 'Q48r4', 'Q48r5', 'Q48r6', 'Q48r7', 'Q48r8', 'Q48r9', 'Q48r10', 'Q48r96', 'Q48r97', 'Q48r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q48 group if Q47 is NOT \u201cA combination of saving approaches, some set a\u2026\u201d or \u201cLong-term saving - set aside with no intention\u2026\u201d  ",
         "Occurrences_train": 1721,
@@ -733,14 +733,14 @@
             ],
             "Block Q48 group if Q47 is NOT \u201cA combination of saving approaches, some set a\u2026\u201d or \u201cLong-term saving - set aside with no intention\u2026\u201d  ",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q47 to ['Q50r1', 'Q50r2', 'Q50r3', 'Q50r4', 'Q50r5', 'Q50r6', 'Q50r7', 'Q50r8', 'Q50r9', 'Q50r10', 'Q50r96', 'Q50r97', 'Q50r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q50 group if Q47 is NOT 'Short-term saving - set aside with an intenti...,\u201d  OR 'A combination of saving approaches, some set ...\u201d",
         "Occurrences_train": 985,
@@ -765,14 +765,14 @@
             ],
             "Block Q50 group if Q47 is NOT 'Short-term saving - set aside with an intenti...,\u201d  OR 'A combination of saving approaches, some set ...\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q47 to ['Q50r1', 'Q50r2', 'Q50r3', 'Q50r4', 'Q50r5', 'Q50r6', 'Q50r7', 'Q50r8', 'Q50r9', 'Q50r10', 'Q50r96', 'Q50r97', 'Q50r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q50 group if Q47 is NOT 'Short-term saving - set aside with an intenti...,\u201d  OR 'A combination of saving approaches, some set ...\u201d",
         "Occurrences_train": 985,
@@ -797,14 +797,14 @@
             ],
             "Block Q50 group if Q47 is NOT 'Short-term saving - set aside with an intenti...,\u201d  OR 'A combination of saving approaches, some set ...\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q39 to ['Q53r1', 'Q53r2', 'Q53r3', 'Q53r4', 'Q53r5', 'Q53r6', 'Q53r7', 'Q53r8', 'Q53r9', 'Q53r10', 'Q53r11', 'Q53r12', 'Q53r13', 'Q53r96', 'Q53r97', 'Q53r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q53 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 1102,
@@ -832,14 +832,14 @@
             ],
             "Block Q53 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q39 to ['Q53r1', 'Q53r2', 'Q53r3', 'Q53r4', 'Q53r5', 'Q53r6', 'Q53r7', 'Q53r8', 'Q53r9', 'Q53r10', 'Q53r11', 'Q53r12', 'Q53r13', 'Q53r96', 'Q53r97', 'Q53r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q53 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 1102,
@@ -867,14 +867,14 @@
             ],
             "Block Q53 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q39 to ['Q58r1', 'Q58r2', 'Q58r3', 'Q58r4', 'Q58r5', 'Q58r96', 'Q58r97', 'Q58r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q58 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 1102,
@@ -894,14 +894,14 @@
             ],
             "Block Q58 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q39 to ['Q58r1', 'Q58r2', 'Q58r3', 'Q58r4', 'Q58r5', 'Q58r96', 'Q58r97', 'Q58r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q58 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
         "Occurrences_train": 1102,
@@ -921,14 +921,14 @@
             ],
             "Block Q58 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q61 to ['Q62r1', 'Q62r2', 'Q62r3', 'Q62r4', 'Q62r5', 'Q62r96', 'Q62r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q62 group if Q61 is NOT \u201cYes, and I knew what they are for\u201d OR \u201cYes, but I was not sure what they are for\u201d",
         "Occurrences_train": 1290,
@@ -947,14 +947,14 @@
             ],
             "Block Q62 group if Q61 is NOT \u201cYes, and I knew what they are for\u201d OR \u201cYes, but I was not sure what they are for\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q61 to ['Q62r1', 'Q62r2', 'Q62r3', 'Q62r4', 'Q62r5', 'Q62r96', 'Q62r98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q62 group if Q61 is NOT \u201cYes, and I knew what they are for\u201d OR \u201cYes, but I was not sure what they are for\u201d",
         "Occurrences_train": 1290,
@@ -973,14 +973,14 @@
             ],
             "Block Q62 group if Q61 is NOT \u201cYes, and I knew what they are for\u201d OR \u201cYes, but I was not sure what they are for\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q63 to ['Q66r1', 'Q66r2', 'Q66r3', 'Q66r4', 'Q66r96', 'Q66r97'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q66 group of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
         "Occurrences_train": 1910,
@@ -998,14 +998,14 @@
             ],
             "Block Q66 group of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q63 to ['Q66r1', 'Q66r2', 'Q66r3', 'Q66r4', 'Q66r96', 'Q66r97'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q66 group of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
         "Occurrences_train": 1910,
@@ -1023,14 +1023,14 @@
             ],
             "Block Q66 group of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q63 to ['Q67r1', 'Q67r2', 'Q67r3', 'Q67r4', 'Q67r5', 'Q67r6', 'Q67r7', 'Q67r8', 'Q67r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q67 group of Q63 NOT 'No, neither'",
         "Occurrences_train": 590,
@@ -1051,14 +1051,14 @@
             ],
             "Block Q67 group of Q63 NOT 'No, neither'",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q63 to ['Q67r1', 'Q67r2', 'Q67r3', 'Q67r4', 'Q67r5', 'Q67r6', 'Q67r7', 'Q67r8', 'Q67r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q67 group of Q63 NOT 'No, neither'",
         "Occurrences_train": 590,
@@ -1079,14 +1079,14 @@
             ],
             "Block Q67 group of Q63 NOT 'No, neither'",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q63 to ['Q68r1', 'Q68r2', 'Q68r3', 'Q68r4', 'Q68r5'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q68 group of Q63 NOT 'No, neither'",
         "Occurrences_train": 590,
@@ -1103,14 +1103,14 @@
             ],
             "Block Q68 group of Q63 NOT 'No, neither'",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q63 to ['Q68r1', 'Q68r2', 'Q68r3', 'Q68r4', 'Q68r5'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q68 group of Q63 NOT 'No, neither'",
         "Occurrences_train": 590,
@@ -1127,14 +1127,14 @@
             ],
             "Block Q68 group of Q63 NOT 'No, neither'",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q68r2 to ['Q70NEWr1', 'Q70NEWr2', 'Q70NEWr3', 'Q70NEWr4', 'Q70NEWr5', 'Q70NEWr6', 'Q70NEWr7', 'Q70NEWr8', 'Q70NEWr9', 'Q70NEWr10', 'Q70NEWr96', 'Q70NEWr97', 'Q70NEWr98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q70 group if Q68r2 is NOT in \u201cA little more likely\u201d OR \u201cMuch more likely\u201d",
         "Occurrences_train": 1597,
@@ -1159,14 +1159,14 @@
             ],
             "Block Q70 group if Q68r2 is NOT in \u201cA little more likely\u201d OR \u201cMuch more likely\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q68r2 to ['Q70NEWr1', 'Q70NEWr2', 'Q70NEWr3', 'Q70NEWr4', 'Q70NEWr5', 'Q70NEWr6', 'Q70NEWr7', 'Q70NEWr8', 'Q70NEWr9', 'Q70NEWr10', 'Q70NEWr96', 'Q70NEWr97', 'Q70NEWr98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q70 group if Q68r2 is NOT in \u201cA little more likely\u201d OR \u201cMuch more likely\u201d",
         "Occurrences_train": 1597,
@@ -1191,14 +1191,14 @@
             ],
             "Block Q70 group if Q68r2 is NOT in \u201cA little more likely\u201d OR \u201cMuch more likely\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q78B to ['Q78Byesr1', 'Q78Byesr2', 'Q78Byesr3', 'Q78Byesr4', 'Q78Byesr96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q78Byes if Q78B not \u201cyes\u201d",
         "Occurrences_train": 2230,
@@ -1215,14 +1215,14 @@
             ],
             "Block Q78Byes if Q78B not \u201cyes\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q78B to ['Q78Byesr1', 'Q78Byesr2', 'Q78Byesr3', 'Q78Byesr4', 'Q78Byesr96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q78Byes if Q78B not \u201cyes\u201d",
         "Occurrences_train": 2230,
@@ -1239,14 +1239,14 @@
             ],
             "Block Q78Byes if Q78B not \u201cyes\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q85 to ['Q85yesr1', 'Q85yesr2', 'Q85yesr3', 'Q85yesr4', 'Q85yesr96', 'Q85yesr98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q85yes if Q85 not \u201cyes\u201d",
         "Occurrences_train": 2135,
@@ -1264,14 +1264,14 @@
             ],
             "Block Q85yes if Q85 not \u201cyes\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q85 to ['Q85yesr1', 'Q85yesr2', 'Q85yesr3', 'Q85yesr4', 'Q85yesr96', 'Q85yesr98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q85yes if Q85 not \u201cyes\u201d",
         "Occurrences_train": 2135,
@@ -1289,14 +1289,14 @@
             ],
             "Block Q85yes if Q85 not \u201cyes\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Block Single-to-Multi",
         "Description": "Block Single-to-Multi (Q86A to ['Q86yesr1', 'Q86yesr2', 'Q86yesr3', 'Q86yesr4', 'Q86yesr5', 'Q86yesr96', 'Q86yesr97', 'Q86yesr98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q86yes if Q86A not \u201cyes\u201d",
         "Occurrences_train": 1962,
@@ -1316,14 +1316,14 @@
             ],
             "Block Q86yes if Q86A not \u201cyes\u201d",
             "block",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Force Single-to-Multi",
         "Description": "Force Single-to-Multi (Q86A to ['Q86yesr1', 'Q86yesr2', 'Q86yesr3', 'Q86yesr4', 'Q86yesr5', 'Q86yesr96', 'Q86yesr97', 'Q86yesr98'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Detail": "Block Q86yes if Q86A not \u201cyes\u201d",
         "Occurrences_train": 1962,
@@ -1343,14 +1343,14 @@
             ],
             "Block Q86yes if Q86A not \u201cyes\u201d",
             "force",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q13r1', 'Q13r2', 'Q13r3', 'Q13r4', 'Q13r5', 'Q13r6', 'Q13r7', 'Q13r8', 'Q13r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -1368,14 +1368,14 @@
             ],
             "Q13r99",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q22r1', 'Q22r2', 'Q22r3', 'Q22r4', 'Q22r5', 'Q22r6', 'Q22r7', 'Q22r8', 'Q22r9', 'Q22r10', 'Q22r96', 'Q22r98'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -1396,14 +1396,14 @@
             ],
             "Q22r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q22r1', 'Q22r2', 'Q22r3', 'Q22r4', 'Q22r5', 'Q22r6', 'Q22r7', 'Q22r8', 'Q22r9', 'Q22r10', 'Q22r96', 'Q22r97'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -1424,14 +1424,14 @@
             ],
             "Q22r98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q25r1', 'Q25r2', 'Q25r3', 'Q25r4', 'Q25r5', 'Q25r6', 'Q25r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -1447,14 +1447,14 @@
             ],
             "Q25r97",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q30r1', 'Q30r2', 'Q30r3', 'Q30r4', 'Q30r5', 'Q30r6', 'Q30r7', 'Q30r8', 'Q30r9', 'Q30r10', 'Q30r11', 'Q30r12', 'Q30r13', 'Q30r14', 'Q30r15', 'Q30r16', 'noanswerQ30_r99'])",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q30r1": "None",
@@ -2343,14 +2343,14 @@
             ],
             "noanswerQ30_r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "Training Data not Reliable",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -2376,14 +2376,14 @@
             ],
             "noanswerQ30_r99",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q35r1', 'Q35r2', 'Q35r3', 'Q35r4', 'Q35r5', 'Q35r6', 'Q35r7', 'Q35r8', 'Q35r9', 'Q35r10', 'Q35r11', 'Q35r12', 'Q35r13'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -2405,14 +2405,14 @@
             ],
             "Q35r97",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q48r1', 'Q48r2', 'Q48r3', 'Q48r4', 'Q48r5', 'Q48r6', 'Q48r7', 'Q48r8', 'Q48r9', 'Q48r10', 'Q48r96', 'Q48r98'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -2433,14 +2433,14 @@
             ],
             "Q48r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q48r1', 'Q48r2', 'Q48r3', 'Q48r4', 'Q48r5', 'Q48r6', 'Q48r7', 'Q48r8', 'Q48r9', 'Q48r10', 'Q48r96', 'Q48r97'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -2461,14 +2461,14 @@
             ],
             "Q48r98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q50r1', 'Q50r2', 'Q50r3', 'Q50r4', 'Q50r5', 'Q50r6', 'Q50r7', 'Q50r8', 'Q50r9', 'Q50r10', 'Q50r96', 'Q50r98'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -2489,14 +2489,14 @@
             ],
             "Q50r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q50r1', 'Q50r2', 'Q50r3', 'Q50r4', 'Q50r5', 'Q50r6', 'Q50r7', 'Q50r8', 'Q50r9', 'Q50r10', 'Q50r96', 'Q50r97'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -2517,14 +2517,14 @@
             ],
             "Q50r98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q53r1', 'Q53r2', 'Q53r3', 'Q53r4', 'Q53r5', 'Q53r6', 'Q53r7', 'Q53r8', 'Q53r9', 'Q53r10', 'Q53r11', 'Q53r12', 'Q53r13', 'Q53r96', 'Q53r98'])",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q53r1": "For a specific service that needs coins - laundry, car wash, etc.",
@@ -2588,14 +2588,14 @@
             ],
             "Q53r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q53r1', 'Q53r2', 'Q53r3', 'Q53r4', 'Q53r5', 'Q53r6', 'Q53r7', 'Q53r8', 'Q53r9', 'Q53r10', 'Q53r11', 'Q53r12', 'Q53r13', 'Q53r96', 'Q53r97'])",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q53r1": "NO TO: For a specific service that needs coins - laundry, car wash, etc.",
@@ -3438,14 +3438,14 @@
             ],
             "Q53r98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q57r1', 'Q57r2', 'Q57r3', 'Q57r4', 'Q57r5', 'Q57r6', 'Q57r7', 'Q57r8', 'Q57r9', 'Q57r10', 'Q57r96', 'Q57r98'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3466,14 +3466,14 @@
             ],
             "Q57r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q57r1', 'Q57r2', 'Q57r3', 'Q57r4', 'Q57r5', 'Q57r6', 'Q57r7', 'Q57r8', 'Q57r9', 'Q57r10', 'Q57r96', 'Q57r97'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3494,14 +3494,14 @@
             ],
             "Q57r98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q58r1', 'Q58r2', 'Q58r3', 'Q58r4', 'Q58r5', 'Q58r96', 'Q58r98'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3517,14 +3517,14 @@
             ],
             "Q58r97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q58r1', 'Q58r2', 'Q58r3', 'Q58r4', 'Q58r5', 'Q58r96', 'Q58r97'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3540,14 +3540,14 @@
             ],
             "Q58r98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q62r1', 'Q62r2', 'Q62r3', 'Q62r4', 'Q62r5', 'Q62r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3562,14 +3562,14 @@
             ],
             "Q62r98",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q66r1', 'Q66r2', 'Q66r3', 'Q66r4', 'Q66r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3583,14 +3583,14 @@
             ],
             "Q66r97",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q67r1', 'Q67r2', 'Q67r3', 'Q67r4', 'Q67r5', 'Q67r6', 'Q67r7', 'Q67r8', 'Q67r96'])",
         "is_valid": false,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": [
             {
                 "Q67r1": "I do not carry enough coins to use one",
@@ -3649,14 +3649,14 @@
             ],
             "Q67r98",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q70NEWr1', 'Q70NEWr2', 'Q70NEWr3', 'Q70NEWr4', 'Q70NEWr5', 'Q70NEWr6', 'Q70NEWr7', 'Q70NEWr8', 'Q70NEWr9', 'Q70NEWr10', 'Q70NEWr96', 'Q70NEWr98'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3677,14 +3677,14 @@
             ],
             "Q70NEWr97",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q70NEWr1', 'Q70NEWr2', 'Q70NEWr3', 'Q70NEWr4', 'Q70NEWr5', 'Q70NEWr6', 'Q70NEWr7', 'Q70NEWr8', 'Q70NEWr9', 'Q70NEWr10', 'Q70NEWr96', 'Q70NEWr97'])",
         "is_valid": true,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3705,14 +3705,14 @@
             ],
             "Q70NEWr98",
             [],
-            "No"
+            false
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q77r1', 'Q77r2', 'Q77r3', 'Q77r4', 'Q77r5', 'Q77r6', 'Q77r7', 'Q77r8', 'Q77r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3730,14 +3730,14 @@
             ],
             "Q77r98",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "None of the Above",
         "Description": "None of the Above (['Q78r1', 'Q78r2', 'Q78r3', 'Q78r4', 'Q78r5', 'Q78r6', 'Q78r7', 'Q78r8', 'Q78r9', 'Q78r10', 'Q78r96'])",
         "is_valid": true,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": null,
         "Percentage_of_valid_rows": 100,
         "Rows": [],
@@ -3757,14 +3757,14 @@
             ],
             "Q78r98",
             [],
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Recoding Single-to-Single",
         "Description": "Recoding Single-to-Single (Q2 to AGENUM)",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q2": "1968",
@@ -6111,14 +6111,14 @@
             "AGENUM",
             "SS",
             "Recoding from birthdate to age - many values for the same recode issue",
-            "No"
+            false
         ]
     },
     {
         "Type": "Recoding Single-to-Single",
         "Description": "Recoding Single-to-Single (AGENUM to Q3)",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "AGENUM": 18.0,
@@ -7805,14 +7805,14 @@
             "Q3",
             "SS",
             "Recoding Age to age groups - many values for the same code issue (value 9999.0 causing the issue)",
-            "No"
+            false
         ]
     },
     {
         "Type": "Recoding Multi-to-Single",
         "Description": "Recoding Multi-to-Single (['Q3', 'Q1'] to GenreAge)",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "GenreAge": "Male 35 to 49",
@@ -9255,14 +9255,14 @@
             "GenreAge",
             "MS",
             "Grouping age groups and gender - issue cause by previous ones",
-            "No"
+            false
         ]
     },
     {
         "Type": "Recoding Multi-to-Single",
         "Description": "Recoding Multi-to-Single (['Q13r1', 'Q13r2', 'Q13r3', 'Q13r4', 'Q13r5', 'Q13r6', 'Q13r7', 'Q13r8', 'Q13r96', 'Q13r99'] to Q14)",
         "is_valid": false,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": [
             {
                 "Q14": "No",
@@ -9579,14 +9579,14 @@
             "Q14",
             "MS",
             "Recode ethnicity  into groups",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Recoding Multi-to-Single",
         "Description": "Recoding Multi-to-Single (['Q13r1', 'Q13r2', 'Q13r3', 'Q13r4', 'Q13r5', 'Q13r6', 'Q13r7', 'Q13r8', 'Q13r96', 'Q13r99'] to Q16)",
         "is_valid": false,
-        "is_supported": "Yes",
+        "is_supported": true,
         "Dataframe": [
             {
                 "Q16": "Yes",
@@ -9987,14 +9987,14 @@
             "Q16",
             "MS",
             "Recode Yes if Q13r1, r2, r4, r5, r6, r7, or r9 selected - seems like it is not a real recoding",
-            "Yes"
+            true
         ]
     },
     {
         "Type": "Count",
         "Description": "Count - (['Q30r1', 'Q30r2', 'Q30r3', 'Q30r4', 'Q30r5', 'Q30r6', 'Q30r7', 'Q30r8', 'Q30r9', 'Q30r10', 'Q30r11', 'Q30r12', 'Q30r13', 'Q30r14', 'Q30r15', 'Q30r16']) (Min answers expected: 1, Max answers expected: 16)",
         "is_valid": false,
-        "is_supported": "No",
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q30r1": "None",
@@ -13744,14 +13744,15 @@
                 "Q30r16"
             ],
             "",
-            "No"
+            false
         ]
     },
     {
         "Type": "Block/Force",
         "Description": "Block/Force - Ask Q77 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76 in [\u201dVery good thing, \u201cA good thing\u201d]",
+        "Detail": "Ask Q77 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76 in [\u201dVery good thing, \u201cA good thing\u201d]",
         "is_valid": false,
-        "is_supported": true,
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q77r1": "NO TO: There are easier options for transactions",
@@ -14332,14 +14333,16 @@
         "definition": [
             "Block/Force",
             "Ask Q77 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76 in [\u201dVery good thing, \u201cA good thing\u201d]",
-            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin([\"Very good thing\", \"A good thing\"])) & df[['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']].notna().any(axis=1)][['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']]"
+            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin([\"Very good thing\", \"A good thing\"])) & df[['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']].notna().any(axis=1)][['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']]",
+            false
         ]
     },
     {
         "Type": "Block/Force",
         "Description": "Block/Force - Ask Q78 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76  NOT in [A bad thing', 'A very bad thing\u2019]",
+        "Detail": "Ask Q78 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76  NOT in [A bad thing', 'A very bad thing\u2019]",
         "is_valid": false,
-        "is_supported": true,
+        "is_supported": false,
         "Dataframe": [
             {
                 "Q78r1": NaN,
@@ -15143,7 +15146,8 @@
         "definition": [
             "Block/Force",
             "Ask Q78 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76  NOT in [A bad thing', 'A very bad thing\u2019]",
-            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin(['A bad thing', 'A very bad thing'])) & df[['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']].notna().any(axis=1)][['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']]\n"
+            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin(['A bad thing', 'A very bad thing'])) & df[['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']].notna().any(axis=1)][['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']]\n",
+            false
         ]
     }
 ]

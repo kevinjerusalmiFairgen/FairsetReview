@@ -5,105 +5,105 @@
             "Q5",
             "Answer Q5 if Q4 is Quebec",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q4",
             "Q6",
             "Answer Q6 if Q4 is Ontario",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q4",
             "Q7",
             "Answer Q7 if Q4 is British Columbia",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q4",
             "Q8",
             "Answer Q8 if Q4 is Alberta",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
             "Q40",
             "Block Q40 if Q39 is NOT \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
             "Q41",
             "Block Q41 if Q39 is NOT  \u201cBills only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q46",
             "Q47",
             "Block Q47 if Q46 is NOT \u201cYou are setting money aside to save for future\u2026\u201d or \u201cYou are stuck with change from a transaction a\u2026\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q48r97",
             "Q49",
             "Block Q49 if Q48r97 selected",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q50r97",
             "Q51",
             "Block Q51 if Q50r97 is NOT \u201cNo plans to spend/convert the set aside\u2026\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
             "Q56",
             "Block Q56 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
             "Q59",
             "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q63",
             "Q64",
             "Block Q64 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q63",
             "Q65",
             "Block Q65 of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q78A",
             "Q78B",
             "Block Q76B if Q76A is NOT \u201cYes\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
             "Q85",
             "Block Q59 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ]
     ],
     "BF_SM": [
@@ -121,7 +121,7 @@
             ],
             "Block Q25 if Q24 is not \u201cYes, I prefer using bills over coins\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q24",
@@ -135,7 +135,7 @@
             ],
             "Block Q26 if Q24 is not 'Yes, I prefer using coins over bills'",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q47",
@@ -156,7 +156,7 @@
             ],
             "Block Q48 group if Q47 is NOT \u201cA combination of saving approaches, some set a\u2026\u201d or \u201cLong-term saving - set aside with no intention\u2026\u201d  ",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q47",
@@ -177,7 +177,7 @@
             ],
             "Block Q50 group if Q47 is NOT 'Short-term saving - set aside with an intenti...,\u201d  OR 'A combination of saving approaches, some set ...\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
@@ -201,7 +201,7 @@
             ],
             "Block Q53 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q39",
@@ -217,7 +217,7 @@
             ],
             "Block Q58 group if Q39 is NOT  \u201cCoins only\u201d or \u201cA combination of coins and bills\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q61",
@@ -232,7 +232,7 @@
             ],
             "Block Q62 group if Q61 is NOT \u201cYes, and I knew what they are for\u201d OR \u201cYes, but I was not sure what they are for\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q63",
@@ -246,7 +246,7 @@
             ],
             "Block Q66 group of Q63 NOT in \u201cYes, used some other coin recycling program/se\u2026\u201d OR \u201cYes, used a coin recycling machine\u201d ",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q63",
@@ -263,7 +263,7 @@
             ],
             "Block Q67 group of Q63 NOT 'No, neither'",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q63",
@@ -276,7 +276,7 @@
             ],
             "Block Q68 group of Q63 NOT 'No, neither'",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q68r2",
@@ -297,7 +297,7 @@
             ],
             "Block Q70 group if Q68r2 is NOT in \u201cA little more likely\u201d OR \u201cMuch more likely\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q78B",
@@ -310,7 +310,7 @@
             ],
             "Block Q78Byes if Q78B not \u201cyes\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q85",
@@ -324,7 +324,7 @@
             ],
             "Block Q85yes if Q85 not \u201cyes\u201d",
             "block_force",
-            "Yes"
+            true
         ],
         [
             "Q86A",
@@ -340,7 +340,7 @@
             ],
             "Block Q86yes if Q86A not \u201cyes\u201d",
             "block_force",
-            "Yes"
+            true
         ]
     ],
     "BF_MS": [],
@@ -367,7 +367,7 @@
                 "Q30r16"
             ],
             "",
-            "No"
+            false
         ]
     ],
     "recodings": [
@@ -376,14 +376,14 @@
             "AGENUM",
             "SS",
             "Recoding from birthdate to age - many values for the same recode issue",
-            "No"
+            false
         ],
         [
             "AGENUM",
             "Q3",
             "SS",
             "Recoding Age to age groups - many values for the same code issue (value 9999.0 causing the issue)",
-            "No"
+            false
         ],
         [
             [
@@ -393,7 +393,7 @@
             "GenreAge",
             "MS",
             "Grouping age groups and gender - issue cause by previous ones",
-            "No"
+            false
         ],
         [
             [
@@ -411,7 +411,7 @@
             "Q14",
             "MS",
             "Recode ethnicity  into groups",
-            "Yes"
+            true
         ],
         [
             [
@@ -429,7 +429,7 @@
             "Q16",
             "MS",
             "Recode Yes if Q13r1, r2, r4, r5, r6, r7, or r9 selected - seems like it is not a real recoding",
-            "Yes"
+            true
         ]
     ],
     "NOTAs": [
@@ -448,7 +448,7 @@
             ],
             "Q13r99",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -468,7 +468,7 @@
             ],
             "Q22r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -488,7 +488,7 @@
             ],
             "Q22r98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -503,7 +503,7 @@
             ],
             "Q25r97",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -528,7 +528,7 @@
             ],
             "noanswerQ30_r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -553,7 +553,7 @@
             ],
             "noanswerQ30_r99",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -574,7 +574,7 @@
             ],
             "Q35r97",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -594,7 +594,7 @@
             ],
             "Q48r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -614,7 +614,7 @@
             ],
             "Q48r98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -634,7 +634,7 @@
             ],
             "Q50r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -654,7 +654,7 @@
             ],
             "Q50r98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -677,7 +677,7 @@
             ],
             "Q53r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -700,7 +700,7 @@
             ],
             "Q53r98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -720,7 +720,7 @@
             ],
             "Q57r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -740,7 +740,7 @@
             ],
             "Q57r98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -755,7 +755,7 @@
             ],
             "Q58r97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -770,7 +770,7 @@
             ],
             "Q58r98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -784,7 +784,7 @@
             ],
             "Q62r98",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -797,7 +797,7 @@
             ],
             "Q66r97",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -813,7 +813,7 @@
             ],
             "Q67r98",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -833,7 +833,7 @@
             ],
             "Q70NEWr97",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -853,7 +853,7 @@
             ],
             "Q70NEWr98",
             [],
-            "No"
+            false
         ],
         [
             [
@@ -870,7 +870,7 @@
             ],
             "Q77r98",
             [],
-            "Yes"
+            true
         ],
         [
             [
@@ -889,7 +889,7 @@
             ],
             "Q78r98",
             [],
-            "Yes"
+            true
         ]
     ],
     "AOTAS": [],
@@ -898,12 +898,14 @@
         [
             "Block/Force",
             "Ask Q77 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76 in [\u201dVery good thing, \u201cA good thing\u201d]",
-            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin([\"Very good thing\", \"A good thing\"])) & df[['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']].notna().any(axis=1)][['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']]"
+            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin([\"Very good thing\", \"A good thing\"])) & df[['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']].notna().any(axis=1)][['Q77r1','Q77r2','Q77r3','Q77r4','Q77r5','Q77r6','Q77r7','Q77r8','Q77r96','Q77r98']]",
+            false
         ],
         [
             "Block/Force",
             "Ask Q78 group if Q75 is in [\u201dQuickly shifting towards using less cash\u201d, \u201cSlowing shifting towards using less cash\u201d ] AND Q76  NOT in [A bad thing', 'A very bad thing\u2019]",
-            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin(['A bad thing', 'A very bad thing'])) & df[['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']].notna().any(axis=1)][['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']]\n"
+            "df_check = df[(~df[\"Q75\"].isin([\"Quickly shifting towards using less cash\", \"Slowing shifting towards using less cash\"]) | ~df[\"Q76\"].isin(['A bad thing', 'A very bad thing'])) & df[['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']].notna().any(axis=1)][['Q78r1','Q78r2','Q78r3','Q78r4','Q78r5','Q78r6','Q78r7','Q78r8','Q78r9','Q78r10','Q78r96','Q78r98']]\n",
+            false
         ]
     ]
 }

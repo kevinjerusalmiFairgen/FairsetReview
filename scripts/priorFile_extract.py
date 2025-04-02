@@ -15,11 +15,12 @@ def cleaning_lists(target_str):
         return target_str
 
 
-def priorFileExtract(path):
-    df = pd.read_csv(path)[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
+def priorFileExtract(df):
+    df = df[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
     df["Target"] = df["Target"].apply(cleaning_lists)
     df["Source"] = df["Source"].apply(cleaning_lists)
     df['ID'] = df['ID'].apply(lambda x: x['number'] if isinstance(x, dict) else x)
+    df["Is Implemented"] = df["Is Implemented"] .apply(lambda x: False if x == "No" else True)
 
     constraints_json = {
         "BF_SS": [],
@@ -59,8 +60,10 @@ def priorFileExtract(path):
             constraints_json["custom"].append([
                 row["Constraint"],
                 row["Comment"],
-                row["Custom Query"]
+                row["Custom Query"],
+                row["Is Implemented"]
             ])
+            
         else:
             if row["Constraint"] in ["Block", "Force", "Block/Force"]:
                 if not row["B/F Relationship"]:
