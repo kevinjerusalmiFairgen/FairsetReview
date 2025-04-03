@@ -1081,7 +1081,7 @@ class LogicFunctions:
             ("custom", constraints.get("custom", [])),
         ]
 
-        for constraint_type, constraint_list in stqdm(all_constraints, desc=f"Processing Constraints for {self.name}"):
+        for constraint_type, constraint_list in stqdm(all_constraints, desc=f"Processing Constraints for {self.name}", mininterval=0.1):
             for constraint in constraint_list:
                 if constraint_type in ["BF_SS", "BF_SM"]:
                     if constraint[3] == "block_force":
