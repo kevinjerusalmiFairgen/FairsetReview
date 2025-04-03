@@ -39,18 +39,20 @@ def convert_type(s):
 def readOuput(path):
     with open(path, 'r') as file:
         data = json.load(file)
-        st.write(data)
         data = [
             {
-                **item, 
+                **item,
                 "Detail": item["Description"] if not item.get("Detail") else item["Detail"]
             }
             for item in data
-            if item.get("is_valid") == False
+            if item and item.get("is_valid") == False
         ]
+        
         if data == []:
             st.write("Empty Data")
-        
+
+        if not isinstance(data, list):
+            st.error("Expected data to be a list, got something else.")     
 
     df = pd.DataFrame(data)[["Type", "is_supported", "Dataframe", "Detail", "Percentage_of_valid_rows", "Rows"]]
 
