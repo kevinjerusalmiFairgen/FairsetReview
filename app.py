@@ -4,7 +4,7 @@ import json
 import scripts.generate_report as generate_report
 import streamlit as st
 import os
-
+from pathlib import Path
 
 
 def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, output_structurejson, output_report_path):
@@ -51,7 +51,7 @@ def main():
         st.markdown("## Upload Prior file")
         priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    col1, _, col2 = st.columns(3)
+    _, col1, col2, _ = st.columns(4)
 
     with col1:
         if st.button("Run Analysis"):
