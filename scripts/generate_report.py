@@ -39,7 +39,12 @@ def convert_type(s):
 def readOuput(path):
     with open(path, 'r') as file:
         data = json.load(file)
-        st.download_button(data=data, label= "download")
+        st.download_button(
+            label="Download Raw JSON",
+            data=json.dumps(data, indent=2),
+            file_name="raw_data.json",
+        )
+        st.stop()
         data = [
             {
                 **item,
