@@ -81,6 +81,7 @@ def main():
             st.write(unknown_columns)
             if unknown_columns != []:
                 st.error(f"Column(s) {unknown_columns} from the Prior File are not present in the Data.")
+                return
 
             config = {
                 "priorfile": priorfile,
