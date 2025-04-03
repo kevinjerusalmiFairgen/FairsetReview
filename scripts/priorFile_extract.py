@@ -7,8 +7,7 @@ def check_columns_presence(df_priorfile, df, cols):
     flat_list = []
 
     for col in cols:
-        if col not in df_priorfile.columns:
-            continue  # or raise an error if this should never happen
+        print(df_priorfile.columns)
 
         for item in df_priorfile[col]:
             if pd.isna(item):
