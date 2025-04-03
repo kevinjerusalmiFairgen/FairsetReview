@@ -937,7 +937,7 @@ class LogicFunctions:
         train = self.train.copy()
         fairset = self.fairset.copy()
         # Get columns with the given prefix
-        if not isinstance(prefix, list)
+        if not isinstance(prefix, list):
             cols = [col for col in train.columns if col.startswith(prefix)]
         else:
             cols = prefix
