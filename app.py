@@ -51,7 +51,7 @@ def main():
         st.markdown("## Upload Prior file")
         priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    _, col1, col2, _ = st.columns(4)
+    col1, _, col2, _ = st.columns(4)
 
     with col1:
         if st.button("Run Analysis"):
