@@ -79,7 +79,7 @@ def main():
             # Check columns are all right
             unknown_columns = priorFile_extract. check_columns_presence(priorfile, train, ["Source", "Target"])
             if unknown_columns != []:
-                st.error(f"The following column(s) from the Prior File are missing in the Data:\n{unknown_columns}")
+                st.error(f"The following column(s) from the Prior File are missing in the Data:\n {json.dumps(unknown_columns, indent=4)}")
                 return
 
             config = {
