@@ -255,6 +255,7 @@ class LogicFunctions:
         else:
             cols_prefix2_train = prefix2
             cols_prefix2_fairset = prefix2
+
         # Check if both prefixes have the same number of columns in train and fairset
         if len(cols_prefix1_train) != len(cols_prefix2_train) or len(cols_prefix1_fairset) != len(cols_prefix2_fairset):
             return {
@@ -263,6 +264,7 @@ class LogicFunctions:
                 "is_valid": False,
                 "Dataframe": None,
                 "Detailed_Violations": [],
+                "Rows": []
             }
 
         # Initialize an empty DataFrame to store all violations
