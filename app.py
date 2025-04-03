@@ -7,6 +7,24 @@ import os
 from pathlib import Path
 
 
+def load_file(uploaded_file):            
+                    if uploaded_file.name.endswith(".csv"):
+                        return pd.read_csv(uploaded_file)
+                    elif uploaded_file.name.endswith(".xlsx"):
+                        return pd.read_excel(uploaded_file)
+                    elif uploaded_file.name.endswith(".sav"):
+                        temp_path = "temp.sav"
+                        with open(temp_path, "wb") as f:
+                            f.write(uploaded_file.getvalue())
+                        df = pd.read_spss(temp_path)
+                        os.remove(temp_path)
+                        
+                        return df
+                    else:
+                        st.error(f"Unsupported file type: {uploaded_file.name}")
+                        return None
+
+
 def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, output_structurejson, output_report_path):
 
     ## <======= PART 1: Extract prior file and make it JSON =======>
@@ -58,23 +76,6 @@ def main():
             if train_file is None or fairset_file is None or priorfile_file is None:
                 st.warning("Upload train, fairset and prior file before running analysis!")
             if train_file is not None and fairset_file is not None and priorfile_file is not None:
-                def load_file(uploaded_file):            
-                    if uploaded_file.name.endswith(".csv"):
-                        return pd.read_csv(uploaded_file)
-                    elif uploaded_file.name.endswith(".xlsx"):
-                        return pd.read_excel(uploaded_file)
-                    elif uploaded_file.name.endswith(".sav"):
-                        temp_path = "temp.sav"
-                        with open(temp_path, "wb") as f:
-                            f.write(uploaded_file.getvalue())
-                        df = pd.read_spss(temp_path)
-                        os.remove(temp_path)
-                        
-                        return df
-                    else:
-                        st.error(f"Unsupported file type: {uploaded_file.name}")
-                        return None
-                    
                 train = load_file(train_file)
                 fairset = load_file(fairset_file)
                 priorfile = load_file(priorfile_file)
