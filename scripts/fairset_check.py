@@ -429,6 +429,8 @@ class LogicFunctions:
         # Identify group columns based on the prefix and exclude columns ending with 'oe'
         if not isinstance(prefix, list): 
             group_col = [col for col in train.columns if col.startswith(prefix) and not col.endswith("oe")]
+        else:
+            group_col = prefix
 
         # Combine the single column with the group columns
         relevant_columns = group_col + [single_column]
