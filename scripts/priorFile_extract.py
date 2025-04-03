@@ -1,8 +1,38 @@
 import pandas as pd
-from collections import OrderedDict
 import re
 import numpy as np
+import ast
 
+def check_columns_presence(df_priorfile, df, cols):
+    "Check all columns in the prior file are part of the data"
+    flat_list = []
+    for col in [cols[0], cols[1]]:
+        for item in df_priorfile[col]:
+            if pd.isna(item):
+                continue
+
+            # If it's a string starting with [ assume it may be a stringified list
+            if isinstance(item, str) and item.strip().startswith('['):
+                try:
+                    # Try parsing with literal_eval
+                    parsed = ast.literal_eval(item)
+                    if isinstance(parsed, list):
+                        flat_list.extend(parsed)
+                    else:
+                        flat_list.append(parsed)
+                except Exception:
+                    # Try manual cleanup (e.g., removing missing closing brackets)
+                    cleaned = item.strip().rstrip(']').lstrip('[').split(',')
+                    flat_list.extend([x.strip().strip("'").strip('"') for x in cleaned])
+            elif isinstance(item, list):
+                # Actual list
+                flat_list.extend(item)
+            else:
+                # Plain string or other type
+                flat_list.append(str(item))
+
+        return list(set(flat_list) - set(df.columns))
+    
 
 def cleaning_lists(target_str):
     if not isinstance(target_str, str):

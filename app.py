@@ -3,7 +3,6 @@ import pandas as pd
 import json
 import scripts.generate_report as generate_report
 import streamlit as st
-import pyreadstat
 import os
 
 
@@ -77,6 +76,10 @@ def main():
             fairset = load_file(fairset_file)
             priorfile = load_file(priorfile_file)
 
+            # Check columns are all right
+            unknown_columns = priorFile_extract. check_columns_presence(priorfile_file, train, ["Source", "Target"])
+            if unknown_columns != []:
+                st.error("Column(s) {unknown_columns} from the Prior File are not present in the Data.")
 
             config = {
                 "priorfile": priorfile,
