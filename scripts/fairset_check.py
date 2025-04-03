@@ -247,12 +247,14 @@ class LogicFunctions:
             cols_prefix1_fairset = [col for col in fairset.columns if col.startswith(prefix1) and not col.endswith("oe")]
         else:
             cols_prefix1_train = prefix1
+            cols_prefix1_fairset = prefix1
 
         if not isinstance(prefix2, list):
             cols_prefix2_train = [col for col in train.columns if col.startswith(prefix2) and not col.endswith("oe")]
             cols_prefix2_fairset = [col for col in fairset.columns if col.startswith(prefix2) and not col.endswith("oe")]
         else:
             cols_prefix2_train = prefix2
+            cols_prefix2_fairset = prefix2
         # Check if both prefixes have the same number of columns in train and fairset
         if len(cols_prefix1_train) != len(cols_prefix2_train) or len(cols_prefix1_fairset) != len(cols_prefix2_fairset):
             return {
