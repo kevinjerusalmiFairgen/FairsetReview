@@ -41,9 +41,9 @@ def cleaning_lists(target_str):
     if target_str.startswith('['):
         clean_str = target_str.strip("[]")
         list_items = re.findall(r"/?\s*['\"]([^'\"]+)['\"]\s*/?", clean_str)
-        return list_items
+        return [item.strip() for item in list_items]
     else:
-        return target_str
+        return target_str.strip()
 
 
 def priorFileExtract(df):
@@ -120,7 +120,6 @@ def priorFileExtract(df):
                         row["Target"],
                         row["Source"],
                         row["Comment"],
-                        #row["Constraint"].lower().replace("/", "_"),
                         row["Is Implemented"]
                     ])
                 else:
