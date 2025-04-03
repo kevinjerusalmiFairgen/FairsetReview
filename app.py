@@ -5,6 +5,7 @@ import scripts.generate_report as generate_report
 import streamlit as st
 import os
 import tempfile
+import pyreadstat
 
 
 def load_file(uploaded_file):            
