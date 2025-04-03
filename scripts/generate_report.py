@@ -47,7 +47,10 @@ def readOuput(path):
             }
             for item in data
             if item.get("is_valid") == False
-        ]    
+        ]
+        if data == []:
+            st.write("Empty Data")
+        
 
     df = pd.DataFrame(data)[["Type", "is_supported", "Dataframe", "Detail", "Percentage_of_valid_rows", "Rows"]]
 
