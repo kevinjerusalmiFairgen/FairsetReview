@@ -937,7 +937,10 @@ class LogicFunctions:
         train = self.train.copy()
         fairset = self.fairset.copy()
         # Get columns with the given prefix
-        cols = [col for col in train.columns if col.startswith(prefix)]
+        if not isinstance(prefix, list)
+            cols = [col for col in train.columns if col.startswith(prefix)]
+        else:
+            cols = prefix
 
         # Check for uniqueness violations in the train set
         train_non_nan_zero = train[cols].apply(lambda x: x.dropna().replace(0, pd.NA), axis=1)
