@@ -4,7 +4,7 @@ import json
 import scripts.generate_report as generate_report
 import streamlit as st
 import os
-from pathlib import Path
+import tempfile
 
 
 def load_file(uploaded_file):            
@@ -114,21 +114,20 @@ def main():
             # 1. Load the prior file
             priorfile = load_file(priorfile_file)
 
-            # 2. Generate the JSON outputs
+            # 2. Extract the JSONs
             constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
 
-            # 3. Write to local files
-            structure_path = Path("structure.json")
-            constraints_path = Path("constraints.json")
+            # 3. Write temporary JSON files
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
+                json.dump(structure_json, structure_tmp, indent=4)
+                structure_tmp_path = structure_tmp.name
 
-            with structure_path.open('w') as f:
-                json.dump(structure_json, f, indent=4)
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
+                json.dump(constraints_json, constraints_tmp, indent=4)
+                constraints_tmp_path = constraints_tmp.name
 
-            with constraints_path.open('w') as f:
-                json.dump(constraints_json, f, indent=4)
-
-            # 4. Read files back for download
-            with structure_path.open("rb") as f:
+            # 4. Open files in binary mode for download
+            with open(structure_tmp_path, "rb") as f:
                 st.download_button(
                     label="⬇️ Download Structure JSON",
                     data=f,
@@ -136,7 +135,7 @@ def main():
                     mime="application/json"
                 )
 
-            with constraints_path.open("rb") as f:
+            with open(constraints_tmp_path, "rb") as f:
                 st.download_button(
                     label="⬇️ Download Constraints JSON",
                     data=f,
