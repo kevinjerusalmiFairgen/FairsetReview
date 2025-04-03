@@ -89,7 +89,7 @@ def priorFileExtract(df):
         row["Target"] = normalize_quotes(row["Target"])
 
         
-        if row["Custom Query"] not in  ['', np.nan, None]:
+        if row["Custom Query"] not in  ['', None] & row["Custom Query"].notna() :
             constraints_json["custom"].append([
                 row["Constraint"],
                 row["Comment"],
