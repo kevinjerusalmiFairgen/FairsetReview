@@ -51,59 +51,97 @@ def main():
         st.markdown("## Upload Prior file")
         priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    if st.button("Run Analysis"):
-        if train_file is None or fairset_file is None or priorfile_file is None:
-            st.warning("Upload train, fairset and prior file before running analysis!")
-        if train_file is not None and fairset_file is not None and priorfile_file is not None:
-            def load_file(uploaded_file):            
-                if uploaded_file.name.endswith(".csv"):
-                    return pd.read_csv(uploaded_file)
-                elif uploaded_file.name.endswith(".xlsx"):
-                    return pd.read_excel(uploaded_file)
-                elif uploaded_file.name.endswith(".sav"):
-                    temp_path = "temp.sav"
-                    with open(temp_path, "wb") as f:
-                        f.write(uploaded_file.getvalue())
-                    df = pd.read_spss(temp_path)
-                    os.remove(temp_path)
+    col1, _, col2 = st.columns(3)
+
+    with col1:
+        if st.button("Run Analysis"):
+            if train_file is None or fairset_file is None or priorfile_file is None:
+                st.warning("Upload train, fairset and prior file before running analysis!")
+            if train_file is not None and fairset_file is not None and priorfile_file is not None:
+                def load_file(uploaded_file):            
+                    if uploaded_file.name.endswith(".csv"):
+                        return pd.read_csv(uploaded_file)
+                    elif uploaded_file.name.endswith(".xlsx"):
+                        return pd.read_excel(uploaded_file)
+                    elif uploaded_file.name.endswith(".sav"):
+                        temp_path = "temp.sav"
+                        with open(temp_path, "wb") as f:
+                            f.write(uploaded_file.getvalue())
+                        df = pd.read_spss(temp_path)
+                        os.remove(temp_path)
+                        
+                        return df
+                    else:
+                        st.error(f"Unsupported file type: {uploaded_file.name}")
+                        return None
                     
-                    return df
-                else:
-                    st.error(f"Unsupported file type: {uploaded_file.name}")
-                    return None
-                
-            train = load_file(train_file)
-            fairset = load_file(fairset_file)
+                train = load_file(train_file)
+                fairset = load_file(fairset_file)
+                priorfile = load_file(priorfile_file)
+
+                # Check columns are all right
+                unknown_columns = priorFile_extract. check_columns_presence(priorfile, train, ["Source", "Target"])
+                if unknown_columns:
+                    bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
+                    st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
+                    st.stop()
+
+                config = {
+                    "priorfile": priorfile,
+                    "train": train,
+                    "fairset": fairset,
+                    "output_constraintsjson": "outputs/constraints.json",
+                    "output_structurejson": "outputs/structure.json",
+                    "output_report_path": "outputs/complete_report.json"
+                }
+
+                df = run_fairset_analysis(**config)
+
+                st.dataframe(df, width=1000)
+
+                with open("outputs/template.xlsx", "rb") as file:
+                    file_bytes = file.read()
+
+                st.download_button(
+                    label="Download File",
+                    data=file_bytes,
+                    file_name="FairsetReview.csv",
+                    mime="text/csv"  # Adjust MIME type depending on your file
+                )
+    with col2:
+        if st.button("Get JSONs"):
+            # 1. Load the prior file
             priorfile = load_file(priorfile_file)
 
-            # Check columns are all right
-            unknown_columns = priorFile_extract. check_columns_presence(priorfile, train, ["Source", "Target"])
-            if unknown_columns:
-                bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
-                st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
-                st.stop()
+            # 2. Generate the JSON outputs
+            constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
 
-            config = {
-                "priorfile": priorfile,
-                "train": train,
-                "fairset": fairset,
-                "output_constraintsjson": "outputs/constraints.json",
-                "output_structurejson": "outputs/structure.json",
-                "output_report_path": "outputs/complete_report.json"
-            }
+            # 3. Write to local files
+            structure_path = Path("structure.json")
+            constraints_path = Path("constraints.json")
 
-            df = run_fairset_analysis(**config)
+            with structure_path.open('w') as f:
+                json.dump(structure_json, f, indent=4)
 
-            st.dataframe(df, width=1000)
+            with constraints_path.open('w') as f:
+                json.dump(constraints_json, f, indent=4)
 
-            with open("outputs/template.xlsx", "rb") as file:
-                file_bytes = file.read()
+            # 4. Read files back for download
+            with structure_path.open("rb") as f:
+                st.download_button(
+                    label="⬇️ Download Structure JSON",
+                    data=f,
+                    file_name="structure.json",
+                    mime="application/json"
+                )
 
-            st.download_button(
-                label="Download File",
-                data=file_bytes,
-                file_name="FairsetReview.csv",
-                mime="text/csv"  # Adjust MIME type depending on your file
-            )
+            with constraints_path.open("rb") as f:
+                st.download_button(
+                    label="⬇️ Download Constraints JSON",
+                    data=f,
+                    file_name="constraints.json",
+                    mime="application/json"
+                )
+
 
 main()

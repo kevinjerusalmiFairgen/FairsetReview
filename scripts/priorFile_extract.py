@@ -1,8 +1,6 @@
 import pandas as pd
 import re
-import numpy as np
 import ast
-import streamlit as st
 
 def check_columns_presence(df_priorfile, df, cols):
     flat_list = []
@@ -96,7 +94,6 @@ def priorFileExtract(df):
                 row["Custom Query"],
                 row["Is Implemented"]
             ])
-            st.write(row)
             
         else:
             if row["Constraint"] in ["Block", "Force", "Block/Force"]:
