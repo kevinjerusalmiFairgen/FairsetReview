@@ -117,10 +117,10 @@ def priorFileExtract(df):
                     ])
                 elif row["B/F Relationship"] == "Multi to Single":
                     constraints_json["BF_MS"].append([
-                        row["Source"],
                         row["Target"],
+                        row["Source"],
                         row["Comment"],
-                        row["Constraint"].lower().replace("/", "_"),
+                        #row["Constraint"].lower().replace("/", "_"),
                         row["Is Implemented"]
                     ])
                 else:

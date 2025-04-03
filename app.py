@@ -111,13 +111,9 @@ def main():
                 )
     with col2:
         if st.button("Get JSONs"):
-            # 1. Load the prior file
             priorfile = load_file(priorfile_file)
-
-            # 2. Extract the JSONs
             constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
 
-            # 3. Write temporary JSON files
             with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
                 json.dump(structure_json, structure_tmp, indent=4)
                 structure_tmp_path = structure_tmp.name
@@ -126,7 +122,6 @@ def main():
                 json.dump(constraints_json, constraints_tmp, indent=4)
                 constraints_tmp_path = constraints_tmp.name
 
-            # 4. Open files in binary mode for download
             with open(structure_tmp_path, "rb") as f:
                 st.download_button(
                     label="⬇️ Download Structure JSON",
