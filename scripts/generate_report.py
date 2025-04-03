@@ -3,6 +3,7 @@ import pandas as pd
 import xlsxwriter
 import math
 import re
+import streamlit as st
 
 
 def convert_type(s):
@@ -38,6 +39,7 @@ def convert_type(s):
 def readOuput(path):
     with open(path, 'r') as file:
         data = json.load(file)
+        st.write(data)
         data = [
             {
                 **item, 
