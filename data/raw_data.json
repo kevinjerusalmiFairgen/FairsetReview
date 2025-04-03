@@ -1,0 +1,1988 @@
+[
+  {
+    "Type": "Block Single-to-Single",
+    "Description": "Block Single-to-Single (d1b to d2)",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask d2 if d1b is selected, d2 = 6(not asked) is exclusive",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "d1b",
+      "d2",
+      "ask d2 if d1b is selected, d2 = 6(not asked) is exclusive",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Single",
+    "Description": "Force Single-to-Single (d1b to d2)",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask d2 if d1b is selected, d2 = 6(not asked) is exclusive",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "d1b",
+      "d2",
+      "ask d2 if d1b is selected, d2 = 6(not asked) is exclusive",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a01 to ['c2b_11', 'c2b_12', 'c2b_13', 'c2b_14', 'c2b_15', 'c2b_16', 'c2b_17'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b1 if c2a1= 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a01",
+      [
+        "c2b_11",
+        "c2b_12",
+        "c2b_13",
+        "c2b_14",
+        "c2b_15",
+        "c2b_16",
+        "c2b_17"
+      ],
+      "ask c2b1 if c2a1= 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a01 to ['c2b_11', 'c2b_12', 'c2b_13', 'c2b_14', 'c2b_15', 'c2b_16', 'c2b_17'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b1 if c2a1= 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a01",
+      [
+        "c2b_11",
+        "c2b_12",
+        "c2b_13",
+        "c2b_14",
+        "c2b_15",
+        "c2b_16",
+        "c2b_17"
+      ],
+      "ask c2b1 if c2a1= 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a01 to ['c2cr1_1', 'c2cr1_2', 'c2cr1_3', 'c2cr1_4', 'c2cr1_5', 'c2cr1_6', 'c2cr1_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr1 if c2a1 = 1",
+    "Occurrences_train": 401,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a01",
+      [
+        "c2cr1_1",
+        "c2cr1_2",
+        "c2cr1_3",
+        "c2cr1_4",
+        "c2cr1_5",
+        "c2cr1_6",
+        "c2cr1_7"
+      ],
+      "ask c2cr1 if c2a1 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a01 to ['c2cr1_1', 'c2cr1_2', 'c2cr1_3', 'c2cr1_4', 'c2cr1_5', 'c2cr1_6', 'c2cr1_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr1 if c2a1 = 1",
+    "Occurrences_train": 401,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a01",
+      [
+        "c2cr1_1",
+        "c2cr1_2",
+        "c2cr1_3",
+        "c2cr1_4",
+        "c2cr1_5",
+        "c2cr1_6",
+        "c2cr1_7"
+      ],
+      "ask c2cr1 if c2a1 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a02 to ['c2b_21', 'c2b_22', 'c2b_23', 'c2b_24', 'c2b_25', 'c2b_26', 'c2b_27'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a02",
+      [
+        "c2b_21",
+        "c2b_22",
+        "c2b_23",
+        "c2b_24",
+        "c2b_25",
+        "c2b_26",
+        "c2b_27"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a02 to ['c2b_21', 'c2b_22', 'c2b_23', 'c2b_24', 'c2b_25', 'c2b_26', 'c2b_27'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a02",
+      [
+        "c2b_21",
+        "c2b_22",
+        "c2b_23",
+        "c2b_24",
+        "c2b_25",
+        "c2b_26",
+        "c2b_27"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a02 to ['c2cr2_1', 'c2cr2_2', 'c2cr2_3', 'c2cr2_4', 'c2cr2_5', 'c2cr2_6', 'c2cr2_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr2 if c2a2 = 1",
+    "Occurrences_train": 437,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a02",
+      [
+        "c2cr2_1",
+        "c2cr2_2",
+        "c2cr2_3",
+        "c2cr2_4",
+        "c2cr2_5",
+        "c2cr2_6",
+        "c2cr2_7"
+      ],
+      "ask c2cr2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a02 to ['c2cr2_1', 'c2cr2_2', 'c2cr2_3', 'c2cr2_4', 'c2cr2_5', 'c2cr2_6', 'c2cr2_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr2 if c2a2 = 1",
+    "Occurrences_train": 437,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a02",
+      [
+        "c2cr2_1",
+        "c2cr2_2",
+        "c2cr2_3",
+        "c2cr2_4",
+        "c2cr2_5",
+        "c2cr2_6",
+        "c2cr2_7"
+      ],
+      "ask c2cr2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a03 to ['c2b_31', 'c2b_32', 'c2b_33', 'c2b_34', 'c2b_35', 'c2b_36', 'c2b_37'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a03",
+      [
+        "c2b_31",
+        "c2b_32",
+        "c2b_33",
+        "c2b_34",
+        "c2b_35",
+        "c2b_36",
+        "c2b_37"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a03 to ['c2b_31', 'c2b_32', 'c2b_33', 'c2b_34', 'c2b_35', 'c2b_36', 'c2b_37'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a03",
+      [
+        "c2b_31",
+        "c2b_32",
+        "c2b_33",
+        "c2b_34",
+        "c2b_35",
+        "c2b_36",
+        "c2b_37"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a03 to ['c2cr3_1', 'c2cr3_2', 'c2cr3_3', 'c2cr3_4', 'c2cr3_5', 'c2cr3_6', 'c2cr3_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr3 if c2a2 = 1",
+    "Occurrences_train": 351,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a03",
+      [
+        "c2cr3_1",
+        "c2cr3_2",
+        "c2cr3_3",
+        "c2cr3_4",
+        "c2cr3_5",
+        "c2cr3_6",
+        "c2cr3_7"
+      ],
+      "ask c2cr3 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a03 to ['c2cr3_1', 'c2cr3_2', 'c2cr3_3', 'c2cr3_4', 'c2cr3_5', 'c2cr3_6', 'c2cr3_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr3 if c2a2 = 1",
+    "Occurrences_train": 351,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a03",
+      [
+        "c2cr3_1",
+        "c2cr3_2",
+        "c2cr3_3",
+        "c2cr3_4",
+        "c2cr3_5",
+        "c2cr3_6",
+        "c2cr3_7"
+      ],
+      "ask c2cr3 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a04 to ['c2b_41', 'c2b_42', 'c2b_43', 'c2b_44', 'c2b_45', 'c2b_46', 'c2b_47'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a04",
+      [
+        "c2b_41",
+        "c2b_42",
+        "c2b_43",
+        "c2b_44",
+        "c2b_45",
+        "c2b_46",
+        "c2b_47"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a04 to ['c2b_41', 'c2b_42', 'c2b_43', 'c2b_44', 'c2b_45', 'c2b_46', 'c2b_47'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a04",
+      [
+        "c2b_41",
+        "c2b_42",
+        "c2b_43",
+        "c2b_44",
+        "c2b_45",
+        "c2b_46",
+        "c2b_47"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a04 to ['c2cr4_1', 'c2cr4_2', 'c2cr4_3', 'c2cr4_4', 'c2cr4_5', 'c2cr4_6', 'c2cr4_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr4 if c2a2 = 1",
+    "Occurrences_train": 444,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a04",
+      [
+        "c2cr4_1",
+        "c2cr4_2",
+        "c2cr4_3",
+        "c2cr4_4",
+        "c2cr4_5",
+        "c2cr4_6",
+        "c2cr4_7"
+      ],
+      "ask c2cr4 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a04 to ['c2cr4_1', 'c2cr4_2', 'c2cr4_3', 'c2cr4_4', 'c2cr4_5', 'c2cr4_6', 'c2cr4_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr4 if c2a2 = 1",
+    "Occurrences_train": 444,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a04",
+      [
+        "c2cr4_1",
+        "c2cr4_2",
+        "c2cr4_3",
+        "c2cr4_4",
+        "c2cr4_5",
+        "c2cr4_6",
+        "c2cr4_7"
+      ],
+      "ask c2cr4 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a05 to ['c2b_51', 'c2b_52', 'c2b_53', 'c2b_54', 'c2b_55', 'c2b_56', 'c2b_57'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a05",
+      [
+        "c2b_51",
+        "c2b_52",
+        "c2b_53",
+        "c2b_54",
+        "c2b_55",
+        "c2b_56",
+        "c2b_57"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a05 to ['c2b_51', 'c2b_52', 'c2b_53', 'c2b_54', 'c2b_55', 'c2b_56', 'c2b_57'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a05",
+      [
+        "c2b_51",
+        "c2b_52",
+        "c2b_53",
+        "c2b_54",
+        "c2b_55",
+        "c2b_56",
+        "c2b_57"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a05 to ['c2cr5_1', 'c2cr5_2', 'c2cr5_3', 'c2cr5_4', 'c2cr5_5', 'c2cr5_6', 'c2cr5_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr5 if c2a2 = 1",
+    "Occurrences_train": 385,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a05",
+      [
+        "c2cr5_1",
+        "c2cr5_2",
+        "c2cr5_3",
+        "c2cr5_4",
+        "c2cr5_5",
+        "c2cr5_6",
+        "c2cr5_7"
+      ],
+      "ask c2cr5 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a05 to ['c2cr5_1', 'c2cr5_2', 'c2cr5_3', 'c2cr5_4', 'c2cr5_5', 'c2cr5_6', 'c2cr5_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr5 if c2a2 = 1",
+    "Occurrences_train": 385,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a05",
+      [
+        "c2cr5_1",
+        "c2cr5_2",
+        "c2cr5_3",
+        "c2cr5_4",
+        "c2cr5_5",
+        "c2cr5_6",
+        "c2cr5_7"
+      ],
+      "ask c2cr5 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a06 to ['c2b_61', 'c2b_62', 'c2b_63', 'c2b_64', 'c2b_65', 'c2b_66', 'c2b_67'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a06",
+      [
+        "c2b_61",
+        "c2b_62",
+        "c2b_63",
+        "c2b_64",
+        "c2b_65",
+        "c2b_66",
+        "c2b_67"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a06 to ['c2b_61', 'c2b_62', 'c2b_63', 'c2b_64', 'c2b_65', 'c2b_66', 'c2b_67'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a06",
+      [
+        "c2b_61",
+        "c2b_62",
+        "c2b_63",
+        "c2b_64",
+        "c2b_65",
+        "c2b_66",
+        "c2b_67"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a06 to ['c2cr6_1', 'c2cr6_2', 'c2cr6_3', 'c2cr6_4', 'c2cr6_5', 'c2cr6_6', 'c2cr6_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr6 if c2a2 = 1",
+    "Occurrences_train": 450,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a06",
+      [
+        "c2cr6_1",
+        "c2cr6_2",
+        "c2cr6_3",
+        "c2cr6_4",
+        "c2cr6_5",
+        "c2cr6_6",
+        "c2cr6_7"
+      ],
+      "ask c2cr6 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a06 to ['c2cr6_1', 'c2cr6_2', 'c2cr6_3', 'c2cr6_4', 'c2cr6_5', 'c2cr6_6', 'c2cr6_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr6 if c2a2 = 1",
+    "Occurrences_train": 450,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a06",
+      [
+        "c2cr6_1",
+        "c2cr6_2",
+        "c2cr6_3",
+        "c2cr6_4",
+        "c2cr6_5",
+        "c2cr6_6",
+        "c2cr6_7"
+      ],
+      "ask c2cr6 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a07 to ['c2b_71', 'c2b_72', 'c2b_73', 'c2b_74', 'c2b_75', 'c2b_76', 'c2b_77'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a07",
+      [
+        "c2b_71",
+        "c2b_72",
+        "c2b_73",
+        "c2b_74",
+        "c2b_75",
+        "c2b_76",
+        "c2b_77"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a07 to ['c2b_71', 'c2b_72', 'c2b_73', 'c2b_74', 'c2b_75', 'c2b_76', 'c2b_77'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a07",
+      [
+        "c2b_71",
+        "c2b_72",
+        "c2b_73",
+        "c2b_74",
+        "c2b_75",
+        "c2b_76",
+        "c2b_77"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a07 to ['c2cr7_1', 'c2cr7_2', 'c2cr7_3', 'c2cr7_4', 'c2cr7_5', 'c2cr7_6', 'c2cr7_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr7 if c2a2 = 1",
+    "Occurrences_train": 432,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a07",
+      [
+        "c2cr7_1",
+        "c2cr7_2",
+        "c2cr7_3",
+        "c2cr7_4",
+        "c2cr7_5",
+        "c2cr7_6",
+        "c2cr7_7"
+      ],
+      "ask c2cr7 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a07 to ['c2cr7_1', 'c2cr7_2', 'c2cr7_3', 'c2cr7_4', 'c2cr7_5', 'c2cr7_6', 'c2cr7_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr7 if c2a2 = 1",
+    "Occurrences_train": 432,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a07",
+      [
+        "c2cr7_1",
+        "c2cr7_2",
+        "c2cr7_3",
+        "c2cr7_4",
+        "c2cr7_5",
+        "c2cr7_6",
+        "c2cr7_7"
+      ],
+      "ask c2cr7 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a08 to ['c2b_81', 'c2b_82', 'c2b_83', 'c2b_84', 'c2b_85', 'c2b_86', 'c2b_87'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a08",
+      [
+        "c2b_81",
+        "c2b_82",
+        "c2b_83",
+        "c2b_84",
+        "c2b_85",
+        "c2b_86",
+        "c2b_87"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a08 to ['c2b_81', 'c2b_82', 'c2b_83', 'c2b_84', 'c2b_85', 'c2b_86', 'c2b_87'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a08",
+      [
+        "c2b_81",
+        "c2b_82",
+        "c2b_83",
+        "c2b_84",
+        "c2b_85",
+        "c2b_86",
+        "c2b_87"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a08 to ['c2cr8_1', 'c2cr8_2', 'c2cr8_3', 'c2cr8_4', 'c2cr8_5', 'c2cr8_6', 'c2cr8_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr8 if c2a2 = 1",
+    "Occurrences_train": 461,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a08",
+      [
+        "c2cr8_1",
+        "c2cr8_2",
+        "c2cr8_3",
+        "c2cr8_4",
+        "c2cr8_5",
+        "c2cr8_6",
+        "c2cr8_7"
+      ],
+      "ask c2cr8 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a08 to ['c2cr8_1', 'c2cr8_2', 'c2cr8_3', 'c2cr8_4', 'c2cr8_5', 'c2cr8_6', 'c2cr8_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr8 if c2a2 = 1",
+    "Occurrences_train": 461,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a08",
+      [
+        "c2cr8_1",
+        "c2cr8_2",
+        "c2cr8_3",
+        "c2cr8_4",
+        "c2cr8_5",
+        "c2cr8_6",
+        "c2cr8_7"
+      ],
+      "ask c2cr8 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a09 to ['c2b_91', 'c2b_92', 'c2b_93', 'c2b_94', 'c2b_95', 'c2b_96', 'c2b_97'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a09",
+      [
+        "c2b_91",
+        "c2b_92",
+        "c2b_93",
+        "c2b_94",
+        "c2b_95",
+        "c2b_96",
+        "c2b_97"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a09 to ['c2b_91', 'c2b_92', 'c2b_93', 'c2b_94', 'c2b_95', 'c2b_96', 'c2b_97'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2b2 if c2a2 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a09",
+      [
+        "c2b_91",
+        "c2b_92",
+        "c2b_93",
+        "c2b_94",
+        "c2b_95",
+        "c2b_96",
+        "c2b_97"
+      ],
+      "ask c2b2 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (c2a09 to ['c2cr9_1', 'c2cr9_2', 'c2cr9_3', 'c2cr9_4', 'c2cr9_5', 'c2cr9_6', 'c2cr9_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr9 if c2a2 = 1",
+    "Occurrences_train": 490,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a09",
+      [
+        "c2cr9_1",
+        "c2cr9_2",
+        "c2cr9_3",
+        "c2cr9_4",
+        "c2cr9_5",
+        "c2cr9_6",
+        "c2cr9_7"
+      ],
+      "ask c2cr9 if c2a2 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (c2a09 to ['c2cr9_1', 'c2cr9_2', 'c2cr9_3', 'c2cr9_4', 'c2cr9_5', 'c2cr9_6', 'c2cr9_7'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask c2cr9 if c2a2 = 1",
+    "Occurrences_train": 490,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "c2a09",
+      [
+        "c2cr9_1",
+        "c2cr9_2",
+        "c2cr9_3",
+        "c2cr9_4",
+        "c2cr9_5",
+        "c2cr9_6",
+        "c2cr9_7"
+      ],
+      "ask c2cr9 if c2a2 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (a501 to ['d1a01', 'd1a02', 'd1a03', 'd1a04', 'd1a05', 'd1a06', 'd1a07', 'd1a08', 'd1a09', 'd1a10', 'd1a11', 'd1a12', 'd1a13', 'd1a14', 'd1a15', 'd1a16', 'd1a17', 'd1a18', 'd1a19', 'd1a20', 'd1a21', 'd1a22', 'd1a23'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask d1a if a501 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "a501",
+      [
+        "d1a01",
+        "d1a02",
+        "d1a03",
+        "d1a04",
+        "d1a05",
+        "d1a06",
+        "d1a07",
+        "d1a08",
+        "d1a09",
+        "d1a10",
+        "d1a11",
+        "d1a12",
+        "d1a13",
+        "d1a14",
+        "d1a15",
+        "d1a16",
+        "d1a17",
+        "d1a18",
+        "d1a19",
+        "d1a20",
+        "d1a21",
+        "d1a22",
+        "d1a23"
+      ],
+      "ask d1a if a501 = 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (a501 to ['d1a01', 'd1a02', 'd1a03', 'd1a04', 'd1a05', 'd1a06', 'd1a07', 'd1a08', 'd1a09', 'd1a10', 'd1a11', 'd1a12', 'd1a13', 'd1a14', 'd1a15', 'd1a16', 'd1a17', 'd1a18', 'd1a19', 'd1a20', 'd1a21', 'd1a22', 'd1a23'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ask d1a if a501 = 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "a501",
+      [
+        "d1a01",
+        "d1a02",
+        "d1a03",
+        "d1a04",
+        "d1a05",
+        "d1a06",
+        "d1a07",
+        "d1a08",
+        "d1a09",
+        "d1a10",
+        "d1a11",
+        "d1a12",
+        "d1a13",
+        "d1a14",
+        "d1a15",
+        "d1a16",
+        "d1a17",
+        "d1a18",
+        "d1a19",
+        "d1a20",
+        "d1a21",
+        "d1a22",
+        "d1a23"
+      ],
+      "ask d1a if a501 = 1",
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (a501 to d1b)",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": NaN,
+    "Occurrences_train": 50,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "a501",
+      "d1b",
+      NaN,
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (a501 to d1b)",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": NaN,
+    "Occurrences_train": 50,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "a501",
+      "d1b",
+      NaN,
+      "force",
+      true
+    ]
+  },
+  {
+    "Type": "Block Single-to-Multi",
+    "Description": "Block Single-to-Multi (qv1a to ['qv1b01', 'qv1b02', 'qv1b03', 'qv1b04', 'qv1b05', 'qv1b06', 'qv1b07', 'qv1b08', 'qv1b09', 'qv1b10', 'qv1b11', 'qv1b12', 'qv1b13'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ASK IF QV1A= 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "qv1a",
+      [
+        "qv1b01",
+        "qv1b02",
+        "qv1b03",
+        "qv1b04",
+        "qv1b05",
+        "qv1b06",
+        "qv1b07",
+        "qv1b08",
+        "qv1b09",
+        "qv1b10",
+        "qv1b11",
+        "qv1b12",
+        "qv1b13"
+      ],
+      "ASK IF QV1A= 1",
+      "block",
+      true
+    ]
+  },
+  {
+    "Type": "Force Single-to-Multi",
+    "Description": "Force Single-to-Multi (qv1a to ['qv1b01', 'qv1b02', 'qv1b03', 'qv1b04', 'qv1b05', 'qv1b06', 'qv1b07', 'qv1b08', 'qv1b09', 'qv1b10', 'qv1b11', 'qv1b12', 'qv1b13'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Detail": "ASK IF QV1A= 1",
+    "Occurrences_train": 0,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "qv1a",
+      [
+        "qv1b01",
+        "qv1b02",
+        "qv1b03",
+        "qv1b04",
+        "qv1b05",
+        "qv1b06",
+        "qv1b07",
+        "qv1b08",
+        "qv1b09",
+        "qv1b10",
+        "qv1b11",
+        "qv1b12",
+        "qv1b13"
+      ],
+      "ASK IF QV1A= 1",
+      "force",
+      true
+    ]
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "Type": "Block Multi-to-Multi",
+    "Description": "Number of columns mismatch between ['d1a01', 'd1a02', 'd1a03', 'd1a04', 'd1a05', 'd1a06', 'd1a07', 'd1a08', 'd1a09', 'd1a10', 'd1a11', 'd1a12', 'd1a13', 'd1a14', 'd1a15', 'd1a16', 'd1a17', 'd1a18', 'd1a19', 'd1a20', 'd1a21', 'd1a22', 'd1a23'] and d1b.",
+    "is_valid": false,
+    "Dataframe": null,
+    "Detailed_Violations": []
+  },
+  null,
+  {
+    "Type": "Block Multi-to-Single",
+    "Description": "MS block force where e2_1 has a value but all ['a2', 'a3', 'a4'] columns are 0/NaN",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Indexes": null,
+    "Detail": "[ASK IF A2=3, A3=1 OR A4=2-8]",
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "e2_1",
+      [
+        "a2",
+        "a3",
+        "a4"
+      ],
+      "[ASK IF A2=3, A3=1 OR A4=2-8]",
+      true
+    ]
+  },
+  {
+    "Type": "Block Multi-to-Single",
+    "Description": "MS block force where e3b has a value but all ['e3a_1', 'e3a_2', 'e3a_3', 'e3a_7', 'e3a_8'] columns are 0/NaN",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Indexes": null,
+    "Detail": "ASK IF CODED 'A LOT' OR 'SOMETIMES' AT E3a CODE 1,2,3,7 OR 8",
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      "e3b",
+      [
+        "e3a_1",
+        "e3a_2",
+        "e3a_3",
+        "e3a_7",
+        "e3a_8"
+      ],
+      "ASK IF CODED 'A LOT' OR 'SOMETIMES' AT E3a CODE 1,2,3,7 OR 8",
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['a501', 'a502', 'a503', 'a504', 'a505', 'a506', 'a507', 'a508', 'a509', 'a510', 'a511', 'a513'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "a501",
+        "a502",
+        "a503",
+        "a504",
+        "a505",
+        "a506",
+        "a507",
+        "a508",
+        "a509",
+        "a510",
+        "a511",
+        "a513"
+      ],
+      "a512",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['a501', 'a502', 'a503', 'a504', 'a505', 'a506', 'a507', 'a508', 'a509', 'a510', 'a511', 'a512'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "a501",
+        "a502",
+        "a503",
+        "a504",
+        "a505",
+        "a506",
+        "a507",
+        "a508",
+        "a509",
+        "a510",
+        "a511",
+        "a512"
+      ],
+      "a513",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2a01', 'c2a02', 'c2a03', 'c2a04', 'c2a05', 'c2a06', 'c2a07', 'c2a08', 'c2a09', 'c2a11'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2a01",
+        "c2a02",
+        "c2a03",
+        "c2a04",
+        "c2a05",
+        "c2a06",
+        "c2a07",
+        "c2a08",
+        "c2a09",
+        "c2a11"
+      ],
+      "c2a10",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2a01', 'c2a02', 'c2a03', 'c2a04', 'c2a05', 'c2a06', 'c2a07', 'c2a08', 'c2a09', 'c2a10'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2a01",
+        "c2a02",
+        "c2a03",
+        "c2a04",
+        "c2a05",
+        "c2a06",
+        "c2a07",
+        "c2a08",
+        "c2a09",
+        "c2a10"
+      ],
+      "c2a11",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_11', 'c2b_12', 'c2b_13', 'c2b_14', 'c2b_15', 'c2b_16', 'c2b_17'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_11",
+        "c2b_12",
+        "c2b_13",
+        "c2b_14",
+        "c2b_15",
+        "c2b_16",
+        "c2b_17"
+      ],
+      "c2b_18",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_21', 'c2b_22', 'c2b_23', 'c2b_24', 'c2b_25', 'c2b_26', 'c2b_27'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_21",
+        "c2b_22",
+        "c2b_23",
+        "c2b_24",
+        "c2b_25",
+        "c2b_26",
+        "c2b_27"
+      ],
+      "c2b_28",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_31', 'c2b_32', 'c2b_33', 'c2b_34', 'c2b_35', 'c2b_36', 'c2b_37'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_31",
+        "c2b_32",
+        "c2b_33",
+        "c2b_34",
+        "c2b_35",
+        "c2b_36",
+        "c2b_37"
+      ],
+      "c2b_38",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_41', 'c2b_42', 'c2b_43', 'c2b_44', 'c2b_45', 'c2b_46', 'c2b_47'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_41",
+        "c2b_42",
+        "c2b_43",
+        "c2b_44",
+        "c2b_45",
+        "c2b_46",
+        "c2b_47"
+      ],
+      "c2b_48",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_51', 'c2b_52', 'c2b_53', 'c2b_54', 'c2b_55', 'c2b_56', 'c2b_57'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_51",
+        "c2b_52",
+        "c2b_53",
+        "c2b_54",
+        "c2b_55",
+        "c2b_56",
+        "c2b_57"
+      ],
+      "c2b_58",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_61', 'c2b_62', 'c2b_63', 'c2b_64', 'c2b_65', 'c2b_66', 'c2b_67'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_61",
+        "c2b_62",
+        "c2b_63",
+        "c2b_64",
+        "c2b_65",
+        "c2b_66",
+        "c2b_67"
+      ],
+      "c2b_68",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_71', 'c2b_72', 'c2b_73', 'c2b_74', 'c2b_75', 'c2b_76', 'c2b_77'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_71",
+        "c2b_72",
+        "c2b_73",
+        "c2b_74",
+        "c2b_75",
+        "c2b_76",
+        "c2b_77"
+      ],
+      "c2b_78",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_81', 'c2b_82', 'c2b_83', 'c2b_84', 'c2b_85', 'c2b_86', 'c2b_87'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_81",
+        "c2b_82",
+        "c2b_83",
+        "c2b_84",
+        "c2b_85",
+        "c2b_86",
+        "c2b_87"
+      ],
+      "c2b_88",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['c2b_91', 'c2b_92', 'c2b_93', 'c2b_94', 'c2b_95', 'c2b_96', 'c2b_97'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "c2b_91",
+        "c2b_92",
+        "c2b_93",
+        "c2b_94",
+        "c2b_95",
+        "c2b_96",
+        "c2b_97"
+      ],
+      "c2b_98",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['d1a01', 'd1a02', 'd1a03', 'd1a04', 'd1a05', 'd1a06', 'd1a07', 'd1a08', 'd1a09', 'd1a10', 'd1a11', 'd1a12', 'd1a13', 'd1a14', 'd1a15', 'd1a16', 'd1a17', 'd1a18', 'd1a19', 'd1a20', 'd1a21', 'd1a22'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "d1a01",
+        "d1a02",
+        "d1a03",
+        "d1a04",
+        "d1a05",
+        "d1a06",
+        "d1a07",
+        "d1a08",
+        "d1a09",
+        "d1a10",
+        "d1a11",
+        "d1a12",
+        "d1a13",
+        "d1a14",
+        "d1a15",
+        "d1a16",
+        "d1a17",
+        "d1a18",
+        "d1a19",
+        "d1a20",
+        "d1a21",
+        "d1a22"
+      ],
+      "d1a23",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['e2e201', 'e2e202', 'e2e203', 'e2e204', 'e2e205', 'e2e206', 'e2e207', 'e2e208', 'e2e209', 'e2e210', 'e2e211', 'e2e212', 'e2e213', 'e2e214', 'e2e215', 'e2e216', 'e2e217', 'e2e218', 'e2e219', 'e2e220', 'e2e221', 'e2e222', 'e2e224', 'e2e225'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "e2e201",
+        "e2e202",
+        "e2e203",
+        "e2e204",
+        "e2e205",
+        "e2e206",
+        "e2e207",
+        "e2e208",
+        "e2e209",
+        "e2e210",
+        "e2e211",
+        "e2e212",
+        "e2e213",
+        "e2e214",
+        "e2e215",
+        "e2e216",
+        "e2e217",
+        "e2e218",
+        "e2e219",
+        "e2e220",
+        "e2e221",
+        "e2e222",
+        "e2e224",
+        "e2e225"
+      ],
+      "e2e223",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['e2e201', 'e2e202', 'e2e203', 'e2e204', 'e2e205', 'e2e206', 'e2e207', 'e2e208', 'e2e209', 'e2e210', 'e2e211', 'e2e212', 'e2e213', 'e2e214', 'e2e215', 'e2e216', 'e2e217', 'e2e218', 'e2e219', 'e2e220', 'e2e221', 'e2e222', 'e2e223', 'e2e225'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "e2e201",
+        "e2e202",
+        "e2e203",
+        "e2e204",
+        "e2e205",
+        "e2e206",
+        "e2e207",
+        "e2e208",
+        "e2e209",
+        "e2e210",
+        "e2e211",
+        "e2e212",
+        "e2e213",
+        "e2e214",
+        "e2e215",
+        "e2e216",
+        "e2e217",
+        "e2e218",
+        "e2e219",
+        "e2e220",
+        "e2e221",
+        "e2e222",
+        "e2e223",
+        "e2e225"
+      ],
+      "e2e224",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['e2e201', 'e2e202', 'e2e203', 'e2e204', 'e2e205', 'e2e206', 'e2e207', 'e2e208', 'e2e209', 'e2e210', 'e2e211', 'e2e212', 'e2e213', 'e2e214', 'e2e215', 'e2e216', 'e2e217', 'e2e218', 'e2e219', 'e2e220', 'e2e221', 'e2e222', 'e2e223', 'e2e224'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "e2e201",
+        "e2e202",
+        "e2e203",
+        "e2e204",
+        "e2e205",
+        "e2e206",
+        "e2e207",
+        "e2e208",
+        "e2e209",
+        "e2e210",
+        "e2e211",
+        "e2e212",
+        "e2e213",
+        "e2e214",
+        "e2e215",
+        "e2e216",
+        "e2e217",
+        "e2e218",
+        "e2e219",
+        "e2e220",
+        "e2e221",
+        "e2e222",
+        "e2e223",
+        "e2e224"
+      ],
+      "e2e225",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['qv31', 'qv32', 'qv33', 'qv34', 'qv35', 'qv36', 'qv37', 'qv39'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "qv31",
+        "qv32",
+        "qv33",
+        "qv34",
+        "qv35",
+        "qv36",
+        "qv37",
+        "qv39"
+      ],
+      "qv38",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['qv31', 'qv32', 'qv33', 'qv34', 'qv35', 'qv36', 'qv37', 'qv38'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "qv31",
+        "qv32",
+        "qv33",
+        "qv34",
+        "qv35",
+        "qv36",
+        "qv37",
+        "qv38"
+      ],
+      "qv39",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['qv1b01', 'qv1b02', 'qv1b03', 'qv1b04', 'qv1b05', 'qv1b06', 'qv1b07', 'qv1b08', 'qv1b09', 'qv1b10', 'qv1b11', 'qv1b12', 'qv1b14'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "qv1b01",
+        "qv1b02",
+        "qv1b03",
+        "qv1b04",
+        "qv1b05",
+        "qv1b06",
+        "qv1b07",
+        "qv1b08",
+        "qv1b09",
+        "qv1b10",
+        "qv1b11",
+        "qv1b12",
+        "qv1b14"
+      ],
+      "qv1b13",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "None of the Above",
+    "Description": "None of the Above (['qv1b01', 'qv1b02', 'qv1b03', 'qv1b04', 'qv1b05', 'qv1b06', 'qv1b07', 'qv1b08', 'qv1b09', 'qv1b10', 'qv1b11', 'qv1b12', 'qv1b13'])",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "qv1b01",
+        "qv1b02",
+        "qv1b03",
+        "qv1b04",
+        "qv1b05",
+        "qv1b06",
+        "qv1b07",
+        "qv1b08",
+        "qv1b09",
+        "qv1b10",
+        "qv1b11",
+        "qv1b12",
+        "qv1b13"
+      ],
+      "qv1b14",
+      [],
+      true
+    ]
+  },
+  {
+    "Type": "Count",
+    "Description": "Count - (['e4_1', 'e4_2', 'e4_3', 'e4_4', 'e4_5', 'e4_6', 'e4_7', 'e4_8']) (Min answers expected: 3, Max answers expected: 8)",
+    "is_valid": true,
+    "is_supported": true,
+    "Dataframe": null,
+    "Percentage_of_valid_rows": 100,
+    "Rows": [],
+    "definition": [
+      [
+        "e4_1",
+        "e4_2",
+        "e4_3",
+        "e4_4",
+        "e4_5",
+        "e4_6",
+        "e4_7",
+        "e4_8"
+      ],
+      "",
+      true
+    ]
+  },
+  {
+    "Type": "Uniqueness",
+    "Description": "Training Data not Reliable",
+    "is_valid": false,
+    "is_supported": true,
+    "Dataframe": [
+      {
+        "e4_1": "1",
+        "e4_2": "2",
+        "e4_3": "Not asked",
+        "e4_4": "Not asked",
+        "e4_5": "Not asked",
+        "e4_6": "3",
+        "e4_7": "Not asked",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "Not asked",
+        "e4_2": "2",
+        "e4_3": "1",
+        "e4_4": "Not asked",
+        "e4_5": "3",
+        "e4_6": "Not asked",
+        "e4_7": "Not asked",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "6",
+        "e4_2": "Not asked",
+        "e4_3": "2",
+        "e4_4": "4",
+        "e4_5": "5",
+        "e4_6": "1",
+        "e4_7": "3",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "1",
+        "e4_2": "Not asked",
+        "e4_3": "6",
+        "e4_4": "2",
+        "e4_5": "5",
+        "e4_6": "4",
+        "e4_7": "3",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "1",
+        "e4_2": "Not asked",
+        "e4_3": "6",
+        "e4_4": "2",
+        "e4_5": "5",
+        "e4_6": "4",
+        "e4_7": "3",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "2",
+        "e4_2": "3",
+        "e4_3": "Not asked",
+        "e4_4": "Not asked",
+        "e4_5": "Not asked",
+        "e4_6": "Not asked",
+        "e4_7": "1",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "Not asked",
+        "e4_2": "3",
+        "e4_3": "Not asked",
+        "e4_4": "Not asked",
+        "e4_5": "Not asked",
+        "e4_6": "1",
+        "e4_7": "2",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "1",
+        "e4_2": "Not asked",
+        "e4_3": "2",
+        "e4_4": "3",
+        "e4_5": "Not asked",
+        "e4_6": "Not asked",
+        "e4_7": "Not asked",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "Not asked",
+        "e4_2": "3",
+        "e4_3": "Not asked",
+        "e4_4": "2",
+        "e4_5": "Not asked",
+        "e4_6": "1",
+        "e4_7": "Not asked",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "1",
+        "e4_2": "4",
+        "e4_3": "3",
+        "e4_4": "6",
+        "e4_5": "Not asked",
+        "e4_6": "5",
+        "e4_7": "2",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "Not asked",
+        "e4_2": "2",
+        "e4_3": "Not asked",
+        "e4_4": "3",
+        "e4_5": "Not asked",
+        "e4_6": "Not asked",
+        "e4_7": "1",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "Not asked",
+        "e4_2": "2",
+        "e4_3": "1",
+        "e4_4": "Not asked",
+        "e4_5": "3",
+        "e4_6": "Not asked",
+        "e4_7": "Not asked",
+        "e4_8": "Not asked"
+      },
+      {
+        "e4_1": "3",
+        "e4_2": "Not asked",
+        "e4_3": "Not asked",
+        "e4_4": "Not asked",
+        "e4_5": "1",
+        "e4_6": "2",
+        "e4_7": "Not asked",
+        "e4_8": "Not asked"
+      }
+    ],
+    "Percentage_of_valid_rows": 90,
+    "Rows": [
+      6,
+      10,
+      14,
+      17,
+      32,
+      34,
+      77,
+      82,
+      83,
+      84,
+      96,
+      106,
+      119
+    ],
+    "definition": [
+      [
+        "e4_1",
+        "e4_2",
+        "e4_3",
+        "e4_4",
+        "e4_5",
+        "e4_6",
+        "e4_7",
+        "e4_8"
+      ],
+      true
+    ]
+  }
+]
