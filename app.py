@@ -119,7 +119,7 @@ def main():
                 json.dump(structure_json, structure_tmp, indent=4)
                 structure_tmp_path = structure_tmp.name
 
-            with tempfile.NamedTempodownloadryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
                 json.dump(constraints_json, constraints_tmp, indent=4)
                 constraints_tmp_path = constraints_tmp.name
 
