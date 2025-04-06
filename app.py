@@ -140,7 +140,8 @@ def main():
                 )
 
 
-try:
-    main()
-except Exception as e:
-    st.error(f"An error occurred: {e}")
+# try:
+#     main()
+# except Exception as e:
+#     st.error(f"An error occurred: {e}")
+main()
