@@ -6,6 +6,8 @@ import streamlit as st
 import os
 import tempfile
 import pyreadstat
+import traceback
+
 
 
 def load_file(uploaded_file):            
@@ -140,8 +142,8 @@ def main():
                 )
 
 
-# try:
-#     main()
-# except Exception as e:
-#     st.error(f"An error occurred: {e}")
-main()
+try:
+    main()
+except Exception as e:
+    st.error(f"An error occurred: {e}")
+    st.text(traceback.format_exc())

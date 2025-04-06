@@ -803,7 +803,11 @@ class LogicFunctions:
             fairset = fairset.drop(columns_to_drop, axis=1)
 
         # Identify columns with the given prefix
-        cols = [col for col in train.columns if col.startswith(prefix)]
+        if not isinstance(prefix, list): 
+            cols = [col for col in train.columns if col.startswith(prefix)]
+        else:
+            cols = prefix
+            
         if aota in cols:
             cols.remove(aota)
 
