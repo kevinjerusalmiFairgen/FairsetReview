@@ -63,7 +63,7 @@ def priorFileExtract(df):
         "count": [],
         "recodings": [],
         "NOTAs": [],
-        "AOTAS": [],
+        "AOTAs": [],
         "parallel piping": [],
         "custom": []
     }
