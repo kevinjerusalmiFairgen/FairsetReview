@@ -49,7 +49,8 @@ def readOuput(path):
     ]
         
     if data == [] or data.empty():
-        st.write("Empty Data")
+        st.success("No Error found")
+        st.stop()
 
     if not isinstance(data, list):
         st.error("Expected data to be a list, got something else.")     
