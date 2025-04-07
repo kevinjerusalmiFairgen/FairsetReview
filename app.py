@@ -62,19 +62,19 @@ def main():
     
     st.title("Fairset Review Platform")
 
-    st.markdown("Upload train set, fairset and prior file")
-
     with st.sidebar:
-        st.markdown("## Upload Train Set")
-        train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav"])
-        st.markdown("## Upload Fairset")
-        fairset_file = st.file_uploader("  ", type=["csv", "xlsx", "sav"])
-        st.markdown("## Upload Prior file")
-        priorfile_file = st.file_uploader("   ", type=["csv"])
+            st.markdown("## Upload Train Set")
+            train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav"])
+            st.markdown("## Upload Fairset")
+            fairset_file = st.file_uploader("  ", type=["csv", "xlsx", "sav"])
+            st.markdown("## Upload Prior file")
+            priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    col1, _, col2, _ = st.columns(4)
+    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Prior File Extract"]) 
 
-    with col1:
+    with tab1: 
+        st.markdown("Upload train set, fairset and prior file")
+
         if st.button("Run Analysis"):
             if train_file is None or fairset_file is None or priorfile_file is None:
                 st.warning("Upload train, fairset and prior file before running analysis!")
@@ -112,34 +112,43 @@ def main():
                     file_name="FairsetReview.csv",
                     mime="text/csv"  # Adjust MIME type depending on your file
                 )
-    with col2:
+  
+    with tab2:
+
+        st.markdown("Upload Prior file and get your Structure JSON")
+
         if st.button("Get JSONs"):
-            priorfile = load_file(priorfile_file)
-            constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
+            if priorfile_file is None:
+                st.warning("Upload a prior file and dataset before running analysis!")
+            if priorfile_file is not None and train_file is not None:
+                priorfile = load_file(priorfile_file)
+                train = load_file(train_file)
 
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
-                json.dump(structure_json, structure_tmp, indent=4)
-                structure_tmp_path = structure_tmp.name
+                constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
 
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
-                json.dump(constraints_json, constraints_tmp, indent=4)
-                constraints_tmp_path = constraints_tmp.name
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
+                    json.dump(structure_json, structure_tmp, indent=4)
+                    structure_tmp_path = structure_tmp.name
 
-            with open(structure_tmp_path, "rb") as f:
-                st.download_button(
-                    label="⬇️ Download Structure JSON",
-                    data=f,
-                    file_name="structure.json",
-                    mime="application/json"
-                )
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
+                    json.dump(constraints_json, constraints_tmp, indent=4)
+                    constraints_tmp_path = constraints_tmp.name
 
-            with open(constraints_tmp_path, "rb") as f:
-                st.download_button(
-                    label="⬇️ Download Constraints JSON",
-                    data=f,
-                    file_name="constraints.json",
-                    mime="application/json"
-                )
+                with open(structure_tmp_path, "rb") as f:
+                    st.download_button(
+                        label="⬇️ Download Structure JSON",
+                        data=f,
+                        file_name="structure.json",
+                        mime="application/json"
+                    )
+
+                with open(constraints_tmp_path, "rb") as f:
+                    st.download_button(
+                        label="⬇️ Download Constraints JSON",
+                        data=f,
+                        file_name="constraints.json",
+                        mime="application/json"
+                    )
 
 
 try:
