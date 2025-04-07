@@ -54,6 +54,8 @@ def readOuput(path):
     if not isinstance(data, list):
         st.error("Expected data to be a list, got something else.")     
 
+    
+    st.write(pd.DataFrame(data).columns)
     df = pd.DataFrame(data)[["Type", "is_supported", "Dataframe", "Detail", "Percentage_of_valid_rows", "Rows"]]
 
     df["Logic Type"] = df["Type"].apply(convert_type)

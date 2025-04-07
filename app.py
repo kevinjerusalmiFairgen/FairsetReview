@@ -84,7 +84,8 @@ def main():
                 priorfile = load_file(priorfile_file)
 
                 # Check columns are all right
-                unknown_columns = priorFile_extract. check_columns_presence(priorfile, train, ["Source", "Target"])
+                unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
+
                 if unknown_columns:
                     bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
                     st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
@@ -112,7 +113,7 @@ def main():
                     file_name="FairsetReview.csv",
                     mime="text/csv"  # Adjust MIME type depending on your file
                 )
-  
+
     with tab2:
 
         st.markdown("Upload Prior file and get your Structure JSON")
@@ -125,6 +126,11 @@ def main():
                 train = load_file(train_file)
 
                 constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
+                unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
+                if unknown_columns:
+                    bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
+                    st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
+                    st.stop()
 
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
                     json.dump(structure_json, structure_tmp, indent=4)
