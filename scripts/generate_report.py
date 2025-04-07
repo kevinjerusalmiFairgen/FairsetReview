@@ -48,7 +48,7 @@ def readOuput(path):
         if item and item.get("is_valid") == False
     ]
         
-    if data == []:
+    if data == [] or data.empty():
         st.write("Empty Data")
 
     if not isinstance(data, list):
