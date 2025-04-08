@@ -182,14 +182,14 @@ def priorFileExtract(df):
                     row["Comment"],
                     row["Is Implemented"]
                 ])
-                structure_json["recodings"].append([
-                        {
-                            "id": index,
-                            "name": index,
-                            "recode": row["Target"],
-                            "codes": row["Source"]
-                        }
-                ])
+                # structure_json["recodings"].append([
+                #         {
+                #             "id": index,
+                #             "name": index,
+                #             "recode": row["Target"],
+                #             "codes": row["Source"]
+                #         }
+                # ])
             elif row["Constraint"] == "None of the above":
                 constraints_json["NOTAs"].append([
                     row["Source"],
