@@ -4,7 +4,6 @@ import pandas as pd
 from tqdm import tqdm
 from stqdm import stqdm
 import warnings
-import streamlit as st
 
 warnings.filterwarnings("ignore")
 
@@ -23,8 +22,6 @@ class LogicFunctions:
     def detect_violations_SS(self, col1, col2, detail, block_force, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
-
-        st.write((col1, col2))
 
         if train[col1].isna().all() or train[col2].isna().all() or fairset[col1].isna().all():
             return {
