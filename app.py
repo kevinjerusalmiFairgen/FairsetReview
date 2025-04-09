@@ -110,7 +110,7 @@ def main():
                 st.download_button(
                     label="Download File",
                     data=file_bytes,
-                    file_name="FairsetReview.csv",
+                    file_name="FairsetReview.xlsx",
                     mime="text/csv"  # Adjust MIME type depending on your file
                 )
 
