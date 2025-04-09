@@ -210,7 +210,6 @@ def priorFileExtract(df):
                         "id": index,
                         "name": index,
                         "columns": row["Target"],
-                        "multiSelect_id": index
                     }
                 )
 
