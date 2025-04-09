@@ -208,7 +208,7 @@ def priorFileExtract(df):
                 structure_json["multiSelect"].append(
                     {
                         "id": index,
-                        "name": index,
+                        "name": str(index),
                         "columns": row["Target"],
                     }
                 )
