@@ -23,6 +23,14 @@ class LogicFunctions:
         train = self.train.copy()
         fairset = self.fairset.copy()
 
+        # Converting to strings for mixed type
+        train[col1] = train[col1].apply(lambda x: str(x) if pd.notna(x) else x)
+        train[col2] = train[col2].apply(lambda x: str(x) if pd.notna(x) else x)
+
+        fairset[col1] = fairset[col1].apply(lambda x: str(x) if pd.notna(x) else x)
+        fairset[col2] = fairset[col2].apply(lambda x: str(x) if pd.notna(x) else x)
+
+
         if train[col1].isna().all() or train[col2].isna().all() or fairset[col1].isna().all():
             return {
                 "Type": "Block Single-to-Single",
@@ -34,13 +42,6 @@ class LogicFunctions:
                 "Occurrences_train": 0,
                 "Percentage_of_valid_rows": 100.0,
             }
-
-        # Converting to strings for mixed type
-        train[col1] = train[col1].apply(lambda x: str(x) if pd.notna(x) else x)
-        train[col2] = train[col2].apply(lambda x: str(x) if pd.notna(x) else x)
-
-        fairset[col1] = fairset[col1].apply(lambda x: str(x) if pd.notna(x) else x)
-        fairset[col2] = fairset[col2].apply(lambda x: str(x) if pd.notna(x) else x)
 
         # Group by col1 and check if all corresponding values in col2 are NaN
         nan_triggers = train.groupby(col1)[col2].apply(lambda x: x.isna().all())
