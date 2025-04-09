@@ -153,7 +153,7 @@ def priorFileExtract(df):
                     mode = "SS"
                     structure_json["recodings"].append(
                         {
-                            "id": index,
+                            "id": str(index),
                             "name": str(index),
                             "recode": row["Target"],
                             "codes": row["Source"]
@@ -165,7 +165,7 @@ def priorFileExtract(df):
                     mode = "MS"
                     structure_json["recodings"].append(
                         {
-                            "id": index,
+                            "id": str(index),
                             "name": str(index),
                             "recode": row["Target"],
                             "codes": row["Source"]
