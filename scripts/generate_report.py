@@ -48,7 +48,7 @@ def readOuput(path):
         if item and item.get("is_valid") == False
     ]
         
-    if data == [] or data.empty():
+    if data == [] or pd.DataFrame(data).empty():
         st.success("No Error found")
         st.stop()
 
