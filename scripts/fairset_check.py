@@ -4,6 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 from stqdm import stqdm
 import warnings
+import streamlit as st
 
 warnings.filterwarnings("ignore")
 
@@ -236,6 +237,7 @@ class LogicFunctions:
 
         train = self.train.copy()
         fairset = self.fairset.copy()
+        st.write((prefix1, prefix2))
 
         if columns_to_drop:
             train = train.drop(columns_to_drop, axis=1)
