@@ -237,7 +237,6 @@ class LogicFunctions:
 
         train = self.train.copy()
         fairset = self.fairset.copy()
-        st.write((prefix1, prefix2))
 
         if columns_to_drop:
             train = train.drop(columns_to_drop, axis=1)
