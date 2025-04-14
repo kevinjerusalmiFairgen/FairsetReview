@@ -5,3 +5,4 @@ stqdm==0.0.5
 streamlit==1.43.2
 tqdm==4.67.1
 XlsxWriter==3.2.2
+openpyxl
