@@ -1000,9 +1000,7 @@ class LogicFunctions:
             returned_df = env.get("df_check")
             return returned_df
         except:
-            st.error(f"Running instruction: {instruction}")
-            st.stop()
-        
+            st.error(f"Running instruction: {instruction}")        
 
 
     @staticmethod
