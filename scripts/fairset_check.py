@@ -5,6 +5,7 @@ from tqdm import tqdm
 from stqdm import stqdm
 import warnings
 import streamlit as st
+import traceback
 
 warnings.filterwarnings("ignore")
 
@@ -999,9 +1000,12 @@ class LogicFunctions:
             exec(instruction, env)
             returned_df = env.get("df_check")
             return returned_df
-        except:
-            st.error(f"Error Custom, running instruction: \n{instruction}")        
+        except Exception as e:
+            st.error(f"Error Custom, running instruction: \n{instruction}")
+            st.error(f"{type(e).__name__}: {e}")
+            st.text(traceback.format_exc())  
             return pd.DataFrame()
+        
 
     @staticmethod
     def custom(dataframe, constraint_type, description, fairset, is_supported=True):
