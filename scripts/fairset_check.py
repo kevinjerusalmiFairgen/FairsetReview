@@ -997,10 +997,12 @@ class LogicFunctions:
         env = {"df": df}
         try:
             exec(instruction, env)
+            returned_df = env.get("df_check")
+            return returned_df
         except:
-            st.write(f"Running instruction: {instruction}")
-        returned_df = env.get("df_check")
-        return returned_df
+            st.error(f"Running instruction: {instruction}")
+            st.stop()
+        
 
 
     @staticmethod
