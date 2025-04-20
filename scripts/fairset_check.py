@@ -1001,7 +1001,7 @@ class LogicFunctions:
             return returned_df
         except:
             st.error(f"Running instruction: {instruction}")        
-
+            return pd.DataFrame()
 
     @staticmethod
     def custom(dataframe, constraint_type, description, fairset, is_supported=True):
