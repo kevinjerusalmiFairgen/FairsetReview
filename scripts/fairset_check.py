@@ -995,7 +995,10 @@ class LogicFunctions:
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
         env = {"df": df}
-        exec(instruction, env)
+        try:
+            exec(instruction, env)
+        except:
+            st.write(f"Running instruction: {instruction}")
         returned_df = env.get("df_check")
         return returned_df
 
