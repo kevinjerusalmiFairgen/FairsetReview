@@ -1000,7 +1000,7 @@ class LogicFunctions:
             returned_df = env.get("df_check")
             return returned_df
         except:
-            st.error(f"Running instruction: {instruction}")        
+            st.error(f"Error Custom, running instruction: \n{instruction}")        
             return pd.DataFrame()
 
     @staticmethod
