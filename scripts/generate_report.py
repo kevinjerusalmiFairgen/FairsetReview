@@ -68,6 +68,8 @@ def readOuput(path):
             if x["Logic Type"] == "Exclusive"
             else "Minimum and/or maximum limits on the number of choices a respondent can select."
             if x["Logic Type"] == "Selection Limit Control"
+            else "Dynamic answer choices"
+            if x["Logic Type"] == "Dynamic Piping Single-to-Single"
             else x["Detail"] if pd.notna(x["Detail"]) else ""
         ),
         axis=1
