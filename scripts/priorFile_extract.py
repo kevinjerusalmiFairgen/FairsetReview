@@ -97,7 +97,7 @@ def priorFileExtract(df):
             ])
             
         else:
-            if row["Constraint"] in ["Block", "Force", "Block/Force"]:
+            if row["Constraint"] in ["Block", "Force", "Block/Force", "Dynamic Piping"]:
                 if not row["B/F Relationship"]:
                     st.warning(f"Row #{row["ID"]} not valid: missing relationship for Block/Force")
                 elif row["B/F Relationship"] == "Single to Single":
@@ -105,7 +105,7 @@ def priorFileExtract(df):
                         row["Source"],
                         row["Target"],
                         row["Comment"],
-                        row["Constraint"].lower().replace("/", "_"),
+                        row["Constraint"].lower().replace("/", "_").replace(" ", "_"),
                         row["Is Implemented"]
                     ])
                 elif row["B/F Relationship"] == "Single to Multi":
