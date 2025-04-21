@@ -1049,7 +1049,7 @@ class LogicFunctions:
 
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
-        env = {"df": df}
+        env = {"df": df, "np": np}
         try:
             exec(instruction, env)
             returned_df = env.get("df_check")
