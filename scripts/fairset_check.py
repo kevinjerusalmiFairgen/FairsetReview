@@ -20,7 +20,6 @@ class LogicFunctions:
         self.format = format
         self.wrong_rows = set()
 
-
     def detect_violations_SS(self, col1, col2, detail, block_force, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
@@ -44,21 +43,47 @@ class LogicFunctions:
         fairset[col1] = fairset[col1].apply(lambda x: str(x) if pd.notna(x) else x)
         fairset[col2] = fairset[col2].apply(lambda x: str(x) if pd.notna(x) else x)
 
-        # Group by col1 and check if all corresponding values in col2 are NaN
-        nan_triggers = train.groupby(col1)[col2].apply(lambda x: x.isna().all())
-        anti_nan_triggers = train.groupby(col1)[col2].apply(lambda x: ~x.isna().any()) # values that never lead to nans for force
+        if block_force == "dynamic_piping":
+            valid_combinations = set(train[[col1, col2]].drop_duplicates().itertuples(index=False, name=None))
 
-        # Step 2: Only keep values that are always NaN triggers
-        block_triggers = nan_triggers[nan_triggers].index.values  # Only values that map exclusively to NaN
-        force_triggers = nan_triggers[anti_nan_triggers].index.values  # Only values that map exclusively to NaN
+            violations = fairset[~fairset[[col1, col2]].apply(tuple, axis=1).isin(valid_combinations)][[col1, col2]]
+            violations = violations.dropna(subset=[col2])
 
-        # Step 3: Find violations where fairset[col1] is a known trigger but has non-NaN col2 values
-        block_mask = (fairset[col1].isin(block_triggers).fillna(False)) & (fairset[col2].notna().fillna(False))
-        block_violations = fairset[block_mask][[col1, col2]]
+            wrong_rows_dynamic = violations.index.tolist()
 
-        # Step 4: Find force violations (values that are not triggers but unexpectedly lead to NaN)
-        force_mask = fairset[col1].isin(force_triggers).fillna(False)
-        force_violations = fairset[force_mask.astype(bool) & fairset[col2].isna().astype(bool)][[col1, col2]]
+            # Adding the wrong rows for stats
+            self.wrong_rows.update(wrong_rows_dynamic)
+            valid_rows_dynamic = round(100 - (len(wrong_rows_dynamic) * 100 / self.fairset.shape[0]), 2)
+
+            json_dynamic = {
+                "Type": "Dynamic Piping Single-to-Single",
+                "Description": f"Block Single-to-Single ({col1} to {col2})",
+                "is_valid": True if violations.empty else False,
+                "is_supported": is_supported,
+                "Dataframe": violations.to_dict(orient="records") if not violations.empty else None,
+                "Detail": detail,
+                "Occurrences_train": len(train[train[col1].isin(violations[col1].unique())]),
+                "Percentage_of_valid_rows": valid_rows_dynamic,
+                "Rows": wrong_rows_dynamic,
+            }
+            return json_dynamic
+        else:
+            # Group by col1 and check if all corresponding values in col2 are NaN
+            nan_triggers = train.groupby(col1)[col2].apply(lambda x: x.isna().all())
+            anti_nan_triggers = train.groupby(col1)[col2].apply(
+                lambda x: ~x.isna().any())  # values that never lead to nans for force
+
+            # Step 2: Only keep values that are always NaN triggers
+            block_triggers = nan_triggers[nan_triggers].index.values  # Only values that map exclusively to NaN
+            force_triggers = nan_triggers[anti_nan_triggers].index.values  # Only values that map exclusively to NaN
+
+            # Step 3: Find violations where fairset[col1] is a known trigger but has non-NaN col2 values
+            block_mask = (fairset[col1].isin(block_triggers).fillna(False)) & (fairset[col2].notna().fillna(False))
+            block_violations = fairset[block_mask][[col1, col2]]
+
+            # Step 4: Find force violations (values that are not triggers but unexpectedly lead to NaN)
+            force_mask = fairset[col1].isin(force_triggers).fillna(False)
+            force_violations = fairset[force_mask.astype(bool) & fairset[col2].isna().astype(bool)][[col1, col2]]
 
         wrong_rows_block = block_violations.index.tolist()
         wrong_rows_force = force_violations.index.tolist()
@@ -66,8 +91,8 @@ class LogicFunctions:
         self.wrong_rows.update(wrong_rows_block)
         self.wrong_rows.update(wrong_rows_force)
 
-        valid_rows_block = math.floor(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]))
-        valid_rows_force = math.floor(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]))
+        valid_rows_block = round(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]), 2)
+        valid_rows_force = round(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]), 2)
 
         json_block = {
             "Type": "Block Single-to-Single",
@@ -96,7 +121,6 @@ class LogicFunctions:
         elif block_force == "force":
             return json_force
 
-
     def detect_violations_SM(self, single_column, prefix, detail, block_force, is_supported=True):
 
         train = self.train.copy()
@@ -113,19 +137,28 @@ class LogicFunctions:
             .apply(lambda group: group[group_col].isna().all(axis=1).all())
             .loc[lambda x: x == True]
         )
+        anti_nan_triggers = (
+            train.replace("nan", np.nan)
+            .groupby(single_column, dropna=False)
+            .apply(lambda group: ~group[group_col].isna().all(axis=1).any())
+            .loc[lambda x: x == True]
+        )
 
         nan_trigers = nan_trigers.index.to_list()
+        anti_nan_triggers = anti_nan_triggers.index.to_list()
 
         violations = fairset[fairset[single_column].isin(nan_trigers)]
         violations = violations[violations[group_col].notna().any(axis=1)][[single_column] + group_col]
 
+        force_violations = fairset[fairset[single_column].isin(anti_nan_triggers)]
+        force_violations = force_violations[force_violations[group_col].isna().all(axis=1)][[single_column] + group_col]
+
         block_violations = violations[~violations[group_col].isna().all(axis=1)]
-        force_violations = violations[violations[group_col].isna().all(axis=1)]
         wrong_rows_block = block_violations.index.tolist()
         wrong_rows_force = force_violations.index.tolist()
 
-        valid_rows_block = math.floor(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]))
-        valid_rows_force = math.floor(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]))
+        valid_rows_block = round(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]), 2)
+        valid_rows_force = round(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]), 2)
 
         self.wrong_rows.update(wrong_rows_block)
         self.wrong_rows.update(wrong_rows_force)
@@ -157,7 +190,6 @@ class LogicFunctions:
             return json_block
         elif block_force == "force":
             return json_force
-
 
     def detect_violations_SM_for_grid(
             self, prefix_single, prefix_multi, c_value, detail, block_force, is_supported=True
@@ -198,8 +230,8 @@ class LogicFunctions:
         wrong_rows_block = block_violations.index.tolist()
         wrong_rows_force = force_violations.index.tolist()
 
-        valid_rows_block = math.floor(100 - (len(wrong_rows_block) * 100 / fairset.shape[0]))
-        valid_rows_force = math.floor(100 - (len(wrong_rows_force) * 100 / fairset.shape[0]))
+        valid_rows_block = round(100 - (len(wrong_rows_block) * 100 / fairset.shape[0]), 2)
+        valid_rows_force = round(100 - (len(wrong_rows_force) * 100 / fairset.shape[0]), 2)
 
         self.wrong_rows.update(wrong_rows_block)
         self.wrong_rows.update(wrong_rows_force)
@@ -233,7 +265,6 @@ class LogicFunctions:
         elif block_force == "force":
             return json_force
 
-
     def detect_violations_MM(self, prefix1, prefix2, columns_to_drop, detail, block_force, is_supported=True):
 
         train = self.train.copy()
@@ -246,14 +277,16 @@ class LogicFunctions:
         # Step 1: Identify columns that start with the given prefixes in both train and fairset
         if not isinstance(prefix1, list):
             cols_prefix1_train = [col for col in train.columns if col.startswith(prefix1) and not col.endswith("oe")]
-            cols_prefix1_fairset = [col for col in fairset.columns if col.startswith(prefix1) and not col.endswith("oe")]
+            cols_prefix1_fairset = [col for col in fairset.columns if
+                                    col.startswith(prefix1) and not col.endswith("oe")]
         else:
             cols_prefix1_train = prefix1
             cols_prefix1_fairset = prefix1
 
         if not isinstance(prefix2, list):
             cols_prefix2_train = [col for col in train.columns if col.startswith(prefix2) and not col.endswith("oe")]
-            cols_prefix2_fairset = [col for col in fairset.columns if col.startswith(prefix2) and not col.endswith("oe")]
+            cols_prefix2_fairset = [col for col in fairset.columns if
+                                    col.startswith(prefix2) and not col.endswith("oe")]
         else:
             cols_prefix2_train = prefix2
             cols_prefix2_fairset = prefix2
@@ -291,9 +324,21 @@ class LogicFunctions:
                 condition_train = train[col1_train] == val
                 if (train[condition_train][col2_train].isna()).all():  # All values are "nan" in prefix2
                     forcing_rules.append(val)
+                elif (train[condition_train][col2_train].isna()).any():
+                    json_train_failure = {
+                        "Type": "Parallel Piping",
+                        "Description": f"Parallel Piping ({col1_train} to {col2_train}) does not uphold in the trainset",
+                        "is_valid": True,
+                        "is_supported": is_supported,
+                        "Dataframe": None,
+                        "Detailed_Violations": None,
+                        "Detail": "Failure in the trainset",
+                        "Percentage_of_valid_rows": 100,
+                        "Rows": [],
+                    }
+                    return json_train_failure
                 else:
                     forcing_answer_rules.append(val)
-
             # If no forcing rules are found, skip to the next pair
             if not forcing_rules:
                 continue
@@ -351,8 +396,8 @@ class LogicFunctions:
         wrong_rows_block = block_violations.index.tolist()
         wrong_rows_force = force_violations.index.tolist()
 
-        valid_rows_block = math.floor(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]))
-        valid_rows_force = math.floor(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]))
+        valid_rows_block = round(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]), 2)
+        valid_rows_force = round(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]), 2)
 
         # Step 5: Create the JSON structure
         json_block = {
@@ -383,7 +428,6 @@ class LogicFunctions:
         elif block_force == "force":
             return json_force
 
-
     def detect_violations_MS(self, single_column, prefix, detail, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
@@ -406,7 +450,7 @@ class LogicFunctions:
 
         # Save indexes of missing combinations in the fairset
         missing_indexes = fairset.merge(missing_combinations, on=group_col, how="inner").index.tolist()
-        valid_rows = math.floor(100 - (len(missing_indexes) * 100 / self.fairset.shape[0]))
+        valid_rows = round(100 - (len(missing_indexes) * 100 / self.fairset.shape[0]), 2)
 
         self.wrong_rows.update(missing_indexes)
 
@@ -425,53 +469,66 @@ class LogicFunctions:
 
         return json
 
-
-    def detect_violations_MS_v2(self, single_column, prefix, detail, is_supported=True):
+    def detect_violations_MS_v2(self, single_column, prefix, detail, block_force, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
 
         # Identify group columns based on the prefix and exclude columns ending with 'oe'
-        if not isinstance(prefix, list): 
+        if not isinstance(prefix, list):
             group_col = [col for col in train.columns if col.startswith(prefix) and not col.endswith("oe")]
         else:
             group_col = prefix
 
-        # Combine the single column with the group columns
-        relevant_columns = group_col + [single_column]
+        filtered_df_block = train[group_col + [single_column]].query(f"`{single_column}`.isnull()")
+        unique_groups = filtered_df_block[group_col].drop_duplicates()
+        group_combinations = list(unique_groups.itertuples(index=False, name=None))
 
-        # Filter fairset with relevant columns
-        fairset_filtered = fairset[relevant_columns].copy()
+        mask = fairset[group_col].apply(tuple, axis=1).isin(group_combinations)
+        block_violations = fairset[mask & fairset[single_column].notna()][group_col + [single_column]]
+        wrong_rows_block = block_violations.index.tolist()
 
-        # Identify rows where all prefix columns contain only 0s or NaNs
-        all_zeros_or_nans = fairset_filtered[group_col].apply(lambda row: (row.isna() | (row == 0)).all(), axis=1)
+        filtered_df_force = train[group_col + [single_column]].query(f"`{single_column}`.notnull()")
+        unique_groups_force = filtered_df_force[group_col].drop_duplicates()
+        group_combinations_force = list(unique_groups_force.itertuples(index=False, name=None))
 
-        # Identify rows where the single column is not NaN and not 0
-        single_column_valid = ~(fairset_filtered[single_column].isna() | (fairset_filtered[single_column] == 0))
+        mask_force = fairset[group_col].apply(tuple, axis=1).isin(group_combinations_force)
+        force_violations = fairset[mask_force & fairset[single_column].isna()][group_col + [single_column]]
+        wrong_rows_force = force_violations.index.tolist()
 
-        # Flag violations where all prefix columns are 0 or NaN, but the single column has a value
-        violating_rows = fairset_filtered[all_zeros_or_nans & single_column_valid]
+        valid_rows_block = round(100 - (len(wrong_rows_block) * 100 / self.fairset.shape[0]), 2)
+        valid_rows_force = round(100 - (len(wrong_rows_force) * 100 / self.fairset.shape[0]), 2)
 
-        # Save indexes of violating rows
-        violating_indexes = violating_rows.index.tolist()
-        valid_rows_percentage = math.floor(100 - (len(violating_indexes) * 100 / self.fairset.shape[0]))
+        self.wrong_rows.update(wrong_rows_block)
+        self.wrong_rows.update(wrong_rows_force)
 
-        self.wrong_rows.update(violating_indexes)
-
-        # Create the JSON structure to return
-        json_output = {
+        json_block = {
             "Type": "Block Multi-to-Single",
-            "Description": f"MS block force where {single_column} has a value but all {prefix} columns are 0/NaN",
-            "is_valid": len(violating_rows) == 0,
+            "Description": f"Block Multi-to-Single ({single_column} to {prefix})",
+            "is_valid": True if block_violations.empty else False,
             "is_supported": is_supported,
-            "Dataframe": violating_rows.to_dict(orient="records") if not violating_rows.empty else None,
-            "Indexes": violating_indexes if violating_indexes else None,
+            "Dataframe": block_violations.to_dict(orient="records") if not block_violations.empty else None,
             "Detail": detail,
-            "Percentage_of_valid_rows": valid_rows_percentage,
-            "Rows": violating_indexes,
+            "Occurrences_train": len(train[train[group_col].apply(tuple, axis=1).isin(group_combinations)]),
+            "Percentage_of_valid_rows": valid_rows_block,
+            "Rows": wrong_rows_block,
         }
 
-        return json_output
+        json_force = {
+            "Type": "Force Multi-to-Single",
+            "Description": f"Force Multi-to-Single ({single_column} to {prefix})",
+            "is_valid": True if force_violations.empty else False,
+            "is_supported": is_supported,
+            "Dataframe": force_violations.to_dict(orient="records") if not force_violations.empty else None,
+            "Detail": detail,
+            "Occurrences_train": len(train[train[group_col].apply(tuple, axis=1).isin(group_combinations_force)]),
+            "Percentage_of_valid_rows": valid_rows_force,
+            "Rows": wrong_rows_force,
+        }
 
+        if block_force == "block":
+            return json_block
+        elif block_force == "force":
+            return json_force
 
     def detect_bf_mixed_type(self, prefix1, prefix2, columns_to_drop, detail, is_supported=False):
         """
@@ -523,7 +580,7 @@ class LogicFunctions:
         # Create a DataFrame containing only the violating rows
         violations_df = fairset.loc[violating_indices, subset1_cols + subset2_cols]
 
-        valid_rows = math.floor(100 - (len(violating_indices) * 100 / self.fairset.shape[0]))
+        valid_rows = round(100 - (len(violating_indices) * 100 / self.fairset.shape[0]), 2)
 
         # Construct JSON-like response
         result = {
@@ -538,7 +595,6 @@ class LogicFunctions:
         }
 
         return result
-
 
     def recoding(self, prefix1, prefix2, mode, detail, is_supported=True):
 
@@ -556,7 +612,7 @@ class LogicFunctions:
             # Adding the wrong rows for stats
             self.wrong_rows.update(violations.index.tolist())
             wrong_rows = violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
             json = {
                 "Type": "Recoding Single-to-Single",
@@ -587,7 +643,7 @@ class LogicFunctions:
             # Adding the wrong rows for stats
             self.wrong_rows.update(violations.index.tolist())
             wrong_rows = violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
             json = {
                 "Type": "Recoding Single-to-Multi",
@@ -606,19 +662,28 @@ class LogicFunctions:
                 cols = [col for col in train.columns if col.startswith(prefix1) and not col.endswith("oe")]
             else:
                 cols = prefix1
-
+            # combinations of just the source
+            valid_source_combinations = set(train[cols].drop_duplicates().itertuples(index=False, name=None))
             # Find valid combinations from train (Real data)
-            valid_combinations = set(train[[prefix2] + cols].drop_duplicates().itertuples(index=False, name=None))
+            valid_source_target_combinations = set(
+                train[[prefix2] + cols].drop_duplicates().itertuples(index=False, name=None))
+            # Find combinations generated by fairgen in the source columns
+            new_combinations = fairset[~fairset[cols].apply(tuple, axis=1).isin(valid_source_combinations)][
+                cols].index
+
+            fairset_not_new_combinations = fairset.drop(index=new_combinations)
 
             # Find all violating rows from the fairset
-            violations = fairset[~fairset[[prefix2] + cols].apply(tuple, axis=1).isin(valid_combinations)][
+            violations = fairset_not_new_combinations[
+                ~fairset_not_new_combinations[[prefix2] + cols].apply(tuple, axis=1).isin(
+                    valid_source_target_combinations)][
                 [prefix2] + cols
                 ]
 
             # Adding the wrong rows for stats
             self.wrong_rows.update(violations.index.tolist())
             wrong_rows = violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
             json = {
                 "Type": "Recoding Multi-to-Single",
@@ -651,7 +716,7 @@ class LogicFunctions:
             # Adding the wrong rows for stats
             self.wrong_rows.update(violations.index.tolist())
             wrong_rows = violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
             json = {
                 "Type": "Recoding Multi-to-Multi",
@@ -664,7 +729,6 @@ class LogicFunctions:
                 "Rows": wrong_rows,
             }
             return json
-
 
     def none_of_the_above(self, prefix, nota, columns_to_drop, is_supported=True):
         train = self.train.copy()
@@ -706,7 +770,7 @@ class LogicFunctions:
             # Adding the wrong rows for stats
             self.wrong_rows.update(fairset_violations.index.tolist())
             wrong_rows = fairset_violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
         else:
             fairset_violations = pd.DataFrame()
@@ -722,7 +786,6 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
-
 
     def none_of_the_above_grid(self, prefix, nota, columns_to_drop, c_value, is_supported=True):
         train = self.train.copy()
@@ -778,7 +841,7 @@ class LogicFunctions:
             # Adding the wrong rows for stats
             self.wrong_rows.update(fairset_violations.index.tolist())
             wrong_rows = fairset_violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
         else:
             fairset_violations = pd.DataFrame()
@@ -795,7 +858,6 @@ class LogicFunctions:
         }
         return json
 
-
     def all_of_the_above(self, prefix, aota, columns_to_drop, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
@@ -805,11 +867,7 @@ class LogicFunctions:
             fairset = fairset.drop(columns_to_drop, axis=1)
 
         # Identify columns with the given prefix
-        if not isinstance(prefix, list): 
-            cols = [col for col in train.columns if col.startswith(prefix)]
-        else:
-            cols = prefix
-            
+        cols = [col for col in train.columns if col.startswith(prefix)]
         if aota in cols:
             cols.remove(aota)
 
@@ -853,7 +911,7 @@ class LogicFunctions:
             # Adding the wrong rows for stats
             self.wrong_rows.update(fairset_violations.index.tolist())
             wrong_rows = fairset_violations.index.tolist()
-            valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+            valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
         else:
             valid_rows = 100
@@ -870,7 +928,6 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
-
 
     def count(self, prefix, none_of_the_above, is_supported=True):
         train = self.train.copy()
@@ -925,7 +982,7 @@ class LogicFunctions:
         # Adding the wrong rows for stats
         self.wrong_rows.update(fairset_violations.index.tolist())
         wrong_rows = fairset_violations.index.tolist()
-        valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+        valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
         # Create the JSON structure
         json = {
@@ -939,7 +996,6 @@ class LogicFunctions:
         }
 
         return json
-
 
     def uniqueness(self, prefix, is_supported=True):
         train = self.train.copy()
@@ -971,13 +1027,13 @@ class LogicFunctions:
         # Adding the wrong rows for stats
         self.wrong_rows.update(fairset_violations.index.tolist())
         wrong_rows = fairset_violations.index.tolist()
-        valid_rows = math.floor(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]))
+        valid_rows = round(100 - (len(wrong_rows) * 100 / self.fairset.shape[0]), 2)
 
         # Create the JSON structure to return
         json = {
             "Type": "Uniqueness",
             "Description": f"Uniqueness - ({prefix})" if train_violations.empty else "Training Data not Reliable",
-            "is_valid": True if (train_violations.empty and fairset_violations.empty) else False,
+            "is_valid": True if ((not train_violations.empty) | (fairset_violations.empty)) else False,
             "is_supported": is_supported,
             "Dataframe": fairset_violations[cols].to_dict(orient="records") if not fairset_violations.empty else None,
             "Percentage_of_valid_rows": valid_rows,
@@ -985,13 +1041,11 @@ class LogicFunctions:
         }
         return json
 
-
     @staticmethod
     def applyQueryCustom_query(df, instruction):
         row_filter, columns = instruction.rsplit(";", 1)
         columns = [col.strip() for col in columns.split(",")]
         return df.query(row_filter, engine="python")[columns]
-
 
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
@@ -1010,7 +1064,7 @@ class LogicFunctions:
     @staticmethod
     def custom(dataframe, constraint_type, description, fairset, is_supported=True):
         wrong_rows = dataframe.index.tolist()
-        valid_rows = math.floor(100 - (len(wrong_rows) * 100 / fairset.shape[0]))  # Adding the wrong rows for stats
+        valid_rows = round(100 - (len(wrong_rows) * 100 / fairset.shape[0]), 2)  # Adding the wrong rows for stats
         json = {
             "Type": constraint_type,
             "Description": f"{constraint_type} - {description}",
@@ -1022,7 +1076,6 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
-
 
     def process_constraint(self, constraint_type, constraint):
         """Handles the logic of constraint checking for each constraint typ"""
@@ -1066,15 +1119,16 @@ class LogicFunctions:
                 constraint_type, description, code, is_implemented = constraint
             except ValueError:
                 constraint_type, description, code = constraint
+                is_implemented = True
 
             dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset, code)
             if not dataframe.empty:
                 self.wrong_rows.update(dataframe.index.tolist())
-            result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset, is_supported=is_implemented)
+            result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset,
+                                           is_supported=is_implemented)
             return result
         else:
             raise ValueError(f"Unknown constraint type: {constraint_type}")
-
 
     def run_analysis(self, constraints):
         all_results = []
@@ -1097,7 +1151,7 @@ class LogicFunctions:
 
         for constraint_type, constraint_list in stqdm(all_constraints, desc=f"Processing Constraints for {self.name}", mininterval=0.1):
             for constraint in constraint_list:
-                if constraint_type in ["BF_SS", "BF_SM"]:
+                if constraint_type in ["BF_SS", "BF_SM", "BF_MS"]:
                     if constraint[3] == "block_force":
                         constraint_copy = constraint.copy()  # Make a copy to avoid modifying the original
                         constraint_copy[3] = "block"
