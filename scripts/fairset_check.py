@@ -633,7 +633,14 @@ class LogicFunctions:
                 cols = prefix2
 
             # Find valid combinations from train (Real data)
-            valid_combinations = set(train[[prefix1] + cols].drop_duplicates().itertuples(index=False, name=None))
+            df_subset = train[[prefix1] + cols].drop_duplicates()
+
+            # Convert any list values in rows to tuples
+            valid_combinations = set(
+                tuple(tuple(x) if isinstance(x, list) else x for x in row)
+                for row in df_subset.itertuples(index=False, name=None)
+            )
+
 
             # Find all violating rows from the fairset
             violations = fairset[~fairset[[prefix1] + cols].apply(tuple, axis=1).isin(valid_combinations)][
