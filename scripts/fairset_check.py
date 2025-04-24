@@ -1087,7 +1087,12 @@ class LogicFunctions:
     def process_constraint(self, constraint_type, constraint):
         """Handles the logic of constraint checking for each constraint typ"""
         if constraint_type == "BF_SS":
-            return self.detect_violations_SS(*constraint)
+            try:
+                resp = self.detect_violations_SS(*constraint)
+            except Exception as e:
+                st.error(f"Issue on constraint BF_SS: {list(constraint)}")
+                st.error(f"Error: {e}")
+            return resp
         elif constraint_type == "BF_SM":
             return self.detect_violations_SM(*constraint)
         elif constraint_type == "BF_SM_Grid":
