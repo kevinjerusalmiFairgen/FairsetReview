@@ -51,6 +51,11 @@ def readOuput(path):
     if data == []:
         st.success("No Error found")
         st.stop()
+    else:
+        st.title(f"# {len(data)} issues detected")
+        for element in data:
+            st.write(element)
+
 
     if not isinstance(data, list):
         st.error("Expected data to be a list, got something else.")     
