@@ -102,6 +102,8 @@ def main():
 
                 df = run_fairset_analysis(**config)
 
+                st.write("# ")
+                st.markdown(f"<h4>Fairset Review:", unsafe_allow_html=True)
                 st.dataframe(df, width=1000)
 
                 with open("outputs/template.xlsx", "rb") as file:
