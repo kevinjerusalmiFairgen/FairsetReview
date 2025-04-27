@@ -54,10 +54,12 @@ def readOuput(path):
     else:
         container = st.container()
         with container:
-            st.header(f"{len(data)} issues detected")
+            st.markdown(f"<h4>{len(data)} issues detected</h4>", unsafe_allow_html=True)
+            
             for element in data:
                 with st.expander(f"{element['Description']}"):
                     st.dataframe(element["Dataframe"])
+                    
 
     if not isinstance(data, list):
         st.error("Expected data to be a list, got something else.")     
