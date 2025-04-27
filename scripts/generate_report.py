@@ -52,9 +52,12 @@ def readOuput(path):
         st.success("No Error found")
         st.stop()
     else:
-        st.title(f"# {len(data)} issues detected")
+        container = st.container()
+        container.header(f"{len(data)} issues detected")
+
         for element in data:
-            st.write(element)
+            with container.expander(f"{element["Description"]}"):
+                st.dataframe(element["Dataframe"])
 
 
     if not isinstance(data, list):
