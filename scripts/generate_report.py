@@ -54,11 +54,10 @@ def readOuput(path):
     else:
         container = st.container()
         with container:
-            st.header(f"{len(data)} issues detected")
-
-            for element in data:
-                with st.expander(f"{element['Description']}"):
-                    st.dataframe(element["Dataframe"])
+            with st.expander(f"{len(data)} issues detected"):   # BIG expander
+                for element in data:
+                    with st.expander(f"{element['Description']}"):   # Inner expanders
+                        st.dataframe(element["Dataframe"])
 
 
 
