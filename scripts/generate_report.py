@@ -53,11 +53,13 @@ def readOuput(path):
         st.stop()
     else:
         container = st.container()
-        container.header(f"{len(data)} issues detected")
+        with container:
+            st.header(f"{len(data)} issues detected")
 
-        for element in data:
-            with container.expander(f"{element["Description"]}"):
-                st.dataframe(element["Dataframe"])
+            for element in data:
+                with st.expander(f"{element['Description']}"):
+                    st.dataframe(element["Dataframe"])
+
 
 
     if not isinstance(data, list):
