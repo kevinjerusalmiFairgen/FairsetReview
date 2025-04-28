@@ -27,8 +27,8 @@ def load_file(uploaded_file):
         os.remove(temp_path)
         return df
     else:
-        st.error(f"Unsupported file type: {uploaded_file.name}")
-        return None 
+        # Don't show error here anymore, just raise an exception
+        raise ValueError(f"Unsupported file type: {uploaded_file.name}")
 
 def load_wrapper(uploaded_file):
     if uploaded_file.name.endswith(".zip"):
@@ -40,10 +40,19 @@ def load_wrapper(uploaded_file):
                 with z.open(file_info) as extracted_file:
                     extracted_file = io.BytesIO(extracted_file.read())
                     extracted_file.name = file_info.filename
-                    dfs[file_info.filename] = load_file(extracted_file)
+                    try:
+                        dfs[file_info.filename] = load_file(extracted_file)
+                    except Exception as e:
+                        # Skip unsupported or broken files
+                        st.warning(f"Skipping unsupported or corrupted file: {file_info.filename}")
         return dfs
     else:
-        return load_file(uploaded_file)
+        try:
+            return load_file(uploaded_file)
+        except Exception as e:
+            st.error(f"Error loading file: {uploaded_file.name}")
+            return None
+
 
 def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, output_structurejson, output_report_path):
     ## <======= PART 1: Extract prior file and make it JSON =======>
