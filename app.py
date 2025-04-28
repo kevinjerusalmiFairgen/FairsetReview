@@ -76,10 +76,16 @@ def main():
         st.markdown("Upload train set, fairset, and prior file")
 
         if st.button("Run Analysis"):
+            # Debugging output to check file availability
+            st.write("Button clicked!")
+
+            # Check if files are uploaded
             if train_file is None or fairset_file is None or priorfile_file is None:
                 st.warning("Upload train, fairset, and prior file before running analysis!")
+            else:
+                st.write("Files uploaded successfully!")
 
-            if train_file is not None and fairset_file is not None and priorfile_file is not None:
+                # Load the files
                 train = load_file(train_file)
                 priorfile = load_file(priorfile_file)
 
@@ -89,12 +95,20 @@ def main():
                     temp_dir = extract_zip(fairset_file)
                     fairset_files = [f for f in os.listdir(temp_dir) if f.endswith(".sav")]
                     
+                    if not fairset_files:
+                        st.error("No .sav files found in the uploaded ZIP!")
+                        return
+
+                    st.write(f"Found {len(fairset_files)} .sav files in the ZIP.")
+                    
                     # Run analysis for each fairset file
                     for fairset_filename in fairset_files:
                         fairset_path = os.path.join(temp_dir, fairset_filename)
                         fairset = load_file(fairset_path)
 
                         if fairset is not None:
+                            st.write(f"Running analysis for: {fairset_filename}")
+
                             # Check columns are all right
                             unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
 
@@ -112,6 +126,7 @@ def main():
                                 "output_report_path": "outputs/complete_report.json"
                             }
 
+                            # Run fairset analysis
                             df = run_fairset_analysis(**config)
 
                             st.write(f"### Results for {fairset_filename}")
@@ -124,9 +139,8 @@ def main():
                                 label="Download File",
                                 data=file_bytes,
                                 file_name="FairsetReview.xlsx",
-                                mime="text/csv"  # Adjust MIME type depending on your file
+                                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  # Correct MIME type for Excel
                             )
-
                 else:
                     # If the file is not a ZIP, just load it as usual
                     fairset = load_file(fairset_file)
@@ -149,6 +163,7 @@ def main():
                             "output_report_path": "outputs/complete_report.json"
                         }
 
+                        # Run fairset analysis
                         df = run_fairset_analysis(**config)
 
                         st.write("### ")
@@ -162,16 +177,18 @@ def main():
                             label="Download File",
                             data=file_bytes,
                             file_name="FairsetReview.xlsx",
-                            mime="text/csv"  # Adjust MIME type depending on your file
+                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  # Correct MIME type for Excel
                         )
 
     with tab2:
         st.markdown("Upload Prior file and get your Structure JSON")
 
         if st.button("Get JSONs"):
+            # Debugging output to check file availability
+            st.write("Get JSON button clicked!")
+
             if priorfile_file is None:
                 st.warning("Upload a prior file and dataset before running analysis!")
-
             if priorfile_file is not None and train_file is not None:
                 priorfile = load_file(priorfile_file)
                 train = load_file(train_file)
@@ -207,6 +224,13 @@ def main():
                         file_name="constraints.json",
                         mime="application/json"
                     )
+
+
+try:
+    main()
+except Exception as e:
+    st.error(f"An error occurred: {e}")
+    st.text(traceback.format_exc())
 
 
 try:
