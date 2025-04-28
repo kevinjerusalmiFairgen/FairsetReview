@@ -39,13 +39,18 @@ def load_wrapper(uploaded_file):
                 # Skip MACOSX hidden files and files starting with ._
                 if "__MACOSX" in file_info.filename or os.path.basename(file_info.filename).startswith("._"):
                     continue
+
+                # Always take only the basename (ignore internal folders inside ZIP)
+                clean_name = os.path.basename(file_info.filename)
+
                 with z.open(file_info) as extracted_file:
                     extracted_file = io.BytesIO(extracted_file.read())
-                    extracted_file.name = file_info.filename
+                    extracted_file.name = clean_name  # <-- assign clean name for load_file
+
                     try:
-                        dfs[file_info.filename] = load_file(extracted_file)
+                        dfs[clean_name] = load_file(extracted_file)
                     except Exception:
-                        st.warning(f"Skipping unsupported or corrupted file: {file_info.filename}")
+                        st.warning(f"Skipping unsupported or corrupted file: {clean_name}")
         return dfs
     else:
         try:
@@ -55,21 +60,6 @@ def load_wrapper(uploaded_file):
             st.warning(f"Skipping unsupported or corrupted file: {uploaded_file.name}")
             return {}
 
-def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, output_structurejson, output_report_path):
-    constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
-    with open(output_constraintsjson, 'w') as f:
-        f.write(json.dumps(constraints_json, indent=4))
-    with open(output_structurejson, 'w') as f:
-        f.write(json.dumps(structure_json, indent=4))
-
-    constraints = constraints_json
-    logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
-    output_report = logic_instance.run_analysis(constraints)
-    with open(output_report_path, 'w') as f:
-        f.write(json.dumps(output_report, indent=4))
-
-    df = generate_report.readOuput(output_report_path)
-    return df
 
 def main():
     st.title("Fairset Review Platform")
