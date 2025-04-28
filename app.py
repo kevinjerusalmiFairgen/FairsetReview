@@ -1,5 +1,5 @@
 import scripts.priorFile_extract as priorFile_extract
-import scripts.fairset_check as fairset_check
+from scripts.fairset_check import LogicFunctions
 import scripts.generate_report as generate_report
 import pandas as pd
 import json
@@ -123,7 +123,7 @@ def main():
                     }
 
                     try:
-                        df = fairset_check.run_analysis(**config)
+                        df = LogicFunctions.run_analysis(**config)
                         generate_report.export_to_excel(df, output_excel_path)
 
                         processing_results.append({
