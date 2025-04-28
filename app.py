@@ -107,18 +107,13 @@ def main():
                 st.error("No valid fairset datasets found to process!")
                 st.stop()
 
-            st.info(f"Found {len(fairsets)} valid fairset(s).")
-
             processed_fairsets = []
-
-            # Create a temporary folder to store Excel outputs
             temp_dir = tempfile.mkdtemp()
 
+            # --- DO NOT SHOW ANYTHING IN LOOP --- #
             for filename, fairset in fairsets.items():
                 if fairset is None:
                     continue
-
-                st.write(f"### Running analysis for `{filename}`...")
 
                 safe_filename = filename.replace("/", "_").replace("\\", "_").replace(".csv", "").replace(".xlsx", "").replace(".sav", "")
                 output_constraintsjson = os.path.join(temp_dir, f"constraints_{safe_filename}.json")
@@ -139,7 +134,6 @@ def main():
                     df = run_fairset_analysis(**config)
                     generate_report.export_to_excel(df, output_excel_path)
 
-                    # Save info for later
                     processed_fairsets.append({
                         "filename": filename,
                         "safe_filename": safe_filename,
@@ -148,38 +142,44 @@ def main():
                     })
 
                 except Exception as e:
-                    st.error(f"Failed on {filename}: {str(e)}")
-                    st.text(traceback.format_exc())
+                    processed_fairsets.append({
+                        "filename": filename,
+                        "error": str(e)
+                    })
+
+            # --- AFTER PROCESSING --- #
 
             if processed_fairsets:
-                st.success("✅ All fairsets processed successfully!")
+                st.success(f"✅ Processed {len(processed_fairsets)} fairsets!")
 
-                # Create a zip file with all Excel reports
                 zip_buffer = io.BytesIO()
-
                 with zipfile.ZipFile(zip_buffer, "w") as zip_file:
                     for item in processed_fairsets:
-                        with open(item['output_excel_path'], "rb") as file:
-                            file_bytes = file.read()
-                            zip_file.writestr(f"FairsetReview_{item['safe_filename']}.xlsx", file_bytes)
+                        if "output_excel_path" in item:
+                            with open(item['output_excel_path'], "rb") as file:
+                                file_bytes = file.read()
+                                zip_file.writestr(f"FairsetReview_{item['safe_filename']}.xlsx", file_bytes)
 
                 zip_buffer.seek(0)
 
                 # Show results
                 for item in processed_fairsets:
-                    st.markdown(f"<h4>Results for {item['filename']}:</h4>", unsafe_allow_html=True)
-                    st.dataframe(item['df'], width=1000)
+                    if "error" in item:
+                        st.error(f"❌ {item['filename']} failed: {item['error']}")
+                    else:
+                        st.markdown(f"<h4>Results for {item['filename']}:</h4>", unsafe_allow_html=True)
+                        st.dataframe(item['df'], width=1000)
 
-                # Final zip download
+                # Final download
                 st.download_button(
                     label="⬇️ Download ALL Reports (.zip)",
                     data=zip_buffer,
                     file_name="All_FairsetReports.zip",
                     mime="application/zip"
                 )
-            else:
-                st.warning("No fairsets were successfully processed.")
 
+            else:
+                st.warning("⚠️ No fairsets were successfully processed.")
 
     with tab2:
         st.markdown("Upload Prior file and get your Structure JSON")
