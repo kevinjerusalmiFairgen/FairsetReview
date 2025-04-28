@@ -27,18 +27,24 @@ def load_file(uploaded_file):
         return None
 
 
-def load_file_from_path(filepath):
+def load_file_from_path(filepath, expected_type):
     try:
-        if os.path.exists(filepath):
-            print(f"Reading file from path: {filepath}")
+        # Check if the path exists before loading
+        if not os.path.exists(filepath):
+            raise ValueError(f"File path does not exist: {filepath}")
+
+        # Try loading the file based on its type (e.g., .sav)
+        if expected_type == 'fairset':
             df, meta = pyreadstat.read_sav(filepath)
-            return df
-        else:
-            print(f"Error: The file does not exist at {filepath}")
-            return None
+            st.write(f"Successfully loaded Fairset: {filepath}")  # Debugging line
+            return df  # Ensure DataFrame is returned here
+
+        # If the file is not recognized, raise an error
+        raise ValueError(f"Unsupported file type for: {filepath}")
     except Exception as e:
-        print(f"Error reading file {filepath}: {e}")
+        st.error(f"Error loading file: {e}")
         return None
+
 
 
 def extract_files_from_zip(uploaded_file):
