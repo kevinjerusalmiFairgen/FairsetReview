@@ -92,94 +92,98 @@ def main():
                 st.warning("Upload train, fairset and prior file before running analysis!")
                 st.stop()
 
-            train = load_file(train_file)
-            priorfile = load_file(priorfile_file)
+            try:
+                train = load_file(train_file)
+                priorfile = load_file(priorfile_file)
 
-            unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
-            if unknown_columns:
-                bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
-                st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
-                st.stop()
+                unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
+                if unknown_columns:
+                    bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
+                    st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
+                    st.stop()
 
-            fairsets = load_wrapper(fairset_file)
+                fairsets = load_wrapper(fairset_file)
 
-            if not fairsets:
-                st.error("No valid fairset datasets found to process!")
-                st.stop()
+                if not fairsets:
+                    st.error("No valid fairset datasets found to process!")
+                    st.stop()
 
-            processed_fairsets = []
-            temp_dir = tempfile.mkdtemp()
+                processing_results = []  # <--- collect results here
 
-            # --- DO NOT SHOW ANYTHING IN LOOP --- #
-            for filename, fairset in fairsets.items():
-                if fairset is None:
-                    continue
+                temp_dir = tempfile.mkdtemp()
 
-                safe_filename = filename.replace("/", "_").replace("\\", "_").replace(".csv", "").replace(".xlsx", "").replace(".sav", "")
-                output_constraintsjson = os.path.join(temp_dir, f"constraints_{safe_filename}.json")
-                output_structurejson = os.path.join(temp_dir, f"structure_{safe_filename}.json")
-                output_report_path = os.path.join(temp_dir, f"complete_report_{safe_filename}.json")
-                output_excel_path = os.path.join(temp_dir, f"FairsetReview_{safe_filename}.xlsx")
+                # Silent processing first
+                for filename, fairset in fairsets.items():
+                    if fairset is None:
+                        continue
 
-                config = {
-                    "priorfile": priorfile,
-                    "train": train,
-                    "fairset": fairset,
-                    "output_constraintsjson": output_constraintsjson,
-                    "output_structurejson": output_structurejson,
-                    "output_report_path": output_report_path
-                }
+                    safe_filename = filename.replace("/", "_").replace("\\", "_").replace(".csv", "").replace(".xlsx", "").replace(".sav", "")
+                    output_constraintsjson = os.path.join(temp_dir, f"constraints_{safe_filename}.json")
+                    output_structurejson = os.path.join(temp_dir, f"structure_{safe_filename}.json")
+                    output_report_path = os.path.join(temp_dir, f"complete_report_{safe_filename}.json")
+                    output_excel_path = os.path.join(temp_dir, f"FairsetReview_{safe_filename}.xlsx")
 
-                try:
-                    df = run_fairset_analysis(**config)
-                    generate_report.export_to_excel(df, output_excel_path)
+                    config = {
+                        "priorfile": priorfile,
+                        "train": train,
+                        "fairset": fairset,
+                        "output_constraintsjson": output_constraintsjson,
+                        "output_structurejson": output_structurejson,
+                        "output_report_path": output_report_path
+                    }
 
-                    processed_fairsets.append({
-                        "filename": filename,
-                        "safe_filename": safe_filename,
-                        "df": df,
-                        "output_excel_path": output_excel_path
-                    })
+                    try:
+                        df = run_fairset_analysis(**config)
+                        generate_report.export_to_excel(df, output_excel_path)
 
-                except Exception as e:
-                    processed_fairsets.append({
-                        "filename": filename,
-                        "error": str(e)
-                    })
+                        processing_results.append({
+                            "filename": filename,
+                            "safe_filename": safe_filename,
+                            "df": df,
+                            "excel_path": output_excel_path
+                        })
 
-            # --- AFTER PROCESSING --- #
+                    except Exception as e:
+                        processing_results.append({
+                            "filename": filename,
+                            "error": str(e)
+                        })
 
-            if processed_fairsets:
-                st.success(f"✅ Processed {len(processed_fairsets)} fairsets!")
+                # Now AFTER everything, show results
+                if processing_results:
+                    st.success(f"✅ Processed {len(processing_results)} fairsets!")
 
-                zip_buffer = io.BytesIO()
-                with zipfile.ZipFile(zip_buffer, "w") as zip_file:
-                    for item in processed_fairsets:
-                        if "output_excel_path" in item:
-                            with open(item['output_excel_path'], "rb") as file:
-                                file_bytes = file.read()
-                                zip_file.writestr(f"FairsetReview_{item['safe_filename']}.xlsx", file_bytes)
+                    zip_buffer = io.BytesIO()
+                    with zipfile.ZipFile(zip_buffer, "w") as zip_file:
+                        for item in processing_results:
+                            if "excel_path" in item:
+                                with open(item['excel_path'], "rb") as f:
+                                    file_data = f.read()
+                                    zip_file.writestr(f"FairsetReview_{item['safe_filename']}.xlsx", file_data)
+                    zip_buffer.seek(0)
 
-                zip_buffer.seek(0)
+                    # Display all results
+                    for item in processing_results:
+                        if "error" in item:
+                            st.error(f"❌ {item['filename']} failed: {item['error']}")
+                        else:
+                            st.markdown(f"### Results for `{item['filename']}`")
+                            st.dataframe(item["df"], use_container_width=True)
 
-                # Show results
-                for item in processed_fairsets:
-                    if "error" in item:
-                        st.error(f"❌ {item['filename']} failed: {item['error']}")
-                    else:
-                        st.markdown(f"<h4>Results for {item['filename']}:</h4>", unsafe_allow_html=True)
-                        st.dataframe(item['df'], width=1000)
+                    # Single download for all
+                    st.download_button(
+                        label="⬇️ Download ALL Reports (.zip)",
+                        data=zip_buffer,
+                        file_name="FairsetReports.zip",
+                        mime="application/zip"
+                    )
 
-                # Final download
-                st.download_button(
-                    label="⬇️ Download ALL Reports (.zip)",
-                    data=zip_buffer,
-                    file_name="All_FairsetReports.zip",
-                    mime="application/zip"
-                )
+                else:
+                    st.warning("⚠️ No fairsets processed successfully.")
 
-            else:
-                st.warning("⚠️ No fairsets were successfully processed.")
+            except Exception as e:
+                st.error(f"Something went wrong: {str(e)}")
+                st.text(traceback.format_exc())
 
     with tab2:
         st.markdown("Upload Prior file and get your Structure JSON")
