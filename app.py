@@ -70,18 +70,29 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
         f.write(json.dumps(structure_json, indent=4))
 
     ## <======= PART 2: Run Fairset check =======>
+    
+    # Ensure fairset is not None
+    if fairset is None:
+        raise ValueError("Fairset data is missing. Please ensure the fairset file is correctly loaded.")
+    
     constraints = constraints_json
-    logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
-    output_report = logic_instance.run_analysis(constraints)
-    with open(output_report_path, 'w') as f:
-        f.write(json.dumps(output_report, indent=4))
+    # empty_values = file.get("empty_values", [])  # Add empty values possibility
 
+    try:
+        logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
+        output_report = logic_instance.run_analysis(constraints)
+        with open(output_report_path, 'w') as f:
+            f.write(json.dumps(output_report, indent=4))
+    except Exception as e:
+        raise ValueError(f"Error running fairset analysis: {e}")
+    
     ## <======= PART 3: Generate report =======>
     path = output_report_path
     df = generate_report.readOuput(path)
     generate_report.export_to_excel(df, "outputs/template.xlsx")
 
     return df
+
 
 
 def main():
