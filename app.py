@@ -123,7 +123,7 @@ def main():
                     }
 
                     try:
-                        df = fairset_check.run_fairset_analysis(**config)
+                        df = fairset_check.run_analysis(**config)
                         generate_report.export_to_excel(df, output_excel_path)
 
                         processing_results.append({
