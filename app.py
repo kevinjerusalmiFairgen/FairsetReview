@@ -47,7 +47,11 @@ def extract_files_from_zip(uploaded_file):
             zip_ref.extractall(temp_dir)
             for root, dirs, files in os.walk(temp_dir):
                 for filename in files:
+                    if filename.startswith("._"):
+                        continue  # Skip MacOS junk
                     filepath = os.path.join(root, filename)
+                    if "__MACOSX" in filepath:
+                        continue  # Skip __MACOSX folder
                     if filename.endswith(('.csv', '.xlsx', '.sav')):
                         extracted_files.append(filepath)
         return extracted_files
