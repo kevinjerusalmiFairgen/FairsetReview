@@ -9,72 +9,81 @@ import pyreadstat
 import traceback
 
 
-def load_file(uploaded_file):
-    if uploaded_file.name.endswith(".csv"):
-        return pd.read_csv(uploaded_file)
-    elif uploaded_file.name.endswith(".xlsx"):
-        return pd.read_excel(uploaded_file)
-    elif uploaded_file.name.endswith(".sav"):
-        temp_path = "temp.sav"
-        with open(temp_path, "wb") as f:
-            f.write(uploaded_file.getvalue())
-        df = pd.read_spss(temp_path)
-        os.remove(temp_path)
-        return df
-    else:
-        st.error(f"Unsupported file type: {uploaded_file.name}")
-        return None
+
+def load_file(uploaded_file):            
+                    if uploaded_file.name.endswith(".csv"):
+                        return pd.read_csv(uploaded_file)
+                    elif uploaded_file.name.endswith(".xlsx"):
+                        return pd.read_excel(uploaded_file)
+                    elif uploaded_file.name.endswith(".sav"):
+                        temp_path = "temp.sav"
+                        with open(temp_path, "wb") as f:
+                            f.write(uploaded_file.getvalue())
+                        df = pd.read_spss(temp_path)
+                        os.remove(temp_path)
+                        
+                        return df
+                    else:
+                        st.error(f"Unsupported file type: {uploaded_file.name}")
+                        return None
 
 
 def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, output_structurejson, output_report_path):
 
-    # <======= PART 1: Extract prior file and make it JSON =======>
+    ## <======= PART 1: Extract prior file and make it JSON =======>
     constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
     with open(output_constraintsjson, 'w') as f:
         f.write(json.dumps(constraints_json, indent=4))
     with open(output_structurejson, 'w') as f:
         f.write(json.dumps(structure_json, indent=4))
 
-    # <======= PART 2: Run Fairset check =======>
+
+    ## <======= PART 2: Run Fairset check =======>
+    
+
+    constraints =  constraints_json
+    # empty_values = file.get("empty_values", [])  # Add empty values possibility
+
     logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
-    output_report = logic_instance.run_analysis(constraints_json)
+    output_report = logic_instance.run_analysis(constraints)
     with open(output_report_path, 'w') as f:
         f.write(json.dumps(output_report, indent=4))
 
-    # <======= PART 3: Generate report =======>
-    df = generate_report.readOuput(output_report_path)
+
+    ## <======= PART 3: Generate report =======>
+    path = output_report_path
+    df = generate_report.readOuput(path)
     generate_report.export_to_excel(df, "outputs/template.xlsx")
 
     return df
 
 
 def main():
+    
     st.title("Fairset Review Platform")
 
     with st.sidebar:
-        st.markdown("## Upload Train Set")
-        train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav"])
-        st.markdown("## Upload Fairset")
-        fairset_file = st.file_uploader("  ", type=["csv", "xlsx", "sav"])
-        st.markdown("## Upload Prior file")
-        priorfile_file = st.file_uploader("   ", type=["csv"])
+            st.markdown("## Upload Train Set")
+            train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav"])
+            st.markdown("## Upload Fairset")
+            fairset_file = st.file_uploader("  ", type=["csv", "xlsx", "sav"])
+            st.markdown("## Upload Prior file")
+            priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Prior File Extract"])
+    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Prior File Extract"]) 
 
-    with tab1:
+    with tab1: 
         st.markdown("Upload train set, fairset and prior file")
 
         if st.button("Run Analysis"):
-            # Ensure that files are uploaded
             if train_file is None or fairset_file is None or priorfile_file is None:
                 st.warning("Upload train, fairset and prior file before running analysis!")
-            else:
-                # Files are uploaded, proceed with loading them
+            if train_file is not None and fairset_file is not None and priorfile_file is not None:
                 train = load_file(train_file)
                 fairset = load_file(fairset_file)
                 priorfile = load_file(priorfile_file)
 
-                # Check that columns in prior file match the expected ones
+                # Check columns are all right
                 unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
 
                 if unknown_columns:
@@ -91,7 +100,6 @@ def main():
                     "output_report_path": "outputs/complete_report.json"
                 }
 
-                # Run fairset analysis and display results
                 df = run_fairset_analysis(**config)
 
                 st.write("### ")
@@ -105,22 +113,22 @@ def main():
                     label="Download File",
                     data=file_bytes,
                     file_name="FairsetReview.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  # Correct MIME type for Excel
+                    mime="text/csv"  # Adjust MIME type depending on your file
                 )
 
     with tab2:
+
         st.markdown("Upload Prior file and get your Structure JSON")
 
         if st.button("Get JSONs"):
             if priorfile_file is None:
                 st.warning("Upload a prior file and dataset before running analysis!")
-            elif priorfile_file is not None and train_file is not None:
+            if priorfile_file is not None and train_file is not None:
                 priorfile = load_file(priorfile_file)
                 train = load_file(train_file)
 
                 constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
                 unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
-
                 if unknown_columns:
                     bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
                     st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
