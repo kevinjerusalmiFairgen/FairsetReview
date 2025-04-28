@@ -109,51 +109,13 @@ def main():
 
             st.info(f"Found {len(fairsets)} valid fairset(s).")
 
-            # Process multiple fairsets
-            if len(fairsets) > 1:
-                for filename, fairset in fairsets.items():
-                    if fairset is None:
-                        continue
+            # 🛠 Store processed results
+            processed_fairsets = []
 
-                    st.write(f"### Running analysis for `{filename}`...")
+            for filename, fairset in fairsets.items():
+                if fairset is None:
+                    continue
 
-                    safe_filename = filename.replace("/", "_").replace("\\", "_").replace(".csv", "").replace(".xlsx", "").replace(".sav", "")
-                    output_constraintsjson = f"outputs/constraints_{safe_filename}.json"
-                    output_structurejson = f"outputs/structure_{safe_filename}.json"
-                    output_report_path = f"outputs/complete_report_{safe_filename}.json"
-                    output_excel_path = f"outputs/FairsetReview_{safe_filename}.xlsx"
-
-                    config = {
-                        "priorfile": priorfile,
-                        "train": train,
-                        "fairset": fairset,
-                        "output_constraintsjson": output_constraintsjson,
-                        "output_structurejson": output_structurejson,
-                        "output_report_path": output_report_path
-                    }
-
-                    try:
-                        df = run_fairset_analysis(**config)
-                        generate_report.export_to_excel(df, output_excel_path)
-
-                        st.markdown(f"<h4>Results for {filename}:</h4>", unsafe_allow_html=True)
-                        st.dataframe(df, width=1000)
-
-                        with open(output_excel_path, "rb") as file:
-                            file_bytes = file.read()
-
-                        st.download_button(
-                            label=f"⬇️ Download Report for {filename}",
-                            data=file_bytes,
-                            file_name=f"FairsetReview_{safe_filename}.xlsx",
-                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                        )
-                    except Exception as e:
-                        st.error(f"Failed on {filename}: {str(e)}")
-                        st.text(traceback.format_exc())
-
-            else:  # Process for a single fairset
-                filename, fairset = next(iter(fairsets.items()))
                 st.write(f"### Running analysis for `{filename}`...")
 
                 safe_filename = filename.replace("/", "_").replace("\\", "_").replace(".csv", "").replace(".xlsx", "").replace(".sav", "")
@@ -175,21 +137,32 @@ def main():
                     df = run_fairset_analysis(**config)
                     generate_report.export_to_excel(df, output_excel_path)
 
-                    st.markdown(f"<h4>Results for {filename}:</h4>", unsafe_allow_html=True)
-                    st.dataframe(df, width=1000)
+                    # ✨ Save results for display later
+                    processed_fairsets.append({
+                        "filename": filename,
+                        "safe_filename": safe_filename,
+                        "df": df,
+                        "output_excel_path": output_excel_path
+                    })
 
-                    with open(output_excel_path, "rb") as file:
-                        file_bytes = file.read()
-
-                    st.download_button(
-                        label="⬇️ Download Report",
-                        data=file_bytes,
-                        file_name=f"FairsetReview_{safe_filename}.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
                 except Exception as e:
                     st.error(f"Failed on {filename}: {str(e)}")
                     st.text(traceback.format_exc())
+
+            # 🖥️ After all fairsets are processed, show results
+            for item in processed_fairsets:
+                st.markdown(f"<h4>Results for {item['filename']}:</h4>", unsafe_allow_html=True)
+                st.dataframe(item['df'], width=1000)
+
+                with open(item['output_excel_path'], "rb") as file:
+                    file_bytes = file.read()
+
+                st.download_button(
+                    label=f"⬇️ Download Report for {item['filename']}",
+                    data=file_bytes,
+                    file_name=f"FairsetReview_{item['safe_filename']}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
 
     with tab2:
         st.markdown("Upload Prior file and get your Structure JSON")
