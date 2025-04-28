@@ -1,5 +1,4 @@
-import scripts.priorFile_extract as priorFile_extract
-import scripts.fairset_check as fairset_check
+import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check
 import pandas as pd
 import json
 import scripts.generate_report as generate_report
@@ -11,7 +10,7 @@ import traceback
 import zipfile
 
 
-def load_file(uploaded_file, expected_type):            
+def load_file(uploaded_file):            
     if uploaded_file.name.endswith(".csv"):
         return pd.read_csv(uploaded_file)
     elif uploaded_file.name.endswith(".xlsx"):
@@ -20,56 +19,57 @@ def load_file(uploaded_file, expected_type):
         temp_path = "temp.sav"
         with open(temp_path, "wb") as f:
             f.write(uploaded_file.getvalue())
-        df = pd.read_spss(temp_path)
+        df, meta = pyreadstat.read_sav(temp_path)
         os.remove(temp_path)
         return df
-    elif uploaded_file.name.endswith(".zip"):
-        return extract_from_zip(uploaded_file, expected_type)
     else:
         st.error(f"Unsupported file type: {uploaded_file.name}")
         return None
 
 
-def extract_from_zip(zip_file, expected_type):
-    temp_dir = tempfile.mkdtemp()
-    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-        zip_ref.extractall(temp_dir)
-
-    for root, dirs, files in os.walk(temp_dir):
-        for file in files:
-            filepath = os.path.join(root, file)
-            if filepath.endswith(('.csv', '.xlsx', '.sav')):
-                return read_file(filepath)
-
-    st.error(f"No valid file (csv/xlsx/sav) found inside the ZIP.")
-    return None
-
-
-
-def read_file(filepath):
+def load_file_from_path(filepath):
     if filepath.endswith(".csv"):
         return pd.read_csv(filepath)
     elif filepath.endswith(".xlsx"):
         return pd.read_excel(filepath)
     elif filepath.endswith(".sav"):
-        return pd.read_spss(filepath)
+        df, meta = pyreadstat.read_sav(filepath)
+        return df
     else:
+        st.error(f"Unsupported file type inside zip: {filepath}")
         return None
 
 
+def extract_files_from_zip(uploaded_file):
+    extracted_files = []
+    with tempfile.TemporaryDirectory() as temp_dir:
+        with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
+            zip_ref.extractall(temp_dir)
+            for filename in os.listdir(temp_dir):
+                filepath = os.path.join(temp_dir, filename)
+                if filename.endswith(('.csv', '.xlsx', '.sav')):
+                    extracted_files.append(filepath)
+        return extracted_files
+
+
 def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, output_structurejson, output_report_path):
+    ## <======= PART 1: Extract prior file and make it JSON =======>
     constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
     with open(output_constraintsjson, 'w') as f:
         f.write(json.dumps(constraints_json, indent=4))
     with open(output_structurejson, 'w') as f:
         f.write(json.dumps(structure_json, indent=4))
 
+    ## <======= PART 2: Run Fairset check =======>
+    constraints = constraints_json
     logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
-    output_report = logic_instance.run_analysis(constraints_json)
+    output_report = logic_instance.run_analysis(constraints)
     with open(output_report_path, 'w') as f:
         f.write(json.dumps(output_report, indent=4))
 
-    df = generate_report.readOuput(output_report_path)
+    ## <======= PART 3: Generate report =======>
+    path = output_report_path
+    df = generate_report.readOuput(path)
     generate_report.export_to_excel(df, "outputs/template.xlsx")
 
     return df
@@ -80,103 +80,133 @@ def main():
 
     with st.sidebar:
         st.markdown("## Upload Train Set")
-        train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav", "zip"])
+        train_file = st.file_uploader(" ", type=["csv", "xlsx", "sav"])
         st.markdown("## Upload Fairset")
         fairset_file = st.file_uploader("  ", type=["csv", "xlsx", "sav", "zip"])
         st.markdown("## Upload Prior file")
-        priorfile_file = st.file_uploader("   ", type=["csv", "zip"])
+        priorfile_file = st.file_uploader("   ", type=["csv"])
 
     tab1, tab2 = st.tabs(["Fairset Review", "Structure & Prior File Extract"]) 
 
-    with tab1:
+    with tab1: 
         st.markdown("Upload train set, fairset and prior file")
 
         if st.button("Run Analysis"):
             if train_file is None or fairset_file is None or priorfile_file is None:
                 st.warning("Upload train, fairset and prior file before running analysis!")
-                st.stop()
+            if train_file is not None and fairset_file is not None and priorfile_file is not None:
+                train = load_file(train_file)
+                priorfile = load_file(priorfile_file)
 
-            train = load_file(train_file, "train")
-            fairset = load_file(fairset_file, "fairset")
-            priorfile = load_file(priorfile_file, "priorfile")
+                # Check columns are all right
+                unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
+                if unknown_columns:
+                    bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
+                    st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
+                    st.stop()
 
-            if train is None or fairset is None or priorfile is None:
-                st.error("Problem reading one of the files. Check uploads.")
-                st.stop()
+                if fairset_file.name.endswith(".zip"):
+                    extracted_files = extract_files_from_zip(fairset_file)
+                    if not extracted_files:
+                        st.error("No usable file found inside the zip!")
+                        st.stop()
 
-            unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
-            if unknown_columns:
-                bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
-                st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
-                st.stop()
+                    for filepath in extracted_files:
+                        fairset = load_file_from_path(filepath)
+                        st.write(f"### Running analysis for: `{os.path.basename(filepath)}`")
 
-            config = {
-                "priorfile": priorfile,
-                "train": train,
-                "fairset": fairset,
-                "output_constraintsjson": "outputs/constraints.json",
-                "output_structurejson": "outputs/structure.json",
-                "output_report_path": "outputs/complete_report.json"
-            }
+                        config = {
+                            "priorfile": priorfile,
+                            "train": train,
+                            "fairset": fairset,
+                            "output_constraintsjson": "outputs/constraints.json",
+                            "output_structurejson": "outputs/structure.json",
+                            "output_report_path": "outputs/complete_report.json"
+                        }
 
-            df = run_fairset_analysis(**config)
+                        df = run_fairset_analysis(**config)
 
-            st.write("### ")
-            st.markdown(f"<h4>Fairset Review:</h4>", unsafe_allow_html=True)
-            st.dataframe(df, width=1000)
+                        st.dataframe(df, width=1000)
 
-            with open("outputs/template.xlsx", "rb") as file:
-                file_bytes = file.read()
+                        with open("outputs/template.xlsx", "rb") as file:
+                            file_bytes = file.read()
 
-            st.download_button(
-                label="Download File",
-                data=file_bytes,
-                file_name="FairsetReview.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
+                        st.download_button(
+                            label=f"Download File for {os.path.basename(filepath)}",
+                            data=file_bytes,
+                            file_name=f"FairsetReview_{os.path.basename(filepath)}.xlsx",
+                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        )
+
+                else:
+                    fairset = load_file(fairset_file)
+
+                    config = {
+                        "priorfile": priorfile,
+                        "train": train,
+                        "fairset": fairset,
+                        "output_constraintsjson": "outputs/constraints.json",
+                        "output_structurejson": "outputs/structure.json",
+                        "output_report_path": "outputs/complete_report.json"
+                    }
+
+                    df = run_fairset_analysis(**config)
+
+                    st.write("### ")
+                    st.markdown(f"<h4>Fairset Review:", unsafe_allow_html=True)
+                    st.dataframe(df, width=1000)
+
+                    with open("outputs/template.xlsx", "rb") as file:
+                        file_bytes = file.read()
+
+                    st.download_button(
+                        label="Download File",
+                        data=file_bytes,
+                        file_name="FairsetReview.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
 
     with tab2:
         st.markdown("Upload Prior file and get your Structure JSON")
 
         if st.button("Get JSONs"):
-            if priorfile_file is None or train_file is None:
-                st.warning("Upload prior and train files first!")
-                st.stop()
+            if priorfile_file is None:
+                st.warning("Upload a prior file and dataset before running analysis!")
+            if priorfile_file is not None and train_file is not None:
+                priorfile = load_file(priorfile_file)
+                train = load_file(train_file)
 
-            priorfile = load_file(priorfile_file, "priorfile")
-            train = load_file(train_file, "train")
+                constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
+                unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
+                if unknown_columns:
+                    bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
+                    st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
+                    st.stop()
 
-            constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
+                    json.dump(structure_json, structure_tmp, indent=4)
+                    structure_tmp_path = structure_tmp.name
 
-            unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
-            if unknown_columns:
-                bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
-                st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
-                st.stop()
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
+                    json.dump(constraints_json, constraints_tmp, indent=4)
+                    constraints_tmp_path = constraints_tmp.name
 
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as structure_tmp:
-                json.dump(structure_json, structure_tmp, indent=4)
-                structure_tmp_path = structure_tmp.name
+                with open(structure_tmp_path, "rb") as f:
+                    st.download_button(
+                        label="⬇️ Download Structure JSON",
+                        data=f,
+                        file_name="structure.json",
+                        mime="application/json"
+                    )
 
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", encoding="utf-8") as constraints_tmp:
-                json.dump(constraints_json, constraints_tmp, indent=4)
-                constraints_tmp_path = constraints_tmp.name
+                with open(constraints_tmp_path, "rb") as f:
+                    st.download_button(
+                        label="⬇️ Download Constraints JSON",
+                        data=f,
+                        file_name="constraints.json",
+                        mime="application/json"
+                    )
 
-            with open(structure_tmp_path, "rb") as f:
-                st.download_button(
-                    label="⬇️ Download Structure JSON",
-                    data=f,
-                    file_name="structure.json",
-                    mime="application/json"
-                )
-
-            with open(constraints_tmp_path, "rb") as f:
-                st.download_button(
-                    label="⬇️ Download Constraints JSON",
-                    data=f,
-                    file_name="constraints.json",
-                    mime="application/json"
-                )
 
 try:
     main()
