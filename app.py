@@ -38,15 +38,12 @@ def extract_from_zip(zip_file, expected_type):
     for root, dirs, files in os.walk(temp_dir):
         for file in files:
             filepath = os.path.join(root, file)
-            if expected_type == "train" and "train" in file.lower():
-                return read_file(filepath)
-            elif expected_type == "fairset" and "fairset" in file.lower():
-                return read_file(filepath)
-            elif expected_type == "priorfile" and "prior" in file.lower():
+            if filepath.endswith(('.csv', '.xlsx', '.sav')):
                 return read_file(filepath)
 
-    st.error(f"No file matching {expected_type} found inside the ZIP.")
+    st.error(f"No valid file (csv/xlsx/sav) found inside the ZIP.")
     return None
+
 
 
 def read_file(filepath):
