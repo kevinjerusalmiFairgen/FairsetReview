@@ -54,6 +54,9 @@ def extract_files_from_zip(uploaded_file):
                         continue  # Skip __MACOSX folder
                     if filename.endswith(('.csv', '.xlsx', '.sav')):
                         extracted_files.append(filepath)
+                        
+                        # Debugging line to print extracted file paths
+                        print(f"Extracted file: {filepath}")  # Check that file is really extracted
         return extracted_files
 
 
