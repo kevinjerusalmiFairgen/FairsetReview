@@ -45,10 +45,11 @@ def extract_files_from_zip(uploaded_file):
     with tempfile.TemporaryDirectory() as temp_dir:
         with zipfile.ZipFile(uploaded_file, 'r') as zip_ref:
             zip_ref.extractall(temp_dir)
-            for filename in os.listdir(temp_dir):
-                filepath = os.path.join(temp_dir, filename)
-                if filename.endswith(('.csv', '.xlsx', '.sav')):
-                    extracted_files.append(filepath)
+            for root, dirs, files in os.walk(temp_dir):
+                for filename in files:
+                    filepath = os.path.join(root, filename)
+                    if filename.endswith(('.csv', '.xlsx', '.sav')):
+                        extracted_files.append(filepath)
         return extracted_files
 
 
