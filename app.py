@@ -28,15 +28,16 @@ def load_file(uploaded_file):
 
 
 def load_file_from_path(filepath):
-    if filepath.endswith(".csv"):
-        return pd.read_csv(filepath)
-    elif filepath.endswith(".xlsx"):
-        return pd.read_excel(filepath)
-    elif filepath.endswith(".sav"):
-        df, meta = pyreadstat.read_sav(filepath)
-        return df
-    else:
-        st.error(f"Unsupported file type inside zip: {filepath}")
+    try:
+        if os.path.exists(filepath):
+            print(f"Reading file from path: {filepath}")
+            df, meta = pyreadstat.read_sav(filepath)
+            return df
+        else:
+            print(f"Error: The file does not exist at {filepath}")
+            return None
+    except Exception as e:
+        print(f"Error reading file {filepath}: {e}")
         return None
 
 
