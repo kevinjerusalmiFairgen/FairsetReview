@@ -109,8 +109,10 @@ def main():
 
             st.info(f"Found {len(fairsets)} valid fairset(s).")
 
-            # 🛠 Store processed results
             processed_fairsets = []
+
+            # Create a temporary folder to store Excel outputs
+            temp_dir = tempfile.mkdtemp()
 
             for filename, fairset in fairsets.items():
                 if fairset is None:
@@ -119,10 +121,10 @@ def main():
                 st.write(f"### Running analysis for `{filename}`...")
 
                 safe_filename = filename.replace("/", "_").replace("\\", "_").replace(".csv", "").replace(".xlsx", "").replace(".sav", "")
-                output_constraintsjson = f"outputs/constraints_{safe_filename}.json"
-                output_structurejson = f"outputs/structure_{safe_filename}.json"
-                output_report_path = f"outputs/complete_report_{safe_filename}.json"
-                output_excel_path = f"outputs/FairsetReview_{safe_filename}.xlsx"
+                output_constraintsjson = os.path.join(temp_dir, f"constraints_{safe_filename}.json")
+                output_structurejson = os.path.join(temp_dir, f"structure_{safe_filename}.json")
+                output_report_path = os.path.join(temp_dir, f"complete_report_{safe_filename}.json")
+                output_excel_path = os.path.join(temp_dir, f"FairsetReview_{safe_filename}.xlsx")
 
                 config = {
                     "priorfile": priorfile,
@@ -137,7 +139,7 @@ def main():
                     df = run_fairset_analysis(**config)
                     generate_report.export_to_excel(df, output_excel_path)
 
-                    # ✨ Save results for display later
+                    # Save info for later
                     processed_fairsets.append({
                         "filename": filename,
                         "safe_filename": safe_filename,
@@ -149,20 +151,35 @@ def main():
                     st.error(f"Failed on {filename}: {str(e)}")
                     st.text(traceback.format_exc())
 
-            # 🖥️ After all fairsets are processed, show results
-            for item in processed_fairsets:
-                st.markdown(f"<h4>Results for {item['filename']}:</h4>", unsafe_allow_html=True)
-                st.dataframe(item['df'], width=1000)
+            if processed_fairsets:
+                st.success("✅ All fairsets processed successfully!")
 
-                with open(item['output_excel_path'], "rb") as file:
-                    file_bytes = file.read()
+                # Create a zip file with all Excel reports
+                zip_buffer = io.BytesIO()
 
+                with zipfile.ZipFile(zip_buffer, "w") as zip_file:
+                    for item in processed_fairsets:
+                        with open(item['output_excel_path'], "rb") as file:
+                            file_bytes = file.read()
+                            zip_file.writestr(f"FairsetReview_{item['safe_filename']}.xlsx", file_bytes)
+
+                zip_buffer.seek(0)
+
+                # Show results
+                for item in processed_fairsets:
+                    st.markdown(f"<h4>Results for {item['filename']}:</h4>", unsafe_allow_html=True)
+                    st.dataframe(item['df'], width=1000)
+
+                # Final zip download
                 st.download_button(
-                    label=f"⬇️ Download Report for {item['filename']}",
-                    data=file_bytes,
-                    file_name=f"FairsetReview_{item['safe_filename']}.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    label="⬇️ Download ALL Reports (.zip)",
+                    data=zip_buffer,
+                    file_name="All_FairsetReports.zip",
+                    mime="application/zip"
                 )
+            else:
+                st.warning("No fairsets were successfully processed.")
+
 
     with tab2:
         st.markdown("Upload Prior file and get your Structure JSON")
