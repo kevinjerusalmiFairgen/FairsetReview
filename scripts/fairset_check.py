@@ -1089,10 +1089,10 @@ class LogicFunctions:
         if constraint_type == "BF_SS":
             try:
                 resp = self.detect_violations_SS(*constraint)
+                return resp
             except Exception as e:
                 st.error(f"Issue on constraint BF_SS: {list(constraint)}")
                 st.error(f"Error: {e}")
-            return resp
         elif constraint_type == "BF_SM":
             return self.detect_violations_SM(*constraint)
         elif constraint_type == "BF_SM_Grid":
