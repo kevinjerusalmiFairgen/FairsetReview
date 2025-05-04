@@ -1093,6 +1093,7 @@ class LogicFunctions:
             except Exception as e:
                 st.error(f"Issue on constraint BF_SS: {list(constraint)}")
                 st.error(f"Error: {e}")
+                st.error(traceback.format_exc())
         elif constraint_type == "BF_SM":
             return self.detect_violations_SM(*constraint)
         elif constraint_type == "BF_SM_Grid":
