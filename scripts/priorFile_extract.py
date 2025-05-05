@@ -143,7 +143,7 @@ def priorFileExtract(df):
             elif row["Constraint"] == "Count":
                 constraints_json["count"].append([
                     row["Target"],
-                    "",
+                    row["Source"],
                     row["Is Implemented"]
                 ])
             elif row["Constraint"] == "Recoding":
