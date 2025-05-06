@@ -4,26 +4,24 @@ import ast
 import streamlit as st
 
 def normalize_quotes(text):
-    replacements = {
-        '‘': "'", '’': "'",
-        '‚': "'", '‛': "'",
-        '“': '"', '”': '"',
-        '„': '"', '‟': '"',
-        '❝': '"', '❞': '"',
-        '❮': '<', '❯': '>',
-    }
     if isinstance(text, str):
-        for orig, repl in replacements.items():
-            text = text.replace(orig, repl)
-        return text
+        return text.translate(str.maketrans({
+            '‘': "'", '’': "'",
+            '“': '"', '”': '"',
+            '‚': "'", '‛': "'",
+            '„': '"', '‟': '"',
+            '❝': '"', '❞': '"',
+            '❮': '<', '❯': '>'
+        }))
     elif isinstance(text, list):
         return [normalize_quotes(item) for item in text]
-    return text  # Return as-is if not string or list
-
+    return text
 
 
 def check_columns_presence(df_priorfile, df, cols):
     flat_list = []
+    df_priorfile["Target"] = df_priorfile["Target"].apply(cleaning_lists)
+    df_priorfile["Source"] = df_priorfile["Source"].apply(cleaning_lists)
 
     for col in cols:
         for item in df_priorfile[col]:
@@ -68,10 +66,11 @@ def cleaning_lists(target_str):
 
 def priorFileExtract(df):
     df = df[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
-    row["Source"] = normalize_quotes(row["Source"])
-    row["Target"] = normalize_quotes(row["Target"])
     df["Target"] = df["Target"].apply(cleaning_lists)
     df["Source"] = df["Source"].apply(cleaning_lists)
+    row["Target"] = normalize_quotes(row["Target"])
+    row["Source"] = normalize_quotes(row["Source"])
+
     df['ID'] = df['ID'].apply(lambda x: x['number'] if isinstance(x, dict) else x)
     df["Is Implemented"] = df["Is Implemented"] .apply(lambda x: False if x == "No" else True)
 
@@ -99,14 +98,10 @@ def priorFileExtract(df):
         def normalize_quotes(text):
             # Replace curly single and double quotes with straight quotes
             if isinstance(text, str):
-                return normalize_quotes(text).replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"').replace("‘", "'").replace("”", "'").replace("”", "'")
+                return text.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"').replace("‘", "'").replace("”", "'").replace("”", "'")
             elif isinstance(text, list):
                 return [normalize_quotes(item) for item in text]
             return text  # Return as-is if not string or list
-
-        # Applying normalization
-        row["Source"] = normalize_quotes(row["Source"])
-        row["Target"] = normalize_quotes(row["Target"])
 
         
         if pd.notna(row["Custom Query"]) and row["Custom Query"] not in ['', None]:
