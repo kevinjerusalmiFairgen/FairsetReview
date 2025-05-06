@@ -12,9 +12,14 @@ def normalize_quotes(text):
         '❝': '"', '❞': '"',
         '❮': '<', '❯': '>',
     }
-    for orig, repl in replacements.items():
-        text = text.replace(orig, repl)
-    return text
+    if isinstance(text, str):
+        for orig, repl in replacements.items():
+            text = text.replace(orig, repl)
+        return text
+    elif isinstance(text, list):
+        return [normalize_quotes(item) for item in text]
+    return text  # Return as-is if not string or list
+
 
 
 def check_columns_presence(df_priorfile, df, cols):
@@ -63,6 +68,8 @@ def cleaning_lists(target_str):
 
 def priorFileExtract(df):
     df = df[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
+    row["Source"] = normalize_quotes(row["Source"])
+    row["Target"] = normalize_quotes(row["Target"])
     df["Target"] = df["Target"].apply(cleaning_lists)
     df["Source"] = df["Source"].apply(cleaning_lists)
     df['ID'] = df['ID'].apply(lambda x: x['number'] if isinstance(x, dict) else x)
