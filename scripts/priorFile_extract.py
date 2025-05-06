@@ -4,17 +4,25 @@ import ast
 import streamlit as st
 
 def normalize_quotes(text):
+    replacements = {
+        '‘': "'", '’': "'",
+        '“': '"', '”': '"',
+        '‚': "'", '‛': "'",
+        '„': '"', '‟': '"',
+        '❝': '"', '❞': '"',
+        '❮': '<', '❯': '>'
+    }
+
     if isinstance(text, str):
-        return text.translate(str.maketrans({
-            '‘': "'", '’': "'",
-            '“': '"', '”': '"',
-            '‚': "'", '‛': "'",
-            '„': '"', '‟': '"',
-            '❝': '"', '❞': '"',
-            '❮': '<', '❯': '>'
-        }))
+        # Replace all smart quotes
+        for orig, repl in replacements.items():
+            text = text.replace(orig, repl)
+        # Strip any surrounding quotes
+        return text.strip().strip('"').strip("'")
+    
     elif isinstance(text, list):
         return [normalize_quotes(item) for item in text]
+    
     return text
 
 
