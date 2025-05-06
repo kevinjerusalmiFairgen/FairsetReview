@@ -3,6 +3,18 @@ import re
 import ast
 import streamlit as st
 
+def normalize_quotes(text):
+    return (text
+            .replace("‘", "'")
+            .replace("’", "'")
+            .replace("“", '"')
+            .replace("”", '"')
+            .replace("‚", "'")
+            .replace("‛", "'")
+            .replace("„", '"')
+            .replace("‟", '"'))
+
+
 def check_columns_presence(df_priorfile, df, cols):
     flat_list = []
 
@@ -78,7 +90,7 @@ def priorFileExtract(df):
         def normalize_quotes(text):
             # Replace curly single and double quotes with straight quotes
             if isinstance(text, str):
-                return text.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"').replace("‘", "'").replace("”", "'").replace("”", "'")
+                return normalize_quotes(text).replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"').replace("‘", "'").replace("”", "'").replace("”", "'")
             elif isinstance(text, list):
                 return [normalize_quotes(item) for item in text]
             return text  # Return as-is if not string or list
