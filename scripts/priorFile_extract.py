@@ -21,7 +21,7 @@ def check_columns_presence(df_priorfile, df, cols):
                         flat_list.append(parsed)
                 except Exception:
                     cleaned = item.strip().rstrip(']').lstrip('[').split(',')
-                    flat_list.extend([x.strip().strip("'").strip('"') for x in cleaned])
+                    flat_list.extend([x.strip().strip("'").strip('"').strip("’") for x in cleaned])
 
             elif isinstance(item, list):
                 flat_list.extend(item)
@@ -41,7 +41,7 @@ def cleaning_lists(target_str):
         return target_str
     if target_str.startswith('['):
         clean_str = target_str.strip("[]")
-        list_items = re.findall(r"/?\s*['\"]([^'\"]+)['\"]\s*/?", clean_str)
+        list_items = re.findall(r"/?\s*['\"’]([^'\"’]+)['\"’]\s*/?", clean_str)
         return [item.strip() for item in list_items]
     else:
         return target_str.strip()
@@ -99,7 +99,7 @@ def priorFileExtract(df):
         else:
             if row["Constraint"] in ["Block", "Force", "Block/Force", "Dynamic Piping"]:
                 if not row["B/F Relationship"]:
-                    st.warning(f"Row #{row["ID"]} not valid: missing relationship for Block/Force")
+                 st.warning(f"Row #{row['ID']} not valid: missing relationship for Block/Force")
                 elif row["B/F Relationship"] == "Single to Single":
                     constraints_json["BF_SS"].append([
                         row["Source"],
@@ -124,7 +124,7 @@ def priorFileExtract(df):
                         row["Is Implemented"]
                     ])
                 else:
-                    st.warning(f"Row #{row["ID"]} not valid: wrong relationship for Block/Force")
+                    st.warning(f"Row #{row['ID']} not valid: wrong relationship for Block/Force")
                     
             elif row["Constraint"] == "Parallel Piping":
                 constraints_json["BF_MM"].append([
@@ -148,7 +148,7 @@ def priorFileExtract(df):
                 ])
             elif row["Constraint"] == "Recoding":
                 if not row["B/F Relationship"]:
-                    st.warning(f"Row #{row["ID"]} not valid: missing relationship for Recoding")
+                    st.warning(f"Row #{row['ID']} not valid: missing relationship for Recoding")
                 elif row["B/F Relationship"] == "Single to Single":
                     mode = "SS"
                     structure_json["recodings"].append(
@@ -174,7 +174,7 @@ def priorFileExtract(df):
                 elif row["B/F Relationship"] == "Multi to Multi":
                     mode = "MM"
                 else:
-                    st.warning(f"Row #{row["ID"]} not valid: wrong relationship for Recoding")
+                    st.warning(f"Row #{row['ID']} not valid: wrong relationship for Recoding")
                 constraints_json["recodings"].append([
                     row["Source"],
                     row["Target"],
