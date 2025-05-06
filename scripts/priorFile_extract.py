@@ -74,8 +74,8 @@ def priorFileExtract(df):
     df = df[["Target", "Source", "Constraint", "B/F Relationship", "Comment", "Is Implemented", "Custom Query", "ID"]]
     df["Target"] = df["Target"].apply(cleaning_lists)
     df["Source"] = df["Source"].apply(cleaning_lists)
-    row["Target"] = normalize_quotes(row["Target"])
-    row["Source"] = normalize_quotes(row["Source"])
+    df["Target"] = df["Target"].apply(normalize_quotes)
+    df["Source"] = df["Source"].apply(normalize_quotes)
 
     df['ID'] = df['ID'].apply(lambda x: x['number'] if isinstance(x, dict) else x)
     df["Is Implemented"] = df["Is Implemented"] .apply(lambda x: False if x == "No" else True)
