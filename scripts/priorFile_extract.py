@@ -20,8 +20,6 @@ def normalize_quotes(text):
 
 def check_columns_presence(df_priorfile, df, cols):
     flat_list = []
-    df_priorfile["Target"] = df_priorfile["Target"].apply(cleaning_lists)
-    df_priorfile["Source"] = df_priorfile["Source"].apply(cleaning_lists)
 
     for col in cols:
         for item in df_priorfile[col]:
@@ -45,11 +43,11 @@ def check_columns_presence(df_priorfile, df, cols):
             else:
                 flat_list.append(str(item))
 
-    flat_set = set(col.strip().lower() for col in flat_list)
-    df_columns = set(col.strip().lower() for col in df.columns)
+    # ✅ Normalize quotes BEFORE comparison
+    flat_set = set(normalize_quotes(col.strip()).lower() for col in flat_list)
+    df_columns = set(normalize_quotes(col.strip()).lower() for col in df.columns)
     missing = flat_set - df_columns
 
-    # Return the set of unique values that are missing from df.columns
     return list(missing)
     
 
