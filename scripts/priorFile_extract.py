@@ -101,13 +101,13 @@ def priorFileExtract(df):
     }
 
     for index, row in df.iterrows():
-        def normalize_quotes(text):
-            # Replace curly single and double quotes with straight quotes
-            if isinstance(text, str):
-                return text.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"').replace("‘", "'").replace("”", "'").replace("”", "'")
-            elif isinstance(text, list):
-                return [normalize_quotes(item) for item in text]
-            return text  # Return as-is if not string or list
+        # def normalize_quotes(text):
+        #     # Replace curly single and double quotes with straight quotes
+        #     if isinstance(text, str):
+        #         return text.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"').replace("‘", "'").replace("”", "'").replace("”", "'")
+        #     elif isinstance(text, list):
+        #         return [normalize_quotes(item) for item in text]
+        #     return text  # Return as-is if not string or list
 
         
         if pd.notna(row["Custom Query"]) and row["Custom Query"] not in ['', None]:
