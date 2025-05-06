@@ -4,15 +4,17 @@ import ast
 import streamlit as st
 
 def normalize_quotes(text):
-    return (text
-            .replace("‘", "'")
-            .replace("’", "'")
-            .replace("“", '"')
-            .replace("”", '"')
-            .replace("‚", "'")
-            .replace("‛", "'")
-            .replace("„", '"')
-            .replace("‟", '"'))
+    replacements = {
+        '‘': "'", '’': "'",
+        '‚': "'", '‛': "'",
+        '“': '"', '”': '"',
+        '„': '"', '‟': '"',
+        '❝': '"', '❞': '"',
+        '❮': '<', '❯': '>',
+    }
+    for orig, repl in replacements.items():
+        text = text.replace(orig, repl)
+    return text
 
 
 def check_columns_presence(df_priorfile, df, cols):
