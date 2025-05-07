@@ -69,8 +69,8 @@ class LogicFunctions:
             return json_dynamic
         else:
             # Group by col1 and check if all corresponding values in col2 are NaN
-            nan_triggers = train.groupby(col1)[col2].apply(lambda x: x.isna().all())
-            anti_nan_triggers = train.groupby(col1)[col2].apply(
+            nan_triggers = train.groupby(col1, dropna = False)[col2].apply(lambda x: x.isna().all())
+            anti_nan_triggers = train.groupby(col1, dropna = False)[col2].apply(
                 lambda x: ~x.isna().any())  # values that never lead to nans for force
 
             # Step 2: Only keep values that are always NaN triggers
@@ -478,12 +478,12 @@ class LogicFunctions:
             group_col = [col for col in train.columns if col.startswith(prefix) and not col.endswith("oe")]
         else:
             group_col = prefix
-
         filtered_df_block = train[group_col + [single_column]].query(f"`{single_column}`.isnull()")
+
         unique_groups = filtered_df_block[group_col].drop_duplicates()
         group_combinations = list(unique_groups.itertuples(index=False, name=None))
-
         mask = fairset[group_col].apply(tuple, axis=1).isin(group_combinations)
+
         block_violations = fairset[mask & fairset[single_column].notna()][group_col + [single_column]]
         wrong_rows_block = block_violations.index.tolist()
 
@@ -1136,7 +1136,12 @@ class LogicFunctions:
 
             dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset, code)
             if not dataframe.empty:
-                self.wrong_rows.update(dataframe.index.tolist())
+                try:
+                    self.wrong_rows.update(dataframe.index.tolist())
+                except AttributeError:
+                    st.write(code)
+                    st.write(st.dataframe)
+                # self.wrong_rows.update(dataframe.index.tolist())
             result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset,
                                            is_supported=is_implemented)
             return result
