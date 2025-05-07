@@ -954,7 +954,7 @@ class LogicFunctions:
                 lambda row: all(str(x).strip().lower().startswith("no") for x in row if pd.notna(x)), axis=1
             )
         ]
-        if none_of_the_above != "":
+        if pd.notna(none_of_the_above):
             train_cleaned = train_cleaned.loc[
                 train_cleaned[none_of_the_above].astype(str).apply(lambda x: x.lower().startswith(("no ", "0")))
             ]
