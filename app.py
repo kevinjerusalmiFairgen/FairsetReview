@@ -1,3 +1,10 @@
+import sys
+import os
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+if APP_ROOT not in sys.path:
+    sys.path.insert(0, APP_ROOT)
+
 import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check
 import pandas as pd
 import json
