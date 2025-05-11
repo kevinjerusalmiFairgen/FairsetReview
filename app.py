@@ -53,6 +53,7 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
 
     logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
     output_report = logic_instance.run_analysis(constraints)
+    st.write(output_report)
     with open(output_report_path, 'w') as f:
         f.write(json.dumps(output_report, indent=4))
 
