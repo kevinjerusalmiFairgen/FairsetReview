@@ -6,4 +6,4 @@ tqdm==4.67.1
 XlsxWriter==3.2.2
 openpyxl
 selenium
-pyreadstat==1.2.7
+pyreadstat
