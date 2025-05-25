@@ -2,8 +2,17 @@ import pandas as pd
 import time
 import re
 import streamlit as st
-import asyncio
+import subprocess
+import os
 from playwright.sync_api import sync_playwright
+
+# 🛠 Ensure Chromium is installed (run once)
+if not os.path.exists("/home/appuser/.cache/ms-playwright"):
+    st.info("Installing Chromium browser for Playwright (this takes ~30 seconds)...")
+    try:
+        subprocess.run(["playwright", "install", "chromium"], check=True)
+    except Exception as install_error:
+        st.error(f"Playwright install failed: {install_error}")
 
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
