@@ -1,20 +1,18 @@
 import sys
 import os
-
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-if APP_ROOT not in sys.path:
-    sys.path.insert(0, APP_ROOT)
-
-import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check
+import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check, scripts.scrapper as scrapper
 import pandas as pd
 import json
 import scripts.generate_report as generate_report
 import streamlit as st
-import os
 import tempfile
 import pyreadstat
 import traceback
 
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+if APP_ROOT not in sys.path:
+    sys.path.insert(0, APP_ROOT)
 
 
 def load_file(uploaded_file):            
@@ -67,7 +65,7 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
 
 def main():
     
-    st.title("Fairset Review Platform")
+    st.title("Pilot Manager")
 
     with st.sidebar:
             st.markdown("## Upload Train Set")
@@ -77,7 +75,7 @@ def main():
             st.markdown("## Upload Prior file")
             priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Prior File Extract"]) 
+    tab1, tab2, tab3 = st.tabs(["Fairset Review", "Structure & Logics Extract", "Boost Results"]) 
 
     with tab1: 
         st.markdown("Upload train set, fairset and prior file")
@@ -164,7 +162,24 @@ def main():
                         file_name="constraints.json",
                         mime="application/json"
                     )
+    
+    with tab3:
+        project_url = st.text_input("# Fetch parallel Tests results from URL")
 
+        if st.button("Run Scraper") and project_url:
+            df = scrapper.scrap_boostresults(project_url)
+            df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
+            df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
+
+            boost_win_rate = (df["Boost MAE (%)"] < df["Training MAE (%)"]).mean() * 100
+
+            avg_added_value = ((df["Training MAE (%)"] - df["Boost MAE (%)"]) / df["Training MAE (%)"]).mean() * 100
+
+            # Print results
+            st.write(f"Boost Win Rate: {boost_win_rate:.2f}%")
+            st.write(f"Average Added Value: {avg_added_value:.2f}%")
+
+        
 
 try:
     main()
