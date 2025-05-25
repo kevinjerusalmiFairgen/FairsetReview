@@ -4,28 +4,29 @@ import re
 import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
 
 def scrap_boostresults(project_url):
-    # Setup headless Chrome
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
+    # Set up headless Firefox for Streamlit Cloud
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")  # good for remote headless environments
 
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=chrome_options
+    # Initialize the WebDriver
+    driver = webdriver.Firefox(
+        service=Service(GeckoDriverManager().install()),
+        options=options
     )
     wait = WebDriverWait(driver, 15)
 
-    # Layout placeholders
+    # Streamlit UI placeholders
     progress_bar = st.empty()
     status_text = st.empty()
     df_placeholder = st.empty()
@@ -39,6 +40,8 @@ def scrap_boostresults(project_url):
 
     try:
         driver.get(project_url)
+
+        # Login
         email_field = wait.until(EC.presence_of_element_located((By.NAME, "email")))
         password_field = driver.find_element(By.NAME, "password")
         login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
@@ -46,6 +49,7 @@ def scrap_boostresults(project_url):
         password_field.send_keys(PASSWORD)
         login_button.click()
 
+        # Wait for the task list
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
         time.sleep(2)
 
@@ -59,7 +63,7 @@ def scrap_boostresults(project_url):
                 task.click()
                 time.sleep(1)
 
-                # Get niche info
+                # Extract niche info
                 try:
                     nich_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88")))
                     nich_size_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96")))
@@ -69,8 +73,8 @@ def scrap_boostresults(project_url):
                     nich_text = "Not Found"
                     nich_size_text = "Not Found"
 
-                # Go to Boost/Train metrics
-                active_button = driver.find_element(By.XPATH, '//*[@id="app"]/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
+                # Click on Boost metrics tab
+                active_button = driver.find_element(By.XPATH, '//span[text()="Boost"]')
                 driver.execute_script("arguments[0].click();", active_button)
                 time.sleep(1)
 
@@ -81,17 +85,16 @@ def scrap_boostresults(project_url):
                     boost = float(texts[0].text.strip().split('%')[0])
                     training = float(texts[1].text.strip().split('%')[0])
                 else:
-                    boost = "Not Found"
-                    training = "Not Found"
+                    boost = training = "Not Found"
 
-                # Clean up values
+                # Clean and extract values
                 clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
-                niche_size = re.search(r"(\d+)", nich_size_text)
-                penetration = re.search(r"\(([^)]+)\)", nich_size_text)
-                niche_size = niche_size.group(1) if niche_size else "Not Found"
-                penetration = penetration.group(1) if penetration else "Not Found"
+                niche_size_match = re.search(r"(\d+)", nich_size_text)
+                penetration_match = re.search(r"\(([^)]+)\)", nich_size_text)
+                niche_size = niche_size_match.group(1) if niche_size_match else "Not Found"
+                penetration = penetration_match.group(1) if penetration_match else "Not Found"
 
-                # Append to DataFrame
+                # Store in dataframe
                 df_live.loc[len(df_live)] = {
                     "Niche": clean_niche,
                     "Niche Size": niche_size,
@@ -102,11 +105,11 @@ def scrap_boostresults(project_url):
 
                 # Update UI
                 progress_bar.progress(idx / total)
-                status_text.text(f"Processed {idx} of {total} boosts...")
+                status_text.text(f"Processed {idx} of {total} boosts")
                 df_placeholder.dataframe(df_live)
 
             except Exception as e:
-                st.error(f"{ordinal(idx)} iteration error: {e}")
+                st.error(f"{ordinal(idx)} boost failed: {e}")
                 continue
 
         return df_live
@@ -116,5 +119,4 @@ def scrap_boostresults(project_url):
         return df_live
 
     finally:
-        time.sleep(1)
         driver.quit()
