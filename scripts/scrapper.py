@@ -4,33 +4,24 @@ import re
 import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
 
 def scrap_boostresults(project_url):
-    # Setup headless Chrome (invisible on macOS too)
-    chrome_options = Options()
-    chrome_options.add_argument("--headless=chrome")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--window-size=1920,1080")
-        # These work on Streamlit Cloud:
-    chrome_options.binary_location = "/usr/bin/chromium-browser"  # Optional; often auto-detected
+    # Setup headless Firefox (works on Streamlit Cloud)
+    firefox_options = Options()
+    firefox_options.add_argument("--headless")
 
-    # Path to matching chromedriver
-    driver = webdriver.Chrome(
-        service=Service("/usr/bin/chromedriver"),
-        options=chrome_options
+    driver = webdriver.Firefox(
+        service=Service(GeckoDriverManager().install()),
+        options=firefox_options
     )
-
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     wait = WebDriverWait(driver, 15)
 
     # Layout placeholders
@@ -117,11 +108,11 @@ def scrap_boostresults(project_url):
                 st.error(f"{ordinal(idx)} iteration error: {e}")
                 continue
 
-        driver.quit()
         return df_live
 
     except Exception as e:
         st.error(f"Main error: {e}")
+        return df_live
 
     finally:
         time.sleep(1)

@@ -75,7 +75,9 @@ def main():
             st.markdown("## Upload Prior file")
             priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    tab1, tab2, tab3 = st.tabs(["Fairset Review", "Structure & Logics Extract", "Boost Results"]) 
+    # tab1, tab2, tab3 = st.tabs(["Fairset Review", "Structure & Logics Extract", "Boost Results"]) 
+    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Logics Extract"]) 
+
 
     with tab1: 
         st.markdown("Upload train set, fairset and prior file")
@@ -163,21 +165,21 @@ def main():
                         mime="application/json"
                     )
     
-    with tab3:
-        project_url = st.text_input("# Fetch parallel Tests results from URL")
+    # with tab3:
+    #     project_url = st.text_input("# Fetch parallel Tests results from URL")
 
-        if st.button("Run Scraper") and project_url:
-            df = scrapper.scrap_boostresults(project_url)
-            df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
-            df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
+    #     if st.button("Run Scraper") and project_url:
+    #         df = scrapper.scrap_boostresults(project_url)
+    #         df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
+    #         df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
 
-            boost_win_rate = (df["Boost MAE (%)"] < df["Training MAE (%)"]).mean() * 100
+    #         boost_win_rate = (df["Boost MAE (%)"] < df["Training MAE (%)"]).mean() * 100
 
-            avg_added_value = ((df["Training MAE (%)"] - df["Boost MAE (%)"]) / df["Training MAE (%)"]).mean() * 100
+    #         avg_added_value = ((df["Training MAE (%)"] - df["Boost MAE (%)"]) / df["Training MAE (%)"]).mean() * 100
 
-            # Print results
-            st.write(f"Boost Win Rate: {boost_win_rate:.2f}%")
-            st.write(f"Average Added Value: {avg_added_value:.2f}%")
+    #         # Print results
+    #         st.write(f"Boost Win Rate: {boost_win_rate:.2f}%")
+    #         st.write(f"Average Added Value: {avg_added_value:.2f}%")
 
         
 
