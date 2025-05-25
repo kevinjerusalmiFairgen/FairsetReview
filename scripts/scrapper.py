@@ -9,8 +9,6 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
-import traceback
-
 
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
@@ -19,16 +17,14 @@ def scrap_boostresults(project_url):
     # Set up headless Firefox for Streamlit Cloud
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("--disable-gpu")  # good for remote headless environments
+    options.add_argument("--disable-gpu")
 
-    # Initialize the WebDriver
     driver = webdriver.Firefox(
         service=Service(GeckoDriverManager().install()),
         options=options
     )
-    wait = WebDriverWait(driver, 15)
+    wait = WebDriverWait(driver, 20)
 
-    # Streamlit UI placeholders
     progress_bar = st.empty()
     status_text = st.empty()
     df_placeholder = st.empty()
@@ -44,18 +40,27 @@ def scrap_boostresults(project_url):
         driver.get(project_url)
 
         # Login
-        email_field = wait.until(EC.presence_of_element_located((By.NAME, "email")))
-        password_field = driver.find_element(By.NAME, "password")
-        login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-        email_field.send_keys(EMAIL)
-        password_field.send_keys(PASSWORD)
-        login_button.click()
+        try:
+            email_field = wait.until(EC.presence_of_element_located((By.NAME, "email")))
+            password_field = driver.find_element(By.NAME, "password")
+            login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
+            email_field.send_keys(EMAIL)
+            password_field.send_keys(PASSWORD)
+            login_button.click()
+        except Exception as e:
+            st.error(f"Login failed: {e}")
+            st.code(driver.page_source[:1000])
+            return df_live
 
-        # Wait for the task list
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
-        time.sleep(2)
+        # Wait for dashboard to load
+        try:
+            wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
+            all_tasks = driver.find_elements(By.CLASS_NAME, "_task_qdg41_28")
+        except:
+            st.error("Failed to load task list. Check login or structure.")
+            st.code(driver.page_source[:1000])
+            return df_live
 
-        all_tasks = driver.find_elements(By.CLASS_NAME, "_task_qdg41_28")
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
         total = len(boost_tasks)
 
@@ -75,28 +80,31 @@ def scrap_boostresults(project_url):
                     nich_text = "Not Found"
                     nich_size_text = "Not Found"
 
-                # Click on Boost metrics tab
-                active_button = driver.find_element(By.XPATH, '//span[text()="Boost"]')
-                driver.execute_script("arguments[0].click();", active_button)
-                time.sleep(1)
+                # Navigate to Boost tab
+                try:
+                    boost_tab = driver.find_element(By.XPATH, '//span[text()="Boost"]')
+                    driver.execute_script("arguments[0].click();", boost_tab)
+                    time.sleep(1)
+                except:
+                    st.warning(f"{ordinal(idx)}: Boost tab not found.")
+                    continue
 
-                wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_card_zd90y_65")))
-                texts = driver.find_elements(By.CLASS_NAME, "_card_zd90y_65")
-
-                if len(texts) >= 2:
+                # Extract metric values
+                try:
+                    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
+                    texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
                     boost = float(texts[0].text.strip().split('%')[0])
                     training = float(texts[1].text.strip().split('%')[0])
-                else:
+                except:
                     boost = training = "Not Found"
 
-                # Clean and extract values
+                # Extract size + penetration
                 clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
-                niche_size_match = re.search(r"(\d+)", nich_size_text)
-                penetration_match = re.search(r"\(([^)]+)\)", nich_size_text)
-                niche_size = niche_size_match.group(1) if niche_size_match else "Not Found"
-                penetration = penetration_match.group(1) if penetration_match else "Not Found"
+                niche_size = re.search(r"(\d+)", nich_size_text)
+                penetration = re.search(r"\(([^)]+)\)", nich_size_text)
+                niche_size = niche_size.group(1) if niche_size else "Not Found"
+                penetration = penetration.group(1) if penetration else "Not Found"
 
-                # Store in dataframe
                 df_live.loc[len(df_live)] = {
                     "Niche": clean_niche,
                     "Niche Size": niche_size,
@@ -105,20 +113,21 @@ def scrap_boostresults(project_url):
                     "Training MAE (%)": training
                 }
 
-                # Update UI
+                # Streamlit UI updates
                 progress_bar.progress(idx / total)
                 status_text.text(f"Processed {idx} of {total} boosts")
                 df_placeholder.dataframe(df_live)
 
             except Exception as e:
-                st.error(f"{ordinal(idx)} boost failed: {e}")
-                st.code(traceback.format_exc(), language='python')
+                st.warning(f"{ordinal(idx)} boost failed: {e}")
+                st.code(driver.page_source[:800])
                 continue
 
         return df_live
 
     except Exception as e:
         st.error(f"Main error: {e}")
+        st.code(driver.page_source[:1000])
         return df_live
 
     finally:
