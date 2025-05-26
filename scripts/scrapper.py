@@ -61,7 +61,7 @@ def scrap_boostresults(project_url):
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
         total = len(boost_tasks)
 
-        for idx, task in enumerate(boost_tasks, 1):
+        for idx, task in enumerate(boost_tasks[: 10], 1):
             try:
                 driver.execute_script("arguments[0].scrollIntoView(true);", task)
                 task.click()
