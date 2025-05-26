@@ -166,51 +166,69 @@ def main():
                     )
     
     with tab3:
-        # Setup session variable if not already
+        # Initialize session state if needed
         if 'df_scraped' not in st.session_state:
             st.session_state.df_scraped = None
+        if 'df_filtered' not in st.session_state:
+            st.session_state.df_filtered = None
 
         project_url = st.text_input("# Fetch parallel Tests results from URL")
 
-        # Only trigger scraping
         if st.button("Run Scraper") and project_url:
-            scrapper.scrap_boostresults(project_url)  # No return, sets session_state internally
+            scrapper.scrap_boostresults(project_url)  # stores df in session_state
+
             if st.session_state.df_scraped is not None:
                 df = st.session_state.df_scraped
                 df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
                 df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
                 df["Niche Size"] = pd.to_numeric(df["Niche Size"], errors='coerce')
-                st.session_state.df_scraped = df  # Update cleaned version
+                st.session_state.df_scraped = df  # update cleaned df
 
-        # If there's data, display filter + results
+                # Set default filtered df initially (full)
+                st.session_state.df_filtered = df
+
+        # Display metrics and filtering only if data is available
         if st.session_state.df_scraped is not None:
             df = st.session_state.df_scraped
 
-            col1, col2 = st.columns([2, 2])
+            # ---- Filter UI ----
+            min_val = float(df["Niche Size"].min())
+            max_val = float(df["Niche Size"].max())
 
-            with col1:
-                min_size, max_size = st.slider(
-                    "Filter by Niche Size",
-                    min_value=float(df["Niche Size"].min()),
-                    max_value=float(df["Niche Size"].max()),
-                    value=(float(df["Niche Size"].min()), float(df["Niche Size"].max())),
-                    key="niche_size_slider"
-                )
+            min_size, max_size = st.slider(
+                "Filter by Niche Size",
+                min_value=min_val,
+                max_value=max_val,
+                value=(min_val, max_val),
+                key="niche_size_slider"
+            )
 
-            with col2:
-                if st.button("Update"):
-                    df_filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
+            if st.button("Update"):
+                filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
+                st.session_state.df_filtered = filtered
 
-                    if not df_filtered.empty:
-                        boost_win_rate = (df_filtered["Boost MAE (%)"] < df_filtered["Training MAE (%)"]).mean() * 100
-                        avg_added_value = ((df_filtered["Training MAE (%)"] - df_filtered["Boost MAE (%)"]) / df_filtered["Training MAE (%)"]).mean() * 100
+        # ---- Show results FIRST ----
+        if st.session_state.df_filtered is not None:
+            filtered = st.session_state.df_filtered
 
-                        st.write(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                        st.write(f"**Average Added Value:** {avg_added_value:.2f}%")
-                    else:
-                        st.warning("No data in the selected Niche Size range.")
+            if not filtered.empty:
+                boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+                avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
 
-                    st.dataframe(df_filtered)
+                st.markdown(f"### Boost Win Rate: **{boost_win_rate:.2f}%**")
+                st.markdown(f"### Average Added Value: **{avg_added_value:.2f}%**")
+            else:
+                st.warning("No data in the selected Niche Size range.")
+
+            # Show only filtered DataFrame
+            st.dataframe(filtered)
+
+        # ---- Optional Clear ----
+        if st.button("Clear All"):
+            st.session_state.df_scraped = None
+            st.session_state.df_filtered = None
+            st.experimental_rerun()
+
 
 try:
     main()
