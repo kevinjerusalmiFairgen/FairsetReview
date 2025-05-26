@@ -1,26 +1,10 @@
-import re
-import time
-import traceback
-
-import pandas as pd
-import streamlit as st
-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager import firefox
-GeckoDriverManager = firefox.GeckoDriverManager
-
-EMAIL = "inspector@fairgen.ai"
-PASSWORD = "Inspector123!"
-
 def scrap_boostresults(project_url):
-    # Setup headless Firefox for Streamlit Cloud
     options = Options()
     options.add_argument("--headless")
+    options.set_preference("permissions.default.image", 2)  # Disable images
+    options.set_preference("dom.ipc.plugins.enabled.libflashplayer.so", False)
+    options.set_preference("gfx.font_rendering.opentype_svg.enabled", False)
+    options.set_preference("browser.tabs.remote.autostart", False)
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
@@ -30,9 +14,8 @@ def scrap_boostresults(project_url):
         service=Service(GeckoDriverManager().install()),
         options=options
     )
-    wait = WebDriverWait(driver, 20)
+    wait = WebDriverWait(driver, 15)
 
-    # Streamlit layout
     progress_bar = st.empty()
     status_text = st.empty()
     df_placeholder = st.empty()
@@ -55,40 +38,37 @@ def scrap_boostresults(project_url):
         login_button.click()
 
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
-        time.sleep(2)
-
         all_tasks = driver.find_elements(By.CLASS_NAME, "_task_qdg41_28")
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
         total = len(boost_tasks)
 
         for idx, task in enumerate(boost_tasks, 1):
             try:
-                driver.execute_script("arguments[0].scrollIntoView(true);", task)
-                task.click()
-                time.sleep(1)
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", task)
+                wait.until(EC.element_to_be_clickable(task)).click()
 
-                # Extract niche info
+                nich_text = nich_size_text = "Not Found"
                 try:
                     nich_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88")))
-                    nich_size_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96")))
                     nich_text = nich_element.text.strip()
+                    nich_size_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96")))
                     nich_size_text = nich_size_element.text.strip()
                 except:
-                    nich_text = "Not Found"
-                    nich_size_text = "Not Found"
+                    pass
 
-                # Go to Boost/Train metrics
-                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
+                active_button = wait.until(EC.element_to_be_clickable(
+                    (By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
+                ))
                 driver.execute_script("arguments[0].click();", active_button)
-                time.sleep(1)
 
+                boost = training = "Not Found"
                 try:
                     wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
                     texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
                     boost = float(texts[0].text.strip().split('%')[0])
                     training = float(texts[1].text.strip().split('%')[0])
                 except:
-                    boost = training = "Not Found"
+                    pass
 
                 clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
                 niche_size_match = re.search(r"(\d+)", nich_size_text)
