@@ -80,8 +80,17 @@ def scrap_boostresults(project_url):
                 driver.execute_script("arguments[0].click();", active_button)
                 time.sleep(1)
 
-                wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_maeCards_zd90y_59")))
-                texts = driver.find_elements(By.CLASS_NAME, "_maeCards_zd90y_59")
+                # Wait up to 30 seconds for the XPath element to appear
+                try:
+                    wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[1]/div[1]/div[1]')))
+                    target_div = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[1]/div[1]/div[1]')
+                    
+                    # Optional: Wait for any nested <span> or metric text inside that div
+                    texts = target_div.find_elements(By.XPATH, ".//span")
+                except Exception as e:
+                    st.warning(f"Could not locate metric block: {e}")
+                    st.code(driver.page_source[:1500])
+    texts = []
 
                 if len(texts) >= 2:
                     boost = float(texts[0].text.strip().split('%')[0])
