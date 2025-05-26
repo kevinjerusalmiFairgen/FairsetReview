@@ -193,21 +193,24 @@ def main():
                     "Filter by Niche Size",
                     min_value=float(df["Niche Size"].min()),
                     max_value=float(df["Niche Size"].max()),
-                    value=(float(df["Niche Size"].min()), float(df["Niche Size"].max()))
+                    value=(float(df["Niche Size"].min()), float(df["Niche Size"].max())),
+                    key="niche_size_slider"
                 )
-                df_filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
 
             with col2:
-                if not df_filtered.empty:
-                    boost_win_rate = (df_filtered["Boost MAE (%)"] < df_filtered["Training MAE (%)"]).mean() * 100
-                    avg_added_value = ((df_filtered["Training MAE (%)"] - df_filtered["Boost MAE (%)"]) / df_filtered["Training MAE (%)"]).mean() * 100
+                if st.button("Update"):
+                    df_filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
 
-                    st.write(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                    st.write(f"**Average Added Value:** {avg_added_value:.2f}%")
-                else:
-                    st.warning("No data in the selected Niche Size range.")
+                    if not df_filtered.empty:
+                        boost_win_rate = (df_filtered["Boost MAE (%)"] < df_filtered["Training MAE (%)"]).mean() * 100
+                        avg_added_value = ((df_filtered["Training MAE (%)"] - df_filtered["Boost MAE (%)"]) / df_filtered["Training MAE (%)"]).mean() * 100
 
-            st.dataframe(df_filtered)
+                        st.write(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+                        st.write(f"**Average Added Value:** {avg_added_value:.2f}%")
+                    else:
+                        st.warning("No data in the selected Niche Size range.")
+
+                    st.dataframe(df_filtered)
 
 try:
     main()
