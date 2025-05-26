@@ -11,20 +11,24 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
 import traceback
 
+
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
 
 def scrap_boostresults(project_url):
+    # Set up headless Firefox for Streamlit Cloud
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-gpu")  # good for remote headless environments
 
+    # Initialize the WebDriver
     driver = webdriver.Firefox(
         service=Service(GeckoDriverManager().install()),
         options=options
     )
-    wait = WebDriverWait(driver, 25)
+    wait = WebDriverWait(driver, 15)
 
+    # Streamlit UI placeholders
     progress_bar = st.empty()
     status_text = st.empty()
     df_placeholder = st.empty()
@@ -47,6 +51,7 @@ def scrap_boostresults(project_url):
         password_field.send_keys(PASSWORD)
         login_button.click()
 
+        # Wait for the task list
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
         time.sleep(2)
 
@@ -58,7 +63,7 @@ def scrap_boostresults(project_url):
             try:
                 driver.execute_script("arguments[0].scrollIntoView(true);", task)
                 task.click()
-                time.sleep(2)
+                time.sleep(1)
 
                 # Extract niche info
                 try:
@@ -70,47 +75,33 @@ def scrap_boostresults(project_url):
                     nich_text = "Not Found"
                     nich_size_text = "Not Found"
 
-                # Click Boost tab
-                try:
-                    boost_tab = driver.find_element(By.XPATH, '//span[text()="Boost"]')
-                    driver.execute_script("arguments[0].click();", boost_tab)
-                    time.sleep(3)
-                except:
-                    st.warning(f"{ordinal(idx)}: Boost tab not found.")
-                    continue
+                # Click on Boost metrics tab
+                active_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="_tabs_1epi5_65"]//span[text()="Boost"]')))
+                driver.execute_script("arguments[0].click();", active_button)
+                time.sleep(1)
 
-                # Check for iframe
-                iframes = driver.find_elements(By.TAG_NAME, "iframe")
-                if iframes:
-                    driver.switch_to.frame(iframes[0])
-                    st.info("Switched to iframe")
-
-                # Try primary metric block
                 try:
-                    metric_xpath = '//div[contains(@class, "_texts")]/span'
-                    wait.until(EC.presence_of_all_elements_located((By.XPATH, metric_xpath)))
-                    spans = driver.find_elements(By.XPATH, metric_xpath)
+                    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")), message="Timed out waiting for texts")
+                    texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
+
+                    if len(texts) >= 2:
+                        boost = float(texts[0].text.strip().split('%')[0])
+                        training = float(texts[1].text.strip().split('%')[0])
+                    else:
+                        boost = training = "Not Found"
                 except Exception as e:
-                    st.warning(f"{ordinal(idx)}: Could not locate metric block. {e}")
-                    spans = []
-
-                if len(spans) >= 2:
-                    boost = float(spans[0].text.strip().split('%')[0])
-                    training = float(spans[1].text.strip().split('%')[0])
-                else:
+                    st.error(f"Error finding texts: {e}")
+                    st.code(traceback.format_exc(), language='python')
                     boost = training = "Not Found"
 
-                # Reset frame if switched
-                if iframes:
-                    driver.switch_to.default_content()
-
-                # Parse other data
+                # Clean and extract values
                 clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
                 niche_size_match = re.search(r"(\d+)", nich_size_text)
                 penetration_match = re.search(r"\(([^)]+)\)", nich_size_text)
                 niche_size = niche_size_match.group(1) if niche_size_match else "Not Found"
                 penetration = penetration_match.group(1) if penetration_match else "Not Found"
 
+                # Store in dataframe
                 df_live.loc[len(df_live)] = {
                     "Niche": clean_niche,
                     "Niche Size": niche_size,
@@ -119,6 +110,7 @@ def scrap_boostresults(project_url):
                     "Training MAE (%)": training
                 }
 
+                # Update UI
                 progress_bar.progress(idx / total)
                 status_text.text(f"Processed {idx} of {total} boosts")
                 df_placeholder.dataframe(df_live)
@@ -132,7 +124,6 @@ def scrap_boostresults(project_url):
 
     except Exception as e:
         st.error(f"Main error: {e}")
-        st.code(traceback.format_exc(), language='python')
         return df_live
 
     finally:
