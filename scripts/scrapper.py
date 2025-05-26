@@ -1,6 +1,4 @@
 import pandas as pd
-import geckodriver_autoinstaller
-from selenium import webdriver
 import time
 import re
 import streamlit as st
@@ -25,8 +23,10 @@ def scrap_boostresults(project_url):
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
 
-    geckodriver_autoinstaller.install()
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(
+        service=Service(GeckoDriverManager().install()),
+        options=options
+    )
     wait = WebDriverWait(driver, 20)
 
     # Streamlit layout
@@ -75,7 +75,7 @@ def scrap_boostresults(project_url):
                     nich_size_text = "Not Found"
 
                 # Go to Boost/Train metrics
-                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
+                active_button = driver.find_element(By.XPATH, '//span[text()="Boost"]')
                 driver.execute_script("arguments[0].click();", active_button)
                 time.sleep(1)
 
