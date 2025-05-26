@@ -61,7 +61,7 @@ def scrap_boostresults(project_url):
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
         total = len(boost_tasks)
 
-        for idx, task in enumerate(boost_tasks, 1):
+        for idx, task in enumerate(boost_tasks[:5], 1):
             try:
                 driver.execute_script("arguments[0].scrollIntoView(true);", task)
                 task.click()
@@ -113,7 +113,7 @@ def scrap_boostresults(project_url):
                 st.code(traceback.format_exc(), language="python")
                 continue
 
-        return df_live
+        st.session_state.df_scraped = df_live
 
     except Exception as e:
         st.error(f"Main error: {e}")
