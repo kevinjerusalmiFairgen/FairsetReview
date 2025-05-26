@@ -80,19 +80,15 @@ def scrap_boostresults(project_url):
                 driver.execute_script("arguments[0].click();", active_button)
                 time.sleep(1)
 
-                try:
-                    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")), message="Timed out waiting for texts")
-                    texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
+                wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")), message="Timed out waiting for texts")
+                texts = driver.find_elements(By.CSS_SELECTOR, "div._texts_zd90y_73")
 
-                    if len(texts) >= 2:
-                        boost = float(texts[0].text.strip().split('%')[0])
-                        training = float(texts[1].text.strip().split('%')[0])
-                    else:
-                        boost = training = "Not Found"
-                except Exception as e:
-                    st.error(f"Error finding texts: {e}")
-                    st.code(traceback.format_exc(), language='python')
+                if len(texts) >= 2:
+                    boost = float(texts[0].text.strip().split('%')[0])
+                    training = float(texts[1].text.strip().split('%')[0])
+                else:
                     boost = training = "Not Found"
+                    st.error(f"Found {len(texts)} texts, expected at least 2")
 
                 # Clean and extract values
                 clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
