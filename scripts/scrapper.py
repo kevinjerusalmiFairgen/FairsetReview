@@ -11,14 +11,13 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager import firefox
+from webdriver_manager.firefox import GeckoDriverManager
 GeckoDriverManager = firefox.GeckoDriverManager
 
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
 
 def scrap_boostresults(project_url):
-    # Setup headless Firefox for Streamlit Cloud
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
@@ -30,9 +29,8 @@ def scrap_boostresults(project_url):
         service=Service(GeckoDriverManager().install()),
         options=options
     )
-    wait = WebDriverWait(driver, 20)
+    wait = WebDriverWait(driver, 15)
 
-    # Streamlit layout
     progress_bar = st.empty()
     status_text = st.empty()
     df_placeholder = st.empty()
@@ -47,54 +45,44 @@ def scrap_boostresults(project_url):
     try:
         driver.get(project_url)
 
-        email_field = wait.until(EC.presence_of_element_located((By.NAME, "email")))
-        password_field = driver.find_element(By.NAME, "password")
-        login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-        email_field.send_keys(EMAIL)
-        password_field.send_keys(PASSWORD)
-        login_button.click()
+        # Login
+        wait.until(EC.presence_of_element_located((By.NAME, "email"))).send_keys(EMAIL)
+        driver.find_element(By.NAME, "password").send_keys(PASSWORD)
+        driver.find_element(By.XPATH, "//button[@type='submit']").click()
 
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
-        time.sleep(2)
 
         all_tasks = driver.find_elements(By.CLASS_NAME, "_task_qdg41_28")
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
         total = len(boost_tasks)
 
         for idx, task in enumerate(boost_tasks, 1):
+            start_time = time.time()
             try:
                 driver.execute_script("arguments[0].scrollIntoView(true);", task)
-                task.click()
-                time.sleep(1)
+                driver.execute_script("arguments[0].click();", task)
 
-                # Extract niche info
-                try:
-                    nich_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88")))
-                    nich_size_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96")))
-                    nich_text = nich_element.text.strip()
-                    nich_size_text = nich_size_element.text.strip()
-                except:
-                    nich_text = "Not Found"
-                    nich_size_text = "Not Found"
-
-                # Go to Boost/Train metrics
-                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
-                driver.execute_script("arguments[0].click();", active_button)
-                time.sleep(1)
-
-                try:
-                    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
-                    texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
-                    boost = float(texts[0].text.strip().split('%')[0])
-                    training = float(texts[1].text.strip().split('%')[0])
-                except:
-                    boost = training = "Not Found"
-
-                clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
-                niche_size_match = re.search(r"(\d+)", nich_size_text)
-                penetration_match = re.search(r"\(([^)]+)\)", nich_size_text)
+                wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88")))
+                
+                # Niche Info
+                niche_text = driver.find_element(By.CLASS_NAME, "_conditions_h506w_88").text.strip()
+                size_text = driver.find_element(By.CLASS_NAME, "_nicheSize_h506w_96").text.strip()
+                
+                niche_size_match = re.search(r"(\d+)", size_text)
+                penetration_match = re.search(r"\(([^)]+)\)", size_text)
                 niche_size = niche_size_match.group(1) if niche_size_match else "Not Found"
                 penetration = penetration_match.group(1) if penetration_match else "Not Found"
+                clean_niche = niche_text.replace("\n", " ") if niche_text else "Not Found"
+
+                # Switch to Boost Metrics
+                metrics_button = driver.find_element(By.XPATH, '//span[contains(text(),"Boost MAE")]')
+                driver.execute_script("arguments[0].click();", metrics_button)
+
+                wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
+                texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
+
+                boost = float(texts[0].text.strip().split('%')[0])
+                training = float(texts[1].text.strip().split('%')[0])
 
                 df_live.loc[len(df_live)] = {
                     "Niche": clean_niche,
@@ -107,6 +95,9 @@ def scrap_boostresults(project_url):
                 progress_bar.progress(idx / total)
                 status_text.text(f"Processed {idx} of {total} boosts")
                 df_placeholder.dataframe(df_live)
+
+                duration = time.time() - start_time
+                print(f"[{idx}/{total}] Done in {duration:.2f}s")
 
             except Exception as e:
                 st.error(f"{ordinal(idx)} iteration error: {e}")
