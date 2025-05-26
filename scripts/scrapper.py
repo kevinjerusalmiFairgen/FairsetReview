@@ -69,7 +69,7 @@ def scrap_boostresults(project_url):
                 # Faster lookups with shorter wait times for optional elements
                 nich_text = nich_size_text = "Not Found"
                 try:
-                    nich_element = WebDriverWait(driver, 3).until(
+                    nich_element = WebDriverWait(driver, 2).until(
                         EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88"))
                     )
                     nich_text = nich_element.text.strip()
@@ -77,7 +77,7 @@ def scrap_boostresults(project_url):
                     pass
 
                 try:
-                    nich_size_element = WebDriverWait(driver, 3).until(
+                    nich_size_element = WebDriverWait(driver, 2).until(
                         EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96"))
                     )
                     nich_size_text = nich_size_element.text.strip()
@@ -95,7 +95,7 @@ def scrap_boostresults(project_url):
 
                 boost = training = "Not Found"
                 try:
-                    WebDriverWait(driver, 3).until(
+                    WebDriverWait(driver, 2).until(
                         EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73"))
                     )
                     texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
