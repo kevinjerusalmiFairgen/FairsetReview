@@ -8,3 +8,4 @@ openpyxl
 selenium
 webdriver-manager
 pyreadstat
+geckodriver_autoinstaller
