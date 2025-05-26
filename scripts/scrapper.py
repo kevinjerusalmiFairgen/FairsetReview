@@ -12,7 +12,6 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager import firefox
 GeckoDriverManager = firefox.GeckoDriverManager
 
 EMAIL = "inspector@fairgen.ai"
@@ -76,10 +75,7 @@ def scrap_boostresults(project_url):
                 clean_niche = niche_text.replace("\n", " ") if niche_text else "Not Found"
 
                 # Switch to Boost Metrics
-                metrics_button = wait.until(EC.element_to_be_clickable((
-                    By.XPATH,
-                    '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]'
-                )))
+                metrics_button = driver.find_element(By.XPATH, '//span[contains(text(),"Boost MAE")]')
                 driver.execute_script("arguments[0].click();", metrics_button)
 
                 wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
