@@ -90,7 +90,7 @@ def scrap_boostresults(project_url):
                 except Exception as e:
                     st.warning(f"Could not locate metric block: {e}")
                     st.code(driver.page_source[:1500])
-    texts = []
+                    texts = []
 
                 if len(texts) >= 2:
                     boost = float(texts[0].text.strip().split('%')[0])
