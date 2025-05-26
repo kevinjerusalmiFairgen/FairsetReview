@@ -1,4 +1,6 @@
 import pandas as pd
+import geckodriver_autoinstaller
+from selenium import webdriver
 import time
 import re
 import streamlit as st
@@ -23,10 +25,8 @@ def scrap_boostresults(project_url):
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
 
-    driver = webdriver.Firefox(
-        service=Service(GeckoDriverManager().install()),
-        options=options
-    )
+    geckodriver_autoinstaller.install()
+    driver = webdriver.Firefox(options=options)
     wait = WebDriverWait(driver, 20)
 
     # Streamlit layout
