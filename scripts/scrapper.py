@@ -64,25 +64,40 @@ def scrap_boostresults(project_url):
         for idx, task in enumerate(boost_tasks, 1):
             try:
                 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", task)
-                wait.until(EC.element_to_be_clickable(task)).click()
+                WebDriverWait(driver, 5).until(EC.element_to_be_clickable(task)).click()
 
+                # Faster lookups with shorter wait times for optional elements
                 nich_text = nich_size_text = "Not Found"
                 try:
-                    nich_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88")))
+                    nich_element = WebDriverWait(driver, 3).until(
+                        EC.presence_of_element_located((By.CLASS_NAME, "_conditions_h506w_88"))
+                    )
                     nich_text = nich_element.text.strip()
-                    nich_size_element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96")))
+                except:
+                    pass
+
+                try:
+                    nich_size_element = WebDriverWait(driver, 3).until(
+                        EC.presence_of_element_located((By.CLASS_NAME, "_nicheSize_h506w_96"))
+                    )
                     nich_size_text = nich_size_element.text.strip()
                 except:
                     pass
 
-                active_button = wait.until(EC.element_to_be_clickable(
-                    (By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
-                ))
-                driver.execute_script("arguments[0].click();", active_button)
+                # Go to Boost/Training metrics
+                try:
+                    active_button = WebDriverWait(driver, 5).until(
+                        EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]'))
+                    )
+                    driver.execute_script("arguments[0].click();", active_button)
+                except:
+                    pass
 
                 boost = training = "Not Found"
                 try:
-                    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
+                    WebDriverWait(driver, 3).until(
+                        EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73"))
+                    )
                     texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
                     boost = float(texts[0].text.strip().split('%')[0])
                     training = float(texts[1].text.strip().split('%')[0])
