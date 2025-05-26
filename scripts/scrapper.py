@@ -1,3 +1,22 @@
+import re
+import time
+import traceback
+
+import pandas as pd
+import streamlit as st
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager import firefox
+GeckoDriverManager = firefox.GeckoDriverManager
+
+EMAIL = "inspector@fairgen.ai"
+PASSWORD = "Inspector123!"
+
 def scrap_boostresults(project_url):
     options = Options()
     options.add_argument("--headless")
