@@ -12,6 +12,7 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager import firefox
 GeckoDriverManager = firefox.GeckoDriverManager
 
 EMAIL = "inspector@fairgen.ai"
