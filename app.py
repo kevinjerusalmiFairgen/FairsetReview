@@ -173,6 +173,11 @@ def main():
             df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
             df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
 
+            df = df[
+                (df["Boost MAE (%)"] != "Not Found") &
+                (df["Training MAE (%)"] != "Not Found")
+            ]
+
             boost_win_rate = (df["Boost MAE (%)"] < df["Training MAE (%)"]).mean() * 100
 
             avg_added_value = ((df["Training MAE (%)"] - df["Boost MAE (%)"]) / df["Training MAE (%)"]).mean() * 100
