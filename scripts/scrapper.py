@@ -75,8 +75,8 @@ def scrap_boostresults(project_url):
                     nich_size_text = "Not Found"
 
                 # Go to Boost/Train metrics
-                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
-                driver.execute_script("arguments[0].click();", active_button)
+                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]]').click()
+                #driver.execute_script("arguments[0].click();", active_button)
                 time.sleep(1)
 
                 try:
