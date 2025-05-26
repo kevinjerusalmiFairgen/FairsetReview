@@ -172,16 +172,30 @@ def main():
             df = scrapper.scrap_boostresults(project_url)
             df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
             df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
+            df["Nice Size"] = pd.to_numeric(df["Nice Size"], errors='coerce')  # Ensure it's numeric
 
-            boost_win_rate = (df["Boost MAE (%)"] < df["Training MAE (%)"]).mean() * 100
+            # Optional: Show raw data for inspection
+            st.dataframe(df)
 
-            avg_added_value = ((df["Training MAE (%)"] - df["Boost MAE (%)"]) / df["Training MAE (%)"]).mean() * 100
+            # Add filtering UI
+            min_size, max_size = st.slider(
+                "Filter by Nice Size",
+                min_value=float(df["Nice Size"].min()),
+                max_value=float(df["Nice Size"].max()),
+                value=(float(df["Nice Size"].min()), float(df["Nice Size"].max()))
+            )
 
-            # Print results
-            st.write(f"Boost Win Rate: {boost_win_rate:.2f}%")
-            st.write(f"Average Added Value: {avg_added_value:.2f}%")
+            # Apply filtering
+            filtered_df = df[(df["Nice Size"] >= min_size) & (df["Nice Size"] <= max_size)]
 
-        
+            if not filtered_df.empty:
+                boost_win_rate = (filtered_df["Boost MAE (%)"] < filtered_df["Training MAE (%)"]).mean() * 100
+                avg_added_value = ((filtered_df["Training MAE (%)"] - filtered_df["Boost MAE (%)"]) / filtered_df["Training MAE (%)"]).mean() * 100
+
+                st.write(f"Boost Win Rate: {boost_win_rate:.2f}%")
+                st.write(f"Average Added Value: {avg_added_value:.2f}%")
+            else:
+                st.warning("No data in the selected Nice Size range.")
 
 try:
     main()
