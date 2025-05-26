@@ -91,12 +91,26 @@ def scrap_boostresults(project_url):
 
                 # Extract metric values
                 try:
-                    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "_texts_zd90y_73")))
-                    texts = driver.find_elements(By.CLASS_NAME, "_texts_zd90y_73")
-                    boost = float(texts[0].text.strip().split('%')[0])
-                    training = float(texts[1].text.strip().split('%')[0])
-                except:
+                    # Wait until the element is present using the specific XPath
+                    element = wait.until(
+                        EC.presence_of_element_located((
+                            By.XPATH,
+                            '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[1]/div[1]/div[1]'
+                        ))
+                    )
+
+                    # Extract the Boost and Training MAE values from the element or nearby siblings
+                    text_content = element.text.strip().split('\n')
+
+                    if len(text_content) >= 2:
+                        boost = float(text_content[0].replace('%', '').strip())
+                        training = float(text_content[1].replace('%', '').strip())
+                    else:
+                        boost = training = "Not Found"
+
+                except Exception as e:
                     boost = training = "Not Found"
+                    st.write("❌ Error extracting Boost/Training metrics:", e)
 
                 # Extract size + penetration
                 clean_niche = nich_text.replace("\n", " ") if nich_text != "Not Found" else "Not Found"
