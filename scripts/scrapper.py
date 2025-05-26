@@ -1,15 +1,18 @@
-import pandas as pd
-import time
 import re
+import time
+import traceback
+
+import pandas as pd
 import streamlit as st
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.firefox import GeckoDriverManager
-import traceback
+from webdriver_manager import firefox
+GeckoDriverManager = firefox.GeckoDriverManager
 
 EMAIL = "inspector@fairgen.ai"
 PASSWORD = "Inspector123!"
@@ -75,8 +78,8 @@ def scrap_boostresults(project_url):
                     nich_size_text = "Not Found"
 
                 # Go to Boost/Train metrics
-                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]]').click()
-                #driver.execute_script("arguments[0].click();", active_button)
+                active_button = driver.find_element(By.XPATH, '/html/body/div/div/div/main/div/div[2]/div[2]/div[2]/div/div[1]/span[2]')
+                driver.execute_script("arguments[0].click();", active_button)
                 time.sleep(1)
 
                 try:
