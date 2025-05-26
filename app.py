@@ -229,7 +229,7 @@ def main():
         # Optional reset
         if st.button("Clear All"):
             st.session_state.df_scraped = None
-            st.experimental_rerun()
+            st.rerun()
 
 
 try:
