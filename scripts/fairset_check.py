@@ -1152,8 +1152,10 @@ class LogicFunctions:
         else:
             raise ValueError(f"Unknown constraint type: {constraint_type}")
 
+
     def run_analysis(self, constraints):
         all_results = []
+
         all_constraints = [
             ("BF_SS", constraints.get("BF_SS", [])),
             ("BF_SM", constraints.get("BF_SM", [])),
@@ -1171,14 +1173,26 @@ class LogicFunctions:
             ("custom", constraints.get("custom", [])),
         ]
 
-        for constraint_type, constraint_list in stqdm(all_constraints, desc=f"Processing Constraints for {self.name}", mininterval=0.1):
+        # Set up progress bar and status
+        progress_bar = st.empty()
+        status = st.empty()
+
+        total = sum(len(clist) for _, clist in all_constraints)
+        done = 0
+
+        for constraint_type, constraint_list in all_constraints:
+            status.text(f"Processing constraint type: {constraint_type}")
+
             for constraint in constraint_list:
+                done += 1
+                progress_bar.progress(done / total)
+
                 if constraint_type in ["BF_SS", "BF_SM", "BF_MS"]:
                     if constraint[3] == "block_force":
-                        constraint_copy = constraint.copy()  # Make a copy to avoid modifying the original
+                        constraint_copy = constraint.copy()
                         constraint_copy[3] = "block"
                         result_1 = self.process_constraint(constraint_type, constraint_copy)
-                        result_1["definition"] = constraint_copy.copy()  # Store a copy for safety
+                        result_1["definition"] = constraint_copy.copy()
                         all_results.append(result_1)
 
                         constraint_copy[3] = "force"
@@ -1193,7 +1207,6 @@ class LogicFunctions:
                 elif constraint_type in ["BF_MM", "BF_SM_Grid"]:
                     if constraint[4] == "block_force":
                         constraint_copy = constraint.copy()
-
                         constraint_copy[4] = "block"
                         result_1 = self.process_constraint(constraint_type, constraint_copy)
                         result_1["definition"] = constraint_copy.copy()
@@ -1207,10 +1220,13 @@ class LogicFunctions:
                         constraint_copy = constraint.copy()
                         result = self.process_constraint(constraint_type, constraint_copy)
                         all_results.append(result)
+
                 else:
                     result = self.process_constraint(constraint_type, constraint)
                     result["definition"] = constraint.copy()
                     all_results.append(result)
 
+        status.success("All constraints processed ✅")
         return all_results
+
 

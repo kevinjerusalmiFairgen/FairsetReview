@@ -1,0 +1,2 @@
+firefox-esr
+zlib1g-dev

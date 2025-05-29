@@ -53,7 +53,7 @@ def check_columns_presence(df_priorfile, df, cols):
 
     # ✅ Normalize quotes BEFORE comparison
     flat_set = set(normalize_quotes(col.strip()).lower() for col in flat_list)
-    df_columns = set(normalize_quotes(col.strip()).lower() for col in df.columns)
+    df_columns = set(normalize_quotes(str(col).strip()).lower() for col in df.columns)
     missing = flat_set - df_columns
 
     return list(missing)

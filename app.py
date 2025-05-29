@@ -1,13 +1,18 @@
-import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check
+import sys
+import os
+import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check, scripts.scrapper as scrapper
 import pandas as pd
 import json
 import scripts.generate_report as generate_report
 import streamlit as st
-import os
 import tempfile
 import pyreadstat
 import traceback
 
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+if APP_ROOT not in sys.path:
+    sys.path.insert(0, APP_ROOT)
 
 
 def load_file(uploaded_file):            
@@ -60,7 +65,7 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
 
 def main():
     
-    st.title("Fairset Review Platform")
+    st.title("Pilot Manager")
 
     with st.sidebar:
             st.markdown("## Upload Train Set")
@@ -70,7 +75,9 @@ def main():
             st.markdown("## Upload Prior file")
             priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Prior File Extract"]) 
+    tab1, tab2, tab3 = st.tabs(["Fairset Review", "Structure & Logics Extract", "Boost Results"]) 
+    #tab1, tab2 = st.tabs(["Fairset Review", "Structure & Logics Extract"]) 
+
 
     with tab1: 
         st.markdown("Upload train set, fairset and prior file")
@@ -157,6 +164,72 @@ def main():
                         file_name="constraints.json",
                         mime="application/json"
                     )
+    
+    with tab3:
+        # Initialize session state
+        if 'df_scraped' not in st.session_state:
+            st.session_state.df_scraped = None
+
+        project_url = st.text_input("# Fetch parallel Tests results from URL")
+
+        if st.button("Run Scraper") and project_url:
+            scrapper.scrap_boostresults(project_url)
+
+            if st.session_state.df_scraped is not None:
+                df = st.session_state.df_scraped
+                df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
+                df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
+                df["Niche Size"] = pd.to_numeric(df["Niche Size"], errors='coerce')
+                st.session_state.df_scraped = df  # update cleaned df
+
+        # If scraped data is available
+        if st.session_state.df_scraped is not None:
+            df = st.session_state.df_scraped
+
+            # ---- Always show full data ----
+            st.markdown("### Full Scraped Data")
+            st.dataframe(df)
+
+            # ---- Metrics filter UI ----
+            st.markdown("### Filter Metrics by Niche Size")
+            min_val = int(df["Niche Size"].min())
+            max_val = int(df["Niche Size"].max())
+
+            min_size, max_size = st.slider(
+                "Select Niche Size Range",
+                min_value=min_val,
+                max_value=max_val,
+                value=(min_val, max_val),
+                step=1,
+                key="niche_slider"
+            )
+
+            # ---- Grey background metrics container ----
+            with st.container():
+                st.markdown(
+                    """
+                    <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
+                    """,
+                    unsafe_allow_html=True
+                )
+
+                filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
+
+                if not filtered.empty:
+                    boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+                    avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
+
+                    st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+                    st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+                else:
+                    st.warning("No data in selected range.")
+
+                st.markdown("</div>", unsafe_allow_html=True)
+
+        # Optional reset
+        if st.button("Clear All"):
+            st.session_state.df_scraped = None
+            st.rerun()
 
 
 try:
