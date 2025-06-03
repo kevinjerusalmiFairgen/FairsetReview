@@ -92,10 +92,10 @@ def main():
 
                 # Check columns are all right
                 unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
+                st.write(unknown_columns)
 
                 if unknown_columns:
                     bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
-                    st.write(bullet_list)
                     st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
                     st.stop()
 
