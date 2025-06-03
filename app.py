@@ -95,6 +95,7 @@ def main():
 
                 if unknown_columns:
                     bullet_list = "\n".join([f"- {col}" for col in unknown_columns])
+                    st.write(bullet_list)
                     st.error(f"The following column(s) from the Prior File are missing in the Data:\n{bullet_list}")
                     st.stop()
 
