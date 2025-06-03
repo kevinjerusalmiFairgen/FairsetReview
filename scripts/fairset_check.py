@@ -756,20 +756,20 @@ class LogicFunctions:
         fairset = fairset.dropna(subset=cols + [nota], how="all", axis=0)
 
         train_violations = train[
-            (train[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0"))))
+            (train[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0", "non"))))
             & (
                 ~train[cols]
-                .applymap(lambda x: str(x).lower().startswith(("no", "0")) or str(x) in ["", " ", "nan"])
+                .applymap(lambda x: str(x).lower().startswith(("no", "0", "non")) or str(x) in ["", " ", "nan"])
                 .all(axis=1)
             )
             ][cols + [nota]]
 
         if train_violations.empty and not train.empty:
             fairset_violations = fairset[
-                (fairset[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0"))))
+                (fairset[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0", "non"))))
                 & (
                     ~fairset[cols]
-                    .applymap(lambda x: str(x).lower().startswith(("no", "0")) or str(x) in ["", " ", "nan"])
+                    .applymap(lambda x: str(x).lower().startswith(("no", "0", "non")) or str(x) in ["", " ", "nan"])
                     .all(axis=1)
                 )
                 ][cols + [nota]]
@@ -958,13 +958,20 @@ class LogicFunctions:
                 lambda row: all(str(x).strip().lower().startswith("no") for x in row if pd.notna(x)), axis=1
             )
         ]
-        if pd.notna(none_of_the_above):
-            train_cleaned = train_cleaned.loc[
-                train_cleaned[none_of_the_above].astype(str).apply(lambda x: x.lower().startswith(("no ", "0")))
-            ]
-            fairset = fairset.loc[
-                fairset[none_of_the_above].astype(str).apply(lambda x: x.lower().startswith(("no ", "0")))
-            ]
+        if none_of_the_above is not None:
+            # Ensure it's a list of column names
+            if isinstance(none_of_the_above, str):
+                none_of_the_above = [none_of_the_above]
+
+            def should_drop(row):
+                for col in none_of_the_above:
+                    val = row.get(col)
+                    if pd.notna(val) and str(val).lower().startswith(("no ", "0")):
+                        return True
+                return False
+
+            train_cleaned = train_cleaned[~train_cleaned.apply(should_drop, axis=1)]
+            fairset = fairset[~fairset.apply(should_drop, axis=1)]
 
         # Count the number of valid answers directly for train
         train_valid_counts = train_cleaned.apply(
@@ -1063,12 +1070,14 @@ class LogicFunctions:
         env = {"df": df, "np": np}
         try:
             exec(instruction, env)
-            returned_df = env.get("df_check")
+            if "df_check" not in env or env["df_check"] is None:
+                raise ValueError("Instruction did not assign df_check.")
+            returned_df = env["df_check"]
             return returned_df
         except Exception as e:
             st.error(f"Error Custom, running instruction: \n{instruction}")
             st.error(f"{type(e).__name__}: {e}")
-            st.text(traceback.format_exc())  
+            st.text(traceback.format_exc())
             return pd.DataFrame()
         
 
