@@ -962,6 +962,9 @@ class LogicFunctions:
             # Ensure it's a list of column names
             if isinstance(none_of_the_above, str):
                 none_of_the_above = [none_of_the_above]
+            elif not isinstance(none_of_the_above, list):
+                # It's probably float('nan'), None, etc.
+                none_of_the_above = []
 
             def should_drop(row):
                 for col in none_of_the_above:
