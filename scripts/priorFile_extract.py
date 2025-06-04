@@ -154,7 +154,7 @@ def priorFileExtract(df):
                     row["Target"],
                     [],
                     row["Comment"],
-                    row["Constraint"].lower().replace("/", "_"),
+                    "block_force",
                     row["Is Implemented"]
                 ])
             elif row["Constraint"] == "Uniqueness":
