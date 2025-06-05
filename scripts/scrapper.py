@@ -11,6 +11,7 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from webdriver_manager import firefox
 GeckoDriverManager = firefox.GeckoDriverManager
 
@@ -54,8 +55,19 @@ def scrap_boostresults(project_url):
         password_field.send_keys(PASSWORD)
         login_button.click()
 
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
-        time.sleep(10)
+        try:
+            wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
+        except TimeoutException:
+            st.warning("Element not found. Waiting 10 seconds and retrying...")
+            time.sleep(10)  # Wait 10 seconds
+
+            try:
+                wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
+            except TimeoutException:
+                st.error("Element still not found after retrying.")
+                st.code(driver.page_source[:1000])  # optional: show page source for debugging
+                st.stop()
+                time.sleep(10)
 
         all_tasks = driver.find_elements(By.CLASS_NAME, "_task_qdg41_28")
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
