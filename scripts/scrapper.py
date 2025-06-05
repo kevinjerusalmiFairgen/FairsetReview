@@ -106,7 +106,6 @@ def scrap_boostresults(project_url):
 
                 progress_bar.progress(idx / total)
                 status_text.text(f"Processed {idx} of {total} boosts")
-                df_placeholder.empty()
                 df_placeholder.dataframe(df_live)
 
             except Exception as e:
@@ -114,7 +113,10 @@ def scrap_boostresults(project_url):
                 st.code(traceback.format_exc(), language="python")
                 continue
 
-        st.session_state.df_scraped = df_live
+        df_placeholder.empty()      # Clear the live dataframe
+        progress_bar.empty()        # Clear the progress bar
+        status_text.empty()         # Clear the status text
+        st.session_state.df_scraped = df_live  # Save the final dataframe
 
     except Exception as e:
         st.error(f"Main error: {e}")

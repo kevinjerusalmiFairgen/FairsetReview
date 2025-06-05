@@ -208,31 +208,32 @@ def main():
             st.dataframe(df)
 
             # ---- Metrics filter UI ----
-            st.markdown("### Filter Metrics by Niche Size")
-            min_val = int(df["Niche Size"].min())
-            max_val = int(df["Niche Size"].max())
+            if df.shape[0] < 2:
+                st.markdown("### Filter Metrics by Niche Size")
+                min_val = int(df["Niche Size"].min())
+                max_val = int(df["Niche Size"].max())
 
-            min_size, max_size = st.slider(
-                "Select Niche Size Range",
-                min_value=min_val,
-                max_value=max_val,
-                value=(min_val, max_val),
-                step=1,
-                key="niche_slider"
-            )
+                min_size, max_size = st.slider(
+                    "Select Niche Size Range",
+                    min_value=min_val,
+                    max_value=max_val,
+                    value=(min_val, max_val),
+                    step=1,
+                    key="niche_slider"
+                )
 
-            filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
+                filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
 
-            if not filtered.empty:
-                boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
-                avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
+                if not filtered.empty:
+                    boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+                    avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
 
-                st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
-            else:
-                st.warning("No data in selected range.")
+                    st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+                    st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+                else:
+                    st.warning("No data in selected range.")
 
-            st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
 
     # Optional reset
     if st.button("Clear All"):
