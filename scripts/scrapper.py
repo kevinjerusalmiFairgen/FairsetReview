@@ -55,7 +55,7 @@ def scrap_boostresults(project_url):
         login_button.click()
 
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_task_qdg41_28")))
-        time.sleep(2)
+        time.sleep(4)
 
         all_tasks = driver.find_elements(By.CLASS_NAME, "_task_qdg41_28")
         boost_tasks = [t for t in all_tasks if "_boostTask_" in t.get_attribute("class")]
