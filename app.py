@@ -176,7 +176,7 @@ def main():
             st.session_state.df_scraped = None
 
         # Dropdown for environments
-        col1, _ = st.columns([1, 3])
+        col1, _ = st.columns([1, 2])
         with col1:
             selected_env = st.selectbox("Select an environment", environements, index=0)
 
