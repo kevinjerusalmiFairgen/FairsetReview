@@ -176,7 +176,9 @@ def main():
             st.session_state.df_scraped = None
 
         # Dropdown for environments
-        selected_env = st.toggle("Select an environment", environements)
+        col1, _ = st.columns([1, 3])
+        with col1:
+            selected_env = st.selectbox("Select an environment", environements, index=0)
 
         # Update selected_email based on environment
         if selected_env == environements[0]:
