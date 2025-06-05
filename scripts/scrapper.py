@@ -17,10 +17,7 @@ GeckoDriverManager = firefox.GeckoDriverManager
 PASSWORD = "Inspector123!"
 
 def scrap_boostresults(project_url):
-    st.write("ewjdsflnk")
     EMAIL = st.session_state["selected_email"]
-    st.write(EMAIL)
-    st.write(PASSWORD)
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
