@@ -230,6 +230,7 @@ def main():
 
                     st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
                     st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+                    st.dataframe(filtered)
                 else:
                     st.warning("No data in selected range.")
 
