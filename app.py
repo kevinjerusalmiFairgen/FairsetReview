@@ -208,7 +208,7 @@ def main():
             st.dataframe(df)
 
             # ---- Metrics filter UI ----
-            if df.shape[0] < 2:
+            if df.shape[0] > 2:
                 st.markdown("### Filter Metrics by Niche Size")
                 min_val = int(df["Niche Size"].min())
                 max_val = int(df["Niche Size"].max())
@@ -234,12 +234,6 @@ def main():
                     st.warning("No data in selected range.")
 
                 st.markdown("</div>", unsafe_allow_html=True)
-
-    # Optional reset
-    if st.button("Clear All"):
-        st.session_state.df_scraped = None
-        st.rerun()
-
 
 try:
     main()
