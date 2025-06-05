@@ -221,32 +221,23 @@ def main():
                 key="niche_slider"
             )
 
-            # ---- Grey background metrics container ----
-            with st.container():
-                st.markdown(
-                    """
-                    <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
-                    """,
-                    unsafe_allow_html=True
-                )
+            filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
 
-                filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
+            if not filtered.empty:
+                boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+                avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
 
-                if not filtered.empty:
-                    boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
-                    avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
+                st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+                st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+            else:
+                st.warning("No data in selected range.")
 
-                    st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                    st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
-                else:
-                    st.warning("No data in selected range.")
+            st.markdown("</div>", unsafe_allow_html=True)
 
-                st.markdown("</div>", unsafe_allow_html=True)
-
-        # Optional reset
-        if st.button("Clear All"):
-            st.session_state.df_scraped = None
-            st.rerun()
+    # Optional reset
+    if st.button("Clear All"):
+        st.session_state.df_scraped = None
+        st.rerun()
 
 
 try:
