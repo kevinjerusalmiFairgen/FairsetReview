@@ -106,6 +106,7 @@ def scrap_boostresults(project_url):
 
                 progress_bar.progress(idx / total)
                 status_text.text(f"Processed {idx} of {total} boosts")
+                df_placeholder.empty()
                 df_placeholder.dataframe(df_live)
 
             except Exception as e:
