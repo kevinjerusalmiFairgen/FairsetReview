@@ -189,6 +189,7 @@ def main():
         # Input field
         project_url = st.text_input("# Fetch parallel Tests results from URL")
 
+        # Run scraper
         if st.button("Run Scraper") and project_url:
             scrapper.scrap_boostresults(project_url)
 
@@ -203,13 +204,9 @@ def main():
         if st.session_state.df_scraped is not None:
             df = st.session_state.df_scraped
 
-            # ---- Always show full data ----
-            st.markdown("### Full Scraped Data")
-            st.dataframe(df)
-
-            # ---- Metrics filter UI ----
             if df.shape[0] > 2:
                 st.markdown("### Filter Metrics by Niche Size")
+
                 min_val = int(df["Niche Size"].min())
                 max_val = int(df["Niche Size"].max())
 
@@ -225,16 +222,34 @@ def main():
                 filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
 
                 if not filtered.empty:
-                    boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
-                    avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
-
-                    st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                    st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+                    st.markdown("### Filtered Scraped Data")
                     st.dataframe(filtered)
+
+                    with st.container():
+                        st.markdown(
+                            """
+                            <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
+                            """,
+                            unsafe_allow_html=True
+                        )
+
+                        boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+                        avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
+
+                        st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+                        st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+
+                        st.markdown("</div>", unsafe_allow_html=True)
                 else:
                     st.warning("No data in selected range.")
+            else:
+                st.markdown("### Full Scraped Data")
+                st.dataframe(df)
 
-                st.markdown("</div>", unsafe_allow_html=True)
+        # Optional reset
+        if st.button("Clear All"):
+            st.session_state.df_scraped = None
+            st.rerun()
 
 try:
     main()
