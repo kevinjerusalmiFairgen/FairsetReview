@@ -225,21 +225,13 @@ def main():
                     st.markdown("### Filtered Scraped Data")
                     st.dataframe(filtered)
 
-                    with st.container():
-                        st.markdown(
-                            """
-                            <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
-                            """,
-                            unsafe_allow_html=True
-                        )
+                    boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+                    avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
 
-                        boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
-                        avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
+                    st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+                    st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
 
-                        st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                        st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
-
-                        st.markdown("</div>", unsafe_allow_html=True)
+                    st.markdown("</div>", unsafe_allow_html=True)
                 else:
                     st.warning("No data in selected range.")
             else:
