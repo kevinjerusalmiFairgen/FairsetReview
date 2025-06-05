@@ -20,6 +20,7 @@ class LogicFunctions:
         self.format = format
         self.wrong_rows = set()
 
+
     def detect_violations_SS(self, col1, col2, detail, block_force, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
@@ -121,6 +122,7 @@ class LogicFunctions:
         elif block_force == "force":
             return json_force
 
+
     def detect_violations_SM(self, single_column, prefix, detail, block_force, is_supported=True):
 
         train = self.train.copy()
@@ -190,6 +192,7 @@ class LogicFunctions:
             return json_block
         elif block_force == "force":
             return json_force
+
 
     def detect_violations_SM_for_grid(
             self, prefix_single, prefix_multi, c_value, detail, block_force, is_supported=True
@@ -264,6 +267,7 @@ class LogicFunctions:
             return json_block
         elif block_force == "force":
             return json_force
+
 
     def detect_violations_MM(self, prefix1, prefix2, columns_to_drop, detail, block_force, is_supported=True):
 
@@ -428,6 +432,7 @@ class LogicFunctions:
         elif block_force == "force":
             return json_force
 
+
     def detect_violations_MS(self, single_column, prefix, detail, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
@@ -468,6 +473,7 @@ class LogicFunctions:
         }
 
         return json
+
 
     def detect_violations_MS_v2(self, single_column, prefix, detail, block_force, is_supported=True):
         train = self.train.copy()
@@ -529,6 +535,7 @@ class LogicFunctions:
             return json_block
         elif block_force == "force":
             return json_force
+
 
     def detect_bf_mixed_type(self, prefix1, prefix2, columns_to_drop, detail, is_supported=False):
         """
@@ -595,6 +602,7 @@ class LogicFunctions:
         }
 
         return result
+
 
     def recoding(self, prefix1, prefix2, mode, detail, is_supported=True):
 
@@ -737,6 +745,7 @@ class LogicFunctions:
             }
             return json
 
+
     def none_of_the_above(self, prefix, nota, columns_to_drop, is_supported=True):
         train = self.train.copy()
         fairset = self.fairset.copy()
@@ -793,6 +802,7 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
+
 
     def none_of_the_above_grid(self, prefix, nota, columns_to_drop, c_value, is_supported=True):
         train = self.train.copy()
@@ -864,6 +874,7 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
+
 
     def all_of_the_above(self, prefix, aota, columns_to_drop, is_supported=True):
         train = self.train.copy()
@@ -939,6 +950,7 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
+
 
     def count(self, prefix, none_of_the_above, is_supported=True):
         train = self.train.copy()
@@ -1017,6 +1029,7 @@ class LogicFunctions:
         }
 
         return json
+
 
     def uniqueness(self, prefix, is_supported=True):
         train = self.train.copy()
@@ -1099,6 +1112,7 @@ class LogicFunctions:
             "Rows": wrong_rows,
         }
         return json
+
 
     def process_constraint(self, constraint_type, constraint):
         """Handles the logic of constraint checking for each constraint typ"""
