@@ -18,7 +18,6 @@ PASSWORD = "Inspector123!"
 
 def scrap_boostresults(project_url):
     EMAIL = st.session_state["selected_email"]
-    # Setup headless Firefox for Streamlit Cloud
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
@@ -31,6 +30,8 @@ def scrap_boostresults(project_url):
         options=options
     )
     wait = WebDriverWait(driver, 20)
+    st.write(EMAIL)
+    st.write(PASSWORD)
 
     # Streamlit layout
     progress_bar = st.empty()
