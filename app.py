@@ -165,11 +165,27 @@ def main():
                     )
     
     with tab3:
+        # Initialize data
+        environements = ["Classic Environnement", "Kevin's Environnement"]
+        emails = ["inspector@fairgen.ai", "inspector+private@fairgen.ai"]
+
         # Initialize session state
+        if "selected_email" not in st.session_state:
+            st.session_state.selected_email = emails[0]
         if 'df_scraped' not in st.session_state:
             st.session_state.df_scraped = None
 
+        # Input field
         project_url = st.text_input("# Fetch parallel Tests results from URL")
+
+        # Dropdown for environments
+        selected_env = st.selectbox("Select an environment", environements, index=0)
+
+        # Update selected_email based on environment
+        if selected_env == environements[0]:
+            st.session_state.selected_email = emails[0]
+        else:
+            st.session_state.selected_email = emails[1]
 
         if st.button("Run Scraper") and project_url:
             scrapper.scrap_boostresults(project_url)
