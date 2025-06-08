@@ -130,13 +130,15 @@ def main():
     with tab2:
 
         st.markdown("Upload Prior file and get your Structure JSON")
+        japanase_chars = st.checkbox("Japanese survey")
+
 
         if st.button("Get JSONs"):
             if priorfile_file is None:
                 st.warning("Upload a prior file and dataset before running analysis!")
             if priorfile_file is not None and train_file is not None:
                 priorfile = load_file(priorfile_file)
-                train = load_file(train_file)
+                train = load_file(train_file, japanase_chars)
 
                 constraints_json, structure_json = priorFile_extract.priorFileExtract(priorfile)
                 unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
