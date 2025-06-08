@@ -18,7 +18,7 @@ if APP_ROOT not in sys.path:
 def load_file(uploaded_file, japanase_chars=False):            
                     if uploaded_file.name.endswith(".csv"):
                         if japanase_chars:
-                            return pd.read_csv(uploaded_file, encoding='shift_jis')
+                            return pd.read_csv(uploaded_file, encoding='utf-8-sig')
                         return pd.read_csv(uploaded_file)
                     elif uploaded_file.name.endswith(".xlsx"):
                         return pd.read_excel(uploaded_file)
