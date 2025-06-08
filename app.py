@@ -18,7 +18,7 @@ if APP_ROOT not in sys.path:
 def load_file(uploaded_file, japanase_chars=False):            
                     if uploaded_file.name.endswith(".csv"):
                         if japanase_chars:
-                            return pd.read_csv(uploaded_file, encoding='utf-8-sig')
+                            return pd.read_csv(uploaded_file, encoding='shift_jis')
                         return pd.read_csv(uploaded_file)
                     elif uploaded_file.name.endswith(".xlsx"):
                         return pd.read_excel(uploaded_file)
@@ -93,7 +93,7 @@ def main():
             if train_file is not None and fairset_file is not None and priorfile_file is not None:
                 train = load_file(train_file, japanase_chars)
                 fairset = load_file(fairset_file, japanase_chars)
-                priorfile = load_file(priorfile_file, japanase_chars)
+                priorfile = load_file(priorfile_file)
 
                 # Check columns are all right
                 unknown_columns = priorFile_extract.check_columns_presence(priorfile, train, ["Source", "Target"])
