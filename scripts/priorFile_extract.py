@@ -229,7 +229,7 @@ def priorFileExtract(df):
             elif row["Constraint"] == "MultiSelect":
                 structure_json["multiSelect"].append(
                     {
-                        "id": index,
+                        "id": str(index),
                         "name": str(index),
                         "columns": row["Target"],
                     }
