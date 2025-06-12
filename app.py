@@ -77,7 +77,7 @@ def main():
             st.markdown("## Upload Prior file")
             priorfile_file = st.file_uploader("   ", type=["csv"])
 
-    tab1, tab2, tab3 = st.tabs(["Fairset Review", "Structure & Logics Extract", "Boost Results"]) 
+    tab1, tab2 = st.tabs(["Fairset Review", "Structure & Logics Extract"]) #, "Boost Results"]) 
     #tab1, tab2 = st.tabs(["Fairset Review", "Structure & Logics Extract"]) 
     japanase_chars = False
 
@@ -171,84 +171,84 @@ def main():
                         mime="application/json"
                     )
     
-    with tab3:
-        # Initialize data
-        environements = ["Classic Environnement", "Kevin's Environnement"]
-        emails = ["inspector@fairgen.ai", "inspector+private@fairgen.ai"]
+    # with tab3:
+    #     # Initialize data
+    #     environements = ["Classic Environnement", "Kevin's Environnement"]
+    #     emails = ["inspector@fairgen.ai", "inspector+private@fairgen.ai"]
 
-        # Initialize session state
-        if "selected_email" not in st.session_state:
-            st.session_state.selected_email = emails[0]
-        if 'df_scraped' not in st.session_state:
-            st.session_state.df_scraped = None
+    #     # Initialize session state
+    #     if "selected_email" not in st.session_state:
+    #         st.session_state.selected_email = emails[0]
+    #     if 'df_scraped' not in st.session_state:
+    #         st.session_state.df_scraped = None
 
-        # Dropdown for environments
-        col1, _ = st.columns([1, 2])
-        with col1:
-            selected_env = st.selectbox("Select an environment", environements, index=0)
+    #     # Dropdown for environments
+    #     col1, _ = st.columns([1, 2])
+    #     with col1:
+    #         selected_env = st.selectbox("Select an environment", environements, index=0)
 
-        # Update selected_email based on environment
-        if selected_env == environements[0]:
-            st.session_state.selected_email = emails[0]
-        else:
-            st.session_state.selected_email = emails[1]
+    #     # Update selected_email based on environment
+    #     if selected_env == environements[0]:
+    #         st.session_state.selected_email = emails[0]
+    #     else:
+    #         st.session_state.selected_email = emails[1]
 
-        # Input field
-        project_url = st.text_input("# Fetch parallel Tests results from URL")
+    #     # Input field
+    #     project_url = st.text_input("# Fetch parallel Tests results from URL")
 
-        # Run scraper
-        if st.button("Run Scraper") and project_url:
-            scrapper.scrap_boostresults(project_url)
+    #     # Run scraper
+    #     if st.button("Run Scraper") and project_url:
+    #         scrapper.scrap_boostresults(project_url)
 
-            if st.session_state.df_scraped is not None:
-                df = st.session_state.df_scraped
-                df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
-                df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
-                df["Niche Size"] = pd.to_numeric(df["Niche Size"], errors='coerce')
-                st.session_state.df_scraped = df  # update cleaned df
+    #         if st.session_state.df_scraped is not None:
+    #             df = st.session_state.df_scraped
+    #             df["Boost MAE (%)"] = pd.to_numeric(df["Boost MAE (%)"], errors='coerce')
+    #             df["Training MAE (%)"] = pd.to_numeric(df["Training MAE (%)"], errors='coerce')
+    #             df["Niche Size"] = pd.to_numeric(df["Niche Size"], errors='coerce')
+    #             st.session_state.df_scraped = df  # update cleaned df
 
-        # If scraped data is available
-        if st.session_state.df_scraped is not None:
-            df = st.session_state.df_scraped
+    #     # If scraped data is available
+    #     if st.session_state.df_scraped is not None:
+    #         df = st.session_state.df_scraped
 
-            if df.shape[0] > 2:
-                st.markdown("### Filter Metrics by Niche Size")
+    #         if df.shape[0] > 2:
+    #             st.markdown("### Filter Metrics by Niche Size")
 
-                min_val = int(df["Niche Size"].min())
-                max_val = int(df["Niche Size"].max())
+    #             min_val = int(df["Niche Size"].min())
+    #             max_val = int(df["Niche Size"].max())
 
-                min_size, max_size = st.slider(
-                    "Select Niche Size Range",
-                    min_value=min_val,
-                    max_value=max_val,
-                    value=(min_val, max_val),
-                    step=1,
-                    key="niche_slider"
-                )
+    #             min_size, max_size = st.slider(
+    #                 "Select Niche Size Range",
+    #                 min_value=min_val,
+    #                 max_value=max_val,
+    #                 value=(min_val, max_val),
+    #                 step=1,
+    #                 key="niche_slider"
+    #             )
 
-                filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
+    #             filtered = df[(df["Niche Size"] >= min_size) & (df["Niche Size"] <= max_size)]
 
-                if not filtered.empty:
-                    st.markdown("### Filtered Scraped Data")
-                    st.dataframe(filtered)
+    #             if not filtered.empty:
+    #                 st.markdown("### Filtered Scraped Data")
+    #                 st.dataframe(filtered)
 
-                    boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
-                    avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
+    #                 boost_win_rate = (filtered["Boost MAE (%)"] < filtered["Training MAE (%)"]).mean() * 100
+    #                 avg_added_value = ((filtered["Training MAE (%)"] - filtered["Boost MAE (%)"]) / filtered["Training MAE (%)"]).mean() * 100
 
-                    st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
-                    st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
+    #                 st.markdown(f"**Boost Win Rate:** {boost_win_rate:.2f}%")
+    #                 st.markdown(f"**Average Added Value:** {avg_added_value:.2f}%")
 
-                    st.markdown("</div>", unsafe_allow_html=True)
-                else:
-                    st.warning("No data in selected range.")
-            else:
-                st.markdown("### Full Scraped Data")
-                st.dataframe(df)
+    #                 st.markdown("</div>", unsafe_allow_html=True)
+    #             else:
+    #                 st.warning("No data in selected range.")
+    #         else:
+    #             st.markdown("### Full Scraped Data")
+    #             st.dataframe(df)
 
-        # Optional reset
-        if st.button("Clear All"):
-            st.session_state.df_scraped = None
-            st.rerun()
+    #     # Optional reset
+    #     if st.button("Clear All"):
+    #         st.session_state.df_scraped = None
+    #         st.rerun()
 
 try:
     main()
