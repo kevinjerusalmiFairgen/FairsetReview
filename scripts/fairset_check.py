@@ -1083,7 +1083,7 @@ class LogicFunctions:
 
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
-        env = {"df": df, "np": np}
+        env = {"df": df, "np": np, "pd": pd}
         try:
             exec(instruction, env)
             if "df_check" not in env or env["df_check"] is None:
