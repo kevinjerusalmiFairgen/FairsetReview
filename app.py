@@ -26,7 +26,7 @@ def load_file(uploaded_file, japanase_chars=False):
                         temp_path = "temp.sav"
                         with open(temp_path, "wb") as f:
                             f.write(uploaded_file.getvalue())
-                        df = pd.read_spss(temp_path)
+                        df = pd.read_spss(temp_path, convert_categoricals=False)
                         os.remove(temp_path)
                         
                         return df
