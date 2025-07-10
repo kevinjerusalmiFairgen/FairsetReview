@@ -66,7 +66,13 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
 
 
 def main():
-    
+    if "init" not in st.session_state:
+        st.session_state.init = True
+        # optionally add a delay to ensure full sync
+        import time
+        time.sleep(0.5)
+
+    st.write("Session initialized.")
     st.title("Pilot Manager")
 
     with st.sidebar:
