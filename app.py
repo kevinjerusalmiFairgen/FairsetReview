@@ -15,7 +15,7 @@ if APP_ROOT not in sys.path:
     sys.path.insert(0, APP_ROOT)
 
 
-def load_file(uploaded_file, japanase_chars=False):            
+def load_file(uploaded_file, japanase_chars=False, convert_categoricals = True):
                     if uploaded_file.name.endswith(".csv"):
                         if japanase_chars:
                             return pd.read_csv(uploaded_file, encoding='shift_jis')
@@ -26,7 +26,7 @@ def load_file(uploaded_file, japanase_chars=False):
                         temp_path = "temp.sav"
                         with open(temp_path, "wb") as f:
                             f.write(uploaded_file.getvalue())
-                        df = pd.read_spss(temp_path, convert_categoricals=False)
+                        df = pd.read_spss(temp_path, convert_categoricals=convert_categoricals)
                         os.remove(temp_path)
                         
                         return df
@@ -92,14 +92,14 @@ def main():
         st.markdown("Upload train set, fairset and prior file")
         japanase_chars = st.checkbox("Japanese survey")
         japanase_chars_fairset = st.checkbox("Japanese fairset")
-
+        convert_categoricals = st.checkbox("Convert categoricals", value=False)
 
         if st.button("Run Analysis"):
             if train_file is None or fairset_file is None or priorfile_file is None:
                 st.warning("Upload train, fairset and prior file before running analysis!")
             if train_file is not None and fairset_file is not None and priorfile_file is not None:
-                train = load_file(train_file, japanase_chars)
-                fairset = load_file(fairset_file, japanase_chars_fairset)
+                train = load_file(train_file, japanase_chars, convert_categoricals)
+                fairset = load_file(fairset_file, japanase_chars_fairset, convert_categoricals)
                 priorfile = load_file(priorfile_file)
 
                 # Check columns are all right
