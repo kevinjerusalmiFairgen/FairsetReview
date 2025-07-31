@@ -768,7 +768,8 @@ class LogicFunctions:
             (train[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0", "non"))))
             & (
                 ~train[cols]
-                .applymap(lambda x: str(x).lower().startswith(("no", "0", "non")) or str(x) in ["", " ", "nan"])
+                .astype(str)  # <-- Add this
+                .applymap(lambda x: x.lower().startswith(("no", "0", "non")) or x in ["", " ", "nan"])
                 .all(axis=1)
             )
             ][cols + [nota]]
@@ -778,7 +779,8 @@ class LogicFunctions:
                 (fairset[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0", "non"))))
                 & (
                     ~fairset[cols]
-                    .applymap(lambda x: str(x).lower().startswith(("no", "0", "non")) or str(x) in ["", " ", "nan"])
+                    .astype(str)  # <-- Add this
+                    .applymap(lambda x: x.lower().startswith(("no", "0", "non")) or x in ["", " ", "nan"])
                     .all(axis=1)
                 )
                 ][cols + [nota]]
