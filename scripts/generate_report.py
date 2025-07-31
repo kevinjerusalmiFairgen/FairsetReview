@@ -191,7 +191,7 @@ def export_to_excel(df, filename="outputs/template.xlsx", fairset_len=None):
     summary_col = start_col - 1 + last_visible_col_index
     worksheet.write(summary_row, summary_col, f"Number of rows affected: {total_index_count}", summary_format)
     if fairset_len:
-        worksheet.write(summary_row, summary_col, f"Percentage of rows affected: {round(total_index_count / fairset_len, 2)}", summary_format)
+        worksheet.write(summary_row_1, summary_col, f"Percentage of rows affected: {round(total_index_count / fairset_len, 2)}", summary_format)
 
     # === Hide "Wrong rows's index" column ===
     wrong_index_col = df.columns.get_loc("Wrong rows's index")

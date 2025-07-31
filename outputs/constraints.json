@@ -1,86 +1,133 @@
 {
     "BF_SS": [
         [
-            "QD1",
-            "QD2A",
-            "Recoding countries into postal code - One to Many relationship",
-            "dynamic_piping",
-            true
-        ],
-        [
-            "xSHOWBEHAVIORAL",
-            "QBV3",
-            "Block Behavioral questions depending on xSHOWBEHAVIORAL",
+            "S15",
+            "S16",
+            "ASK PHYSICIANS ONLY (S15=1)",
             "block_force",
             true
         ],
         [
-            "xSHOWBEHAVIORAL",
-            "QBV4",
-            "Block Behavioral questions depending on xSHOWBEHAVIORAL",
+            "S15",
+            "S17",
+            "ASK NP/PA ONLY (S15=2 OR 3)",
             "block_force",
             true
         ],
         [
-            "OrQNR5r3",
-            "QNR5r20oe",
-            "Other",
+            "S15",
+            "D15r2a",
+            "ASK NP/PA ONLY (S15=2 OR 3)",
             "block_force",
             true
         ],
         [
-            "QD10",
-            "O_QD10",
-            "Other",
+            "S16",
+            "D15r2b",
+            "ASK Psychs ONLY (S16=5)",
+            "block_force",
+            true
+        ],
+        [
+            "S15",
+            "hD15r2a",
+            "ASK NP/PA ONLY (S15=2 OR 3)",
+            "block_force",
+            true
+        ],
+        [
+            "S16",
+            "hD15r2b",
+            "ASK Psychs ONLY (S16=5)",
+            "block_force",
+            true
+        ],
+        [
+            "T45r1",
+            "T46r1",
+            "answer if t45>0",
+            "block_force",
+            true
+        ],
+        [
+            "T45r2",
+            "T46r1",
+            "answer if t45>0",
+            "block_force",
+            true
+        ],
+        [
+            "R15",
+            "R20",
+            "Skip if R15=5",
+            "block_force",
+            true
+        ],
+        [
+            "R15",
+            "R21",
+            "Skip if R15=5",
+            "block_force",
+            true
+        ],
+        [
+            "S45r4c1",
+            "Z05",
+            "show if S45r4c1 >0",
+            "block_force",
+            true
+        ],
+        [
+            "S45r4c1",
+            "Z10",
+            "show if S45r4c1 >0",
+            "block_force",
+            true
+        ],
+        [
+            "S45r4c1",
+            "Z15",
+            "show if S45r4c1 >0",
             "block_force",
             true
         ]
     ],
     "BF_SM": [
         [
-            "xSHOWBEHAVIORAL",
+            "S15",
             [
-                "QBV1r1",
-                "QBV1r2",
-                "QBV1r3",
-                "QBV1r4",
-                "QBV1r5"
+                "S55r1",
+                "S55r2"
             ],
-            "Block Behavioral questions depending on xSHOWBEHAVIORAL",
+            "ASK NP/PA ONLY (S15=2 OR 3)",
             "block_force",
             true
         ],
         [
-            "xSHOWBEHAVIORAL",
+            "S45r4c1",
             [
-                "QBV2r1",
-                "QBV2r2",
-                "QBV2r3",
-                "QBV2r4",
-                "QBV2r5",
-                "QBV2r6"
+                "Z20r1",
+                "Z20r2",
+                "Z20r3",
+                "Z20r4",
+                "Z20r98",
+                "Z20r99"
             ],
-            "Block Behavioral questions depending on xSHOWBEHAVIORAL",
+            "show if S45r4c1 >0",
             "block_force",
             true
         ],
         [
-            "QNR6",
+            "S45r4c1",
             [
-                "QNR7r1",
-                "QNR7r2",
-                "QNR7r12",
-                "QNR7r3",
-                "QNR7r4",
-                "QNR7r5",
-                "QNR7r6",
-                "QNR7r7",
-                "QNR7r8",
-                "QNR7r9",
-                "QNR7r10",
-                "QNR7r11"
+                "Z25r1",
+                "Z25r2",
+                "Z25r3",
+                "Z25r4",
+                "Z25r5",
+                "Z25r6"
             ],
-            "IF YES IN Q6",
+            "show if S45r4c1 >0",
             "block_force",
             true
         ]
@@ -91,24 +138,310 @@
     "count": [],
     "recodings": [
         [
-            "QD3",
-            "XQD4",
+            "S16",
+            "hClassify",
+            "SS",
+            "Recode NP/PA",
+            true
+        ],
+        [
+            "S17",
+            "hClassifyNPPA",
+            "SS",
+            "Recode NP/PA",
+            true
+        ],
+        [
+            [
+                "S45r1c1",
+                "S45r2c1",
+                "S45r3c1",
+                "S45r4c1",
+                "S45r5c1",
+                "S45r6c1",
+                "S45r7c1",
+                "S45r8c1",
+                "S45r9c1"
+            ],
+            "hTermS45",
             "MS",
-            "Recoding age and sex into groups",
+            "Unknown hidden variable",
+            true
+        ],
+        [
+            "D15r1",
+            "hD15r1",
+            "SS",
+            "Recode single to single",
+            true
+        ],
+        [
+            "D15r2a",
+            "hD15r2a",
+            "SS",
+            "Recode single to single",
+            true
+        ],
+        [
+            "D15r2b",
+            "hD15r2b",
+            "SS",
+            "Recode single to single",
+            true
+        ],
+        [
+            "D15r3",
+            "hD15r3",
+            "SS",
+            "Recode single to single",
+            true
+        ],
+        [
+            "D15r4",
+            "hD15r4",
+            "SS",
+            "Recode single to single",
+            true
+        ],
+        [
+            "D15r5",
+            "hD15r5",
+            "SS",
+            "Recode single to single",
             true
         ]
     ],
     "NOTAs": [
         [
             [
-                "QNR1r1",
-                "QNR1r2",
-                "QNR1r3",
-                "QNR1r4",
-                "QNR1r5",
-                "QNR1r6"
+                "S16",
+                "S16r91oe"
             ],
-            "QNR1r6",
+            "S16r91oe",
+            [],
+            true
+        ],
+        [
+            [
+                "S17",
+                "S17r91oe"
+            ],
+            "S17r91oe",
+            [],
+            true
+        ],
+        [
+            [
+                "S30r1",
+                "S30r2",
+                "S30r3",
+                "S30r4",
+                "S30r5",
+                "S30r6",
+                "S30r7",
+                "S30r8",
+                "S30r9",
+                "S30r10",
+                "S30r95",
+                "S30r95oe"
+            ],
+            "S30r95oe",
+            [],
+            true
+        ],
+        [
+            [
+                "P10r1",
+                "P10r2",
+                "P10r3",
+                "P10r4",
+                "P10r5",
+                "P10r6",
+                "P10r7",
+                "P10r8",
+                "P10r9",
+                "P10r97",
+                "P10r98"
+            ],
+            "P10r98",
+            [],
+            true
+        ],
+        [
+            [
+                "P20r1",
+                "P20r2",
+                "P20r3",
+                "P20r4",
+                "P20r5",
+                "P20r6",
+                "P20r98"
+            ],
+            "P20r98",
+            [],
+            true
+        ],
+        [
+            [
+                "T30r1",
+                "T30r2",
+                "T30r3",
+                "T30r4",
+                "T30r5",
+                "T30r6",
+                "T30r7",
+                "T30r8",
+                "T30r98"
+            ],
+            "T30r98",
+            [],
+            true
+        ],
+        [
+            [
+                "A05r1",
+                "A05r2",
+                "A05r3",
+                "A05r4",
+                "A05r5",
+                "A05r6",
+                "A05r7",
+                "A05r8",
+                "A05r9",
+                "A05r10"
+            ],
+            "noanswerA05_r99",
+            [],
+            true
+        ],
+        [
+            [
+                "A06r1",
+                "A06r2",
+                "A06r3",
+                "A06r4",
+                "A06r5",
+                "A06r6",
+                "A06r7",
+                "A06r8",
+                "A06r9",
+                "A06r10"
+            ],
+            "noanswerA06_r99",
+            [],
+            true
+        ],
+        [
+            [
+                "F20r1",
+                "F20r2",
+                "F20r3",
+                "F20r4",
+                "F20r5",
+                "F20r6",
+                "F20r7",
+                "F20r8",
+                "F20r9",
+                "F20r10",
+                "F20r11",
+                "F20r12",
+                "F20r13",
+                "F20r14",
+                "F20r15",
+                "F20r99",
+                "F20r98"
+            ],
+            "F20r98",
+            [],
+            true
+        ],
+        [
+            [
+                "R25r1",
+                "R25r2",
+                "R25r3",
+                "R25r4",
+                "R25r5",
+                "R25r6",
+                "R25r7",
+                "R25r8",
+                "R25r9",
+                "R25r10",
+                "R25r11",
+                "R25r12",
+                "R25r98"
+            ],
+            "R25r98",
+            [],
+            true
+        ],
+        [
+            [
+                "I05r1",
+                "I05r2",
+                "I05r3",
+                "I05r4",
+                "I05r5",
+                "I05r6",
+                "I05r7",
+                "I05r8",
+                "I05r9",
+                "I05r10",
+                "I05r11",
+                "I05r12",
+                "I05r13",
+                "I05r14",
+                "I05r15",
+                "I05r16",
+                "I05r17",
+                "I05r18",
+                "I05r19",
+                "I05r98"
+            ],
+            "I05r98",
+            [],
+            true
+        ],
+        [
+            [
+                "I06r1",
+                "I06r2",
+                "I06r3",
+                "I06r4",
+                "I06r5",
+                "I06r6",
+                "I06r7",
+                "I06r8",
+                "I06r9",
+                "I06r10",
+                "I06r11",
+                "I06r12",
+                "I06r13",
+                "I06r14",
+                "I06r15",
+                "I06r16",
+                "I06r17",
+                "I06r18",
+                "I06r19",
+                "I06r98"
+            ],
+            "I06r98",
+            [],
+            true
+        ],
+        [
+            [
+                "I20r1",
+                "I20r2",
+                "I20r3",
+                "I20r4",
+                "I20r5",
+                "I20r6",
+                "I20r7",
+                "I20r8",
+                "I20r98"
+            ],
+            "I20r98",
             [],
             true
         ]
@@ -117,9 +450,483 @@
     "parallel piping": [],
     "custom": [
         [
+            "Sum",
+            NaN,
+            "df_check = df[df[['S20r1', 'S20r2']].sum(axis=1) !=100 ][['S20r1', 'S20r2']]",
+            true
+        ],
+        [
+            "Sum",
+            NaN,
+            "df_check = df[df[['S30r1', 'S30r2', 'S30r3', 'S30r4', 'S30r5', 'S30r6', 'S30r7', 'S30r8', 'S30r9', 'S30r10', 'S30r95']].sum(axis=1) !=100 ][['S30r1', 'S30r2', 'S30r3', 'S30r4', 'S30r5', 'S30r6', 'S30r7', 'S30r8', 'S30r9', 'S30r10', 'S30r95']]",
+            true
+        ],
+        [
+            "Sum",
+            "Sum must be 100 or skipped",
+            "df_check = df[df[['S50r1c1', 'S50r2c1', 'S50r3c1']].sum(axis=1) !=100 ][['S50r1c1', 'S50r2c1', 'S50r3c1']]\n",
+            true
+        ],
+        [
+            "Sum",
+            "Sum must be 100 or skipped",
+            "df_check = df[df[['S50r1c2', 'S50r2c2', 'S50r3c2']].sum(axis=1) !=100 ][['S50r1c2', 'S50r2c2', 'S50r3c2']]\n",
+            true
+        ],
+        [
+            "Sum",
+            NaN,
+            "df_check = df[(df[['S55r1', 'S55r2']].sum(1, skipna=False) != 100) & ~df[['S55r1', 'S55r2']].isna().all(1)][['S55r1', 'S55r2']]",
+            true
+        ],
+        [
+            "Sum",
+            "Sum not valid in dataset",
+            "df_check = df[(df[['S60r1', 'S60r2', 'S60r3', 'S60r4', 'S60r5', 'S60r6', 'S60r7', 'S60r8', 'S60r98', 'S60r99']].sum(1, skipna=False) < 100)][['S60r1', 'S60r2', 'S60r3', 'S60r4', 'S60r5', 'S60r6', 'S60r7', 'S60r8', 'S60r98', 'S60r99']]",
+            true
+        ],
+        [
+            "Sum",
+            "Sum not valid in dataset",
+            "df_check = df[(df[['S61r1', 'S61r2', 'S61r3', 'S61r4', 'S61r98', 'S61r99']].sum(1, skipna=False) < 100)][['S61r1', 'S61r2', 'S61r3', 'S61r4', 'S61r98', 'S61r99']]",
+            true
+        ],
+        [
+            "Sum",
+            "Sum must be 100",
+            "df_check = df[(df[['P15r1', 'P15r2']].sum(1) < 100)][['P15r1', 'P15r2']]",
+            true
+        ],
+        [
+            "Parallel Piping",
+            NaN,
+            "df_check = df.loc[df[[f'D30r{i}' for i in range(1,15) if i!=12 and f'D30r{i}' in df.columns and f'D31r{i}' in df.columns]].le(1).where(df[[f'D30r{i}' for i in range(1,15) if i!=12 and f'D30r{i}' in df.columns and f'D31r{i}' in df.columns]].notna()).fillna(True).mask(df[[f'D31r{i}' for i in range(1,15) if i!=12 and f'D30r{i}' in df.columns and f'D31r{i}' in df.columns]].notna(), False).all(axis=1), [col for i in range(1,15) if i!=12 for col in (f'D30r{i}', f'D31r{i}') if f'D30r{i}' in df.columns and f'D31r{i}' in df.columns]]\n",
+            true
+        ],
+        [
             "Block/Force",
-            "ONLY ASK IF JUST SELECTED 2 OR 3 IN QNR2",
-            "df_check = df[~df[['QNR1r1','QNR1r4','QNR1r5']].apply(lambda x: x.str.startswith('NO', na=False)).all(1) & df['QNR2'].notna()][['QNR1r1','QNR1r4','QNR1r5','QNR2']]",
+            "ASK PCPs AND NP/PAs ONLY (S15=2 or 3 OR s16 =2)",
+            "df_check = df[~(df[\"S15\"].isin([2, 3]) | df[\"S16\"].isin([1, 2, 3, 4])) & df[\"T10\"].notna()][[\"S15\", \"S16\", \"T10\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "ASK PCPs AND NP/PAs ONLY (S15=2 or 3 OR s16 =2)",
+            "df_check = df[~(df[\"S15\"].isin([2, 3]) | df[\"S16\"].isin([1, 2, 3, 4])) & df[\"T11\"].notna()][[\"S15\", \"S16\", \"T11\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "ASK PCPs AND NP/PAs ONLY (S15=2 or 3 OR s16 =2)",
+            "df_check = df[~(df[\"S15\"].isin([2, 3]) | df[\"S16\"].isin([1, 2, 3, 4])) & df[\"T11\"].notna()][[\"S15\", \"S16\", \"T11\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "ASK PCPs AND NP/PAs ONLY, BUT SKIP IF T10 AND T11 = 6",
+            "df_check = df[(df[\"S15\"].notna() & df[\"S16\"].notna() & ~df[\"S15\"].isin([2, 3]) & ~df[\"S16\"].isin([1, 2, 3, 4]) & ~((df[\"S15\"] == 6) & (df[\"S16\"] == 6)) & df[\"T12r1\"].notna())][[\"S15\", \"S16\", \"T10\", \"T11\", \"T12r1\"]]\n",
+            true
+        ],
+        [
+            "Block/Force",
+            "ASK PCPs AND NP/PAs ONLY, BUT SKIP IF T10 AND T11 = 6",
+            "df_check = df[(df[\"S15\"].notna() & df[\"S16\"].notna() & ~df[\"S15\"].isin([2, 3]) & ~df[\"S16\"].isin([1, 2, 3, 4]) & ~((df[\"S15\"] == 6) & (df[\"S16\"] == 6)) & df[\"T12r2\"].notna())][[\"S15\", \"S16\", \"T10\", \"T11\", \"T12r2\"]]\n",
+            true
+        ],
+        [
+            "Count",
+            "Select 3 (not respected in train)",
+            "df_check = df[\ndf[['T38r1', 'T38r2', 'T38r3', 'T38r4', 'T38r5', 'T38r6', 'T38r7', 'T38r8', 'T38r9']].sum(axis=1) !=3\n][['T38r1', 'T38r2', 'T38r3', 'T38r4', 'T38r5', 'T38r6', 'T38r7', 'T38r8', 'T38r9']]",
+            true
+        ],
+        [
+            "Parallel Piping",
+            "Ask if  A10>1",
+            "df_check = df.loc[(((df[[f\"A10r{i}\" for i in range(1,7) if f\"A10r{i}\" in df.columns]] <= 1) | df[[f\"A10r{i}\" for i in range(1,7) if f\"A10r{i}\" in df.columns]].isna()) & df[[f\"A13r{i}\" for i in range(1,7) if f\"A13r{i}\" in df.columns]].notna()).any(axis=1), [col for i in range(1,7) for col in (f\"A10r{i}\", f\"A13r{i}\") if f\"A10r{i}\" in df.columns and f\"A13r{i}\" in df.columns]]",
+            true
+        ],
+        [
+            "Sum",
+            NaN,
+            "df_check = df[df[[\"A13r1\", \"A13r2\", \"A13r3\", \"A13r4\", \"A13r5\", \"A13r6\", \"A13r98\"]].sum(axis=1, skipna=True) != 100][[\"A13r1\", \"A13r2\", \"A13r3\", \"A13r4\", \"A13r5\", \"A13r6\", \"A13r98\"]]",
+            true
+        ],
+        [
+            "Sum",
+            NaN,
+            "df_check = df[(df[[\"A14r1\", \"A14r2\", \"A14r3\", \"A14r4\", \"A14r5\", \"A14r6\", \"A14r7\", \"A14r8\", \"A14r9\", \"A14r98\"]].notna().any(axis=1)) & (df[[\"A14r1\", \"A14r2\", \"A14r3\", \"A14r4\", \"A14r5\", \"A14r6\", \"A14r7\", \"A14r8\", \"A14r9\", \"A14r98\"]].sum(axis=1, skipna=True) != 100)][[\"A14r1\", \"A14r2\", \"A14r3\", \"A14r4\", \"A14r5\", \"A14r6\", \"A14r7\", \"A14r8\", \"A14r9\", \"A14r98\"]]",
+            true
+        ],
+        [
+            "Parallel Piping",
+            "Ask if  A11>1",
+            "df_check = df.loc[(((df[[f\"A14r{i}\" for i in range(1,10) if f\"A14r{i}\" in df.columns]] <= 1) | df[[f\"A14r{i}\" for i in range(1,10) if f\"A14r{i}\" in df.columns]].isna()) & df[[f\"A11r{i}\" for i in range(1,10) if f\"A11r{i}\" in df.columns]].notna()).any(axis=1), [col for i in range(1,10) for col in (f\"A14r{i}\", f\"A11r{i}\") if f\"A14r{i}\" in df.columns and f\"A11r{i}\" in df.columns]]",
+            true
+        ],
+        [
+            "Parallel Piping",
+            "Ask if A10 or A11>1 (not respected in train)",
+            "df_check = df[\npd.concat([((df[f\"A10r{i}\"] <= 1) | df[f\"A10r{i}\"].isna()) & ((df[f\"A11r{i}\"] <= 1) | df[f\"A11r{i}\"].isna()) & df[f\"A15r{i}\"].notna()\nfor i in range(1, 10)\nif f\"A10r{i}\" in df.columns and f\"A11r{i}\" in df.columns and f\"A15r{i}\" in df.columns], axis=1).any(axis=1)\n][[col for i in range(1, 10) for col in (f\"A10r{i}\", f\"A11r{i}\", f\"A15r{i}\")\nif f\"A10r{i}\" in df.columns and f\"A11r{i}\" in df.columns and f\"A15r{i}\" in df.columns]]",
+            true
+        ],
+        [
+            "Parallel Piping",
+            "Show if I05=1",
+            "df_check = df[\npd.concat([\n(df[f\"I05r{i}\"] != 1) & df[f\"I06r{i}\"].notna()\nfor i in range(1, 20)\nif f\"I05r{i}\" in df.columns and f\"I06r{i}\" in df.columns\n], axis=1).any(axis=1)\n][[col for i in range(1, 20) for col in (f\"I05r{i}\", f\"I06r{i}\") if f\"I05r{i}\" in df.columns and f\"I06r{i}\" in df.columns]]",
+            true
+        ],
+        [
+            "Sum",
+            "Sum must be 100",
+            "df_check = df[df[['G10r1c1', 'G10r2c1', 'G10r3c1', 'G10r4c1', 'G10r5c1', 'G10r6c1', 'G10r97c1', 'G10r98c1']].sum(axis=1) !=100][['G10r1c1', 'G10r2c1', 'G10r3c1', 'G10r4c1', 'G10r5c1', 'G10r6c1', 'G10r97c1', 'G10r98c1']]\n",
+            true
+        ],
+        [
+            "Sum",
+            "Sum must be 100",
+            "df_check = df[df[['G10r1c2', 'G10r2c2', 'G10r3c2', 'G10r4c2', 'G10r5c2', 'G10r6c2', 'G10r97c2', 'G10r98c2']].sum(axis=1) !=100][['G10r1c2', 'G10r2c2', 'G10r3c2', 'G10r4c2', 'G10r5c2', 'G10r6c2', 'G10r97c2', 'G10r98c2']]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr1_l'], row['A20_normr1_r']) <= row['A20r1'] <= max(row['A20_normr1_l'], row['A20_normr1_r']), axis=1)][[\"A20r1\", \"A20_normr1_l\", \"A20_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr2_l'], row['A20_normr2_r']) <= row['A20r2'] <= max(row['A20_normr2_l'], row['A20_normr2_r']), axis=1)][[\"A20r2\", \"A20_normr2_l\", \"A20_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T55_normr4_l'], row['T55_normr4_r']) <= row['T55r4'] <= max(row['T55_normr4_l'], row['T55_normr4_r']), axis=1)][[\"T55r4\", \"T55_normr4_l\", \"T55_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T55_normr3_l'], row['T55_normr3_r']) <= row['T55r3'] <= max(row['T55_normr3_l'], row['T55_normr3_r']), axis=1)][[\"T55r3\", \"T55_normr3_l\", \"T55_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T55_normr2_l'], row['T55_normr2_r']) <= row['T55r2'] <= max(row['T55_normr2_l'], row['T55_normr2_r']), axis=1)][[\"T55r2\", \"T55_normr2_l\", \"T55_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T55_normr1_l'], row['T55_normr1_r']) <= row['T55r1'] <= max(row['T55_normr1_l'], row['T55_normr1_r']), axis=1)][[\"T55r1\", \"T55_normr1_l\", \"T55_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr8_l'], row['T50_normr8_r']) <= row['T50r8'] <= max(row['T50_normr8_l'], row['T50_normr8_r']), axis=1)][[\"T50r8\", \"T50_normr8_l\", \"T50_normr8_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr7_l'], row['T50_normr7_r']) <= row['T50r7'] <= max(row['T50_normr7_l'], row['T50_normr7_r']), axis=1)][[\"T50r7\", \"T50_normr7_l\", \"T50_normr7_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr6_l'], row['T50_normr6_r']) <= row['T50r6'] <= max(row['T50_normr6_l'], row['T50_normr6_r']), axis=1)][[\"T50r6\", \"T50_normr6_l\", \"T50_normr6_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr5_l'], row['T50_normr5_r']) <= row['T50r5'] <= max(row['T50_normr5_l'], row['T50_normr5_r']), axis=1)][[\"T50r5\", \"T50_normr5_l\", \"T50_normr5_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr4_l'], row['T50_normr4_r']) <= row['T50r4'] <= max(row['T50_normr4_l'], row['T50_normr4_r']), axis=1)][[\"T50r4\", \"T50_normr4_l\", \"T50_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr3_l'], row['T50_normr3_r']) <= row['T50r3'] <= max(row['T50_normr3_l'], row['T50_normr3_r']), axis=1)][[\"T50r3\", \"T50_normr3_l\", \"T50_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr2_l'], row['T50_normr2_r']) <= row['T50r2'] <= max(row['T50_normr2_l'], row['T50_normr2_r']), axis=1)][[\"T50r2\", \"T50_normr2_l\", \"T50_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T50_normr1_l'], row['T50_normr1_r']) <= row['T50r1'] <= max(row['T50_normr1_l'], row['T50_normr1_r']), axis=1)][[\"T50r1\", \"T50_normr1_l\", \"T50_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr9_l'], row['T40_normr9_r']) <= row['T40r9'] <= max(row['T40_normr9_l'], row['T40_normr9_r']), axis=1)][[\"T40r9\", \"T40_normr9_l\", \"T40_normr9_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr8_l'], row['T40_normr8_r']) <= row['T40r8'] <= max(row['T40_normr8_l'], row['T40_normr8_r']), axis=1)][[\"T40r8\", \"T40_normr8_l\", \"T40_normr8_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr7_l'], row['T40_normr7_r']) <= row['T40r7'] <= max(row['T40_normr7_l'], row['T40_normr7_r']), axis=1)][[\"T40r7\", \"T40_normr7_l\", \"T40_normr7_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr6_l'], row['T40_normr6_r']) <= row['T40r6'] <= max(row['T40_normr6_l'], row['T40_normr6_r']), axis=1)][[\"T40r6\", \"T40_normr6_l\", \"T40_normr6_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr5_l'], row['T40_normr5_r']) <= row['T40r5'] <= max(row['T40_normr5_l'], row['T40_normr5_r']), axis=1)][[\"T40r5\", \"T40_normr5_l\", \"T40_normr5_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr4_l'], row['T40_normr4_r']) <= row['T40r4'] <= max(row['T40_normr4_l'], row['T40_normr4_r']), axis=1)][[\"T40r4\", \"T40_normr4_l\", \"T40_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr3_l'], row['T40_normr3_r']) <= row['T40r3'] <= max(row['T40_normr3_l'], row['T40_normr3_r']), axis=1)][[\"T40r3\", \"T40_normr3_l\", \"T40_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr2_l'], row['T40_normr2_r']) <= row['T40r2'] <= max(row['T40_normr2_l'], row['T40_normr2_r']), axis=1)][[\"T40r2\", \"T40_normr2_l\", \"T40_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr10_l'], row['T40_normr10_r']) <= row['T40r10'] <= max(row['T40_normr10_l'], row['T40_normr10_r']), axis=1)][[\"T40r10\", \"T40_normr10_l\", \"T40_normr10_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T40_normr1_l'], row['T40_normr1_r']) <= row['T40r1'] <= max(row['T40_normr1_l'], row['T40_normr1_r']), axis=1)][[\"T40r1\", \"T40_normr1_l\", \"T40_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr8_l'], row['T25_normr8_r']) <= row['T25r8'] <= max(row['T25_normr8_l'], row['T25_normr8_r']), axis=1)][[\"T25r8\", \"T25_normr8_l\", \"T25_normr8_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr7_l'], row['T25_normr7_r']) <= row['T25r7'] <= max(row['T25_normr7_l'], row['T25_normr7_r']), axis=1)][[\"T25r7\", \"T25_normr7_l\", \"T25_normr7_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr6_l'], row['T25_normr6_r']) <= row['T25r6'] <= max(row['T25_normr6_l'], row['T25_normr6_r']), axis=1)][[\"T25r6\", \"T25_normr6_l\", \"T25_normr6_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr5_l'], row['T25_normr5_r']) <= row['T25r5'] <= max(row['T25_normr5_l'], row['T25_normr5_r']), axis=1)][[\"T25r5\", \"T25_normr5_l\", \"T25_normr5_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr4_l'], row['T25_normr4_r']) <= row['T25r4'] <= max(row['T25_normr4_l'], row['T25_normr4_r']), axis=1)][[\"T25r4\", \"T25_normr4_l\", \"T25_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr3_l'], row['T25_normr3_r']) <= row['T25r3'] <= max(row['T25_normr3_l'], row['T25_normr3_r']), axis=1)][[\"T25r3\", \"T25_normr3_l\", \"T25_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr2_l'], row['T25_normr2_r']) <= row['T25r2'] <= max(row['T25_normr2_l'], row['T25_normr2_r']), axis=1)][[\"T25r2\", \"T25_normr2_l\", \"T25_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['T25_normr1_l'], row['T25_normr1_r']) <= row['T25r1'] <= max(row['T25_normr1_l'], row['T25_normr1_r']), axis=1)][[\"T25r1\", \"T25_normr1_l\", \"T25_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['I15_normr4_l'], row['I15_normr4_r']) <= row['I15r4'] <= max(row['I15_normr4_l'], row['I15_normr4_r']), axis=1)][[\"I15r4\", \"I15_normr4_l\", \"I15_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['I15_normr3_l'], row['I15_normr3_r']) <= row['I15r3'] <= max(row['I15_normr3_l'], row['I15_normr3_r']), axis=1)][[\"I15r3\", \"I15_normr3_l\", \"I15_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['I15_normr2_l'], row['I15_normr2_r']) <= row['I15r2'] <= max(row['I15_normr2_l'], row['I15_normr2_r']), axis=1)][[\"I15r2\", \"I15_normr2_l\", \"I15_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['I15_normr1_l'], row['I15_normr1_r']) <= row['I15r1'] <= max(row['I15_normr1_l'], row['I15_normr1_r']), axis=1)][[\"I15r1\", \"I15_normr1_l\", \"I15_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['G05_normr6_l'], row['G05_normr6_r']) <= row['G05r6'] <= max(row['G05_normr6_l'], row['G05_normr6_r']), axis=1)][[\"G05r6\", \"G05_normr6_l\", \"G05_normr6_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['G05_normr5_l'], row['G05_normr5_r']) <= row['G05r5'] <= max(row['G05_normr5_l'], row['G05_normr5_r']), axis=1)][[\"G05r5\", \"G05_normr5_l\", \"G05_normr5_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['G05_normr4_l'], row['G05_normr4_r']) <= row['G05r4'] <= max(row['G05_normr4_l'], row['G05_normr4_r']), axis=1)][[\"G05r4\", \"G05_normr4_l\", \"G05_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['G05_normr3_l'], row['G05_normr3_r']) <= row['G05r3'] <= max(row['G05_normr3_l'], row['G05_normr3_r']), axis=1)][[\"G05r3\", \"G05_normr3_l\", \"G05_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['G05_normr2_l'], row['G05_normr2_r']) <= row['G05r2'] <= max(row['G05_normr2_l'], row['G05_normr2_r']), axis=1)][[\"G05r2\", \"G05_normr2_l\", \"G05_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['G05_normr1_l'], row['G05_normr1_r']) <= row['G05r1'] <= max(row['G05_normr1_l'], row['G05_normr1_r']), axis=1)][[\"G05r1\", \"G05_normr1_l\", \"G05_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['F10_normr3_l'], row['F10_normr3_r']) <= row['F10r3'] <= max(row['F10_normr3_l'], row['F10_normr3_r']), axis=1)][[\"F10r3\", \"F10_normr3_l\", \"F10_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['F10_normr2_l'], row['F10_normr2_r']) <= row['F10r2'] <= max(row['F10_normr2_l'], row['F10_normr2_r']), axis=1)][[\"F10r2\", \"F10_normr2_l\", \"F10_normr2_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['F10_normr1_l'], row['F10_normr1_r']) <= row['F10r1'] <= max(row['F10_normr1_l'], row['F10_normr1_r']), axis=1)][[\"F10r1\", \"F10_normr1_l\", \"F10_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['D15_normr5_l'], row['D15_normr5_r']) <= row['D15r5'] <= max(row['D15_normr5_l'], row['D15_normr5_r']), axis=1)][[\"D15r5\", \"D15_normr5_l\", \"D15_normr5_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['D15_normr4_l'], row['D15_normr4_r']) <= row['D15r4'] <= max(row['D15_normr4_l'], row['D15_normr4_r']), axis=1)][[\"D15r4\", \"D15_normr4_l\", \"D15_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['D15_normr3_l'], row['D15_normr3_r']) <= row['D15r3'] <= max(row['D15_normr3_l'], row['D15_normr3_r']), axis=1)][[\"D15r3\", \"D15_normr3_l\", \"D15_normr3_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['D15_normr2b_l'], row['D15_normr2b_r']) <= row['D15r2b'] <= max(row['D15_normr2b_l'], row['D15_normr2b_r']), axis=1)][[\"D15r2b\", \"D15_normr2b_l\", \"D15_normr2b_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['D15_normr2a_l'], row['D15_normr2a_r']) <= row['D15r2a'] <= max(row['D15_normr2a_l'], row['D15_normr2a_r']), axis=1)][[\"D15r2a\", \"D15_normr2a_l\", \"D15_normr2a_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['D15_normr1_l'], row['D15_normr1_r']) <= row['D15r1'] <= max(row['D15_normr1_l'], row['D15_normr1_r']), axis=1)][[\"D15r1\", \"D15_normr1_l\", \"D15_normr1_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr8_l'], row['A20_normr8_r']) <= row['A20r8'] <= max(row['A20_normr8_l'], row['A20_normr8_r']), axis=1)][[\"A20r8\", \"A20_normr8_l\", \"A20_normr8_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr7_l'], row['A20_normr7_r']) <= row['A20r7'] <= max(row['A20_normr7_l'], row['A20_normr7_r']), axis=1)][[\"A20r7\", \"A20_normr7_l\", \"A20_normr7_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr6_l'], row['A20_normr6_r']) <= row['A20r6'] <= max(row['A20_normr6_l'], row['A20_normr6_r']), axis=1)][[\"A20r6\", \"A20_normr6_l\", \"A20_normr6_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr5_l'], row['A20_normr5_r']) <= row['A20r5'] <= max(row['A20_normr5_l'], row['A20_normr5_r']), axis=1)][[\"A20r5\", \"A20_normr5_l\", \"A20_normr5_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr4_l'], row['A20_normr4_r']) <= row['A20r4'] <= max(row['A20_normr4_l'], row['A20_normr4_r']), axis=1)][[\"A20r4\", \"A20_normr4_l\", \"A20_normr4_r\"]]",
+            true
+        ],
+        [
+            "Block/Force",
+            "Norm check",
+            "df_check = df[~df.apply(lambda row: min(row['A20_normr3_l'], row['A20_normr3_r']) <= row['A20r3'] <= max(row['A20_normr3_l'], row['A20_normr3_r']), axis=1)][[\"A20r3\", \"A20_normr3_l\", \"A20_normr3_r\"]]",
             true
         ]
     ]

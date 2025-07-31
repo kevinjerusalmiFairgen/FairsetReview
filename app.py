@@ -60,7 +60,7 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
     ## <======= PART 3: Generate report =======>
     path = output_report_path
     df = generate_report.readOuput(path)
-    generate_report.export_to_excel(df, "outputs/template.xlsx")
+    generate_report.export_to_excel(df, "outputs/template.xlsx", fairset_len=fairset.shape[0])
 
     return df
 
