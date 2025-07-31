@@ -91,7 +91,7 @@ def readOuput(path):
     return df[["Logic Type", "Description", "Columns", "Percentage of rows impacted", "Number of impacted rows", "Wrong rows's index", "Supported"]]
 
 
-def export_to_excel(df, filename="outputs/template.xlsx"):
+def export_to_excel(df, filename="outputs/template.xlsx", fairset_len=None):
     workbook = xlsxwriter.Workbook(filename, {'nan_inf_to_errors': True})
     worksheet = workbook.add_worksheet('Table')
 
@@ -184,10 +184,14 @@ def export_to_excel(df, filename="outputs/template.xlsx"):
 
     # === Write summary at bottom-right of last VISIBLE column ===
     summary_row = start_row + len(df) + 2
+    summary_row_1 = start_row + len(df) + 3
+
     visible_cols = [col for col in df.columns if col != "Wrong rows's index"]
     last_visible_col_index = len(visible_cols) - 1
     summary_col = start_col - 1 + last_visible_col_index
     worksheet.write(summary_row, summary_col, f"Number of rows affected: {total_index_count}", summary_format)
+    if fairset_len:
+        worksheet.write(summary_row, summary_col, f"Percentage of rows affected: {round(total_index_count / fairset_len, 2)}", summary_format)
 
     # === Hide "Wrong rows's index" column ===
     wrong_index_col = df.columns.get_loc("Wrong rows's index")
