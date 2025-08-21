@@ -1,937 +1,1887 @@
 {
     "BF_SS": [
         [
-            "REGION_Demographic",
-            "GROSSREG",
-            "Region Grouping",
-            "dynamic_piping",
+            "S_SFProductr8",
+            "S_DataConfirm",
+            "ask if S_SFProductr8=1",
+            "block_force",
             true
         ],
         [
-            "GROSSREG",
-            "Kanton",
-            "Region Grouping",
-            "dynamic_piping",
+            "H_HiddenUserr1",
+            "S_LicenseChoice",
+            "Ask if H_HiddenUserr1 = 0",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            "Q_PromoterPS",
+            "NPS selected r3 in S_ServicesUsed (used SF ProServe)",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c3",
+            "Q_JourneyPerfPSr1",
+            "ask if Q_Journey3Pr1c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c3",
+            "Q_JourneyPerfPSr2",
+            "ask if Q_Journey3Pr2c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c3",
+            "Q_JourneyPerfPSr3",
+            "ask if Q_Journey3Pr3c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c3",
+            "Q_JourneyPerfPSr4",
+            "ask if Q_Journey3Pr4c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c3",
+            "Q_JourneyPerfPSr5",
+            "ask if Q_Journey3Pr5c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c3",
+            "Q_JourneyPerfPSr6",
+            "ask if Q_Journey3Pr6c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c3",
+            "Q_JourneyPerfPSr7",
+            "ask if Q_Journey3Pr7c3 > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            "Q_JourneyPSOE1",
+            "ask if Q_Journey3Pr > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            "Q_JourneyPSOE2",
+            "ask if Q_Journey3Pr > 0 and S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c4",
+            "Q_JourneyPerfGCr1",
+            "ask Q_JourneyPerfGCr1if Q_Journey3Pr1c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c4",
+            "Q_JourneyPerfGCr2",
+            "ask Q_JourneyPerfGCr2if\n  Q_Journey3Pr2c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c4",
+            "Q_JourneyPerfGCr3",
+            "ask Q_JourneyPerfGCr3if\n  Q_Journey3Pr3c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c4",
+            "Q_JourneyPerfGCr4",
+            "ask Q_JourneyPerfGCr4if\n  Q_Journey3Pr4c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c4",
+            "Q_JourneyPerfGCr5",
+            "ask Q_JourneyPerfGCr5if\n  Q_Journey3Pr5c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c4",
+            "Q_JourneyPerfGCr6",
+            "ask Q_JourneyPerfGCr6if\n  Q_Journey3Pr6c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c4",
+            "Q_JourneyPerfGCr7",
+            "ask Q_JourneyPerfGCr7if\n  Q_Journey3Pr7c4>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c5",
+            "Q_JourneyPerfSSr1",
+            "ask Q_JourneyPerfSSr1if Q_Journey3Pr1c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c5",
+            "Q_JourneyPerfSSr2",
+            "ask Q_JourneyPerfSSr2if Q_Journey3Pr2c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c5",
+            "Q_JourneyPerfSSr3",
+            "ask Q_JourneyPerfSSr3if\n  Q_Journey3Pr3c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c5",
+            "Q_JourneyPerfSSr4",
+            "ask Q_JourneyPerfSSr4if\n  Q_Journey3Pr4c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c5",
+            "Q_JourneyPerfSSr5",
+            "ask Q_JourneyPerfSSr5if\n  Q_Journey3Pr5c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c5",
+            "Q_JourneyPerfSSr6",
+            "ask Q_JourneyPerfSSr6if\n  Q_Journey3Pr6c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c5",
+            "Q_JourneyPerfSSr7",
+            "ask Q_JourneyPerfSSr7if\n  Q_Journey3Pr7c5>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c6",
+            "Q_JourneyPerfICr1",
+            "ask Q_JourneyPerfICr1if Q_Journey3Pr1c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c6",
+            "Q_JourneyPerfICr2",
+            "ask Q_JourneyPerfICr2if\n  Q_Journey3Pr2c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c6",
+            "Q_JourneyPerfICr3",
+            "ask Q_JourneyPerfICr3if\n  Q_Journey3Pr3c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c6",
+            "Q_JourneyPerfICr4",
+            "ask Q_JourneyPerfICr4if\n  Q_Journey3Pr4c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c6",
+            "Q_JourneyPerfICr5",
+            "ask Q_JourneyPerfICr5if\n  Q_Journey3Pr5c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c6",
+            "Q_JourneyPerfICr6",
+            "ask Q_JourneyPerfICr6if\n  Q_Journey3Pr6c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c6",
+            "Q_JourneyPerfICr7",
+            "ask Q_JourneyPerfICr7if\n  Q_Journey3Pr7c6>0",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFProductr7",
+            "Q_AFDCInterestr1",
+            "only show if r7 NOT selected in S_SFProduct",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFProductr8",
+            "Q_AFDCInterestr2",
+            "only show if r8 NOT selected in S_SFProduct",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            "Q_MethodPS",
+            "ask if S_ServicesUsedr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "hQuestionMethod_Finalr1",
+            "Q_MethodPS",
+            "ask if hQuestionMethod_Finalr1=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr4",
+            "Q_MethodGC",
+            "ask if S_ServicesUsedr4=1",
+            "block_force",
+            true
+        ],
+        [
+            "hQuestionMethod_Finalr2",
+            "Q_MethodGC",
+            "ask if hQuestionMethod_Finalr2=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr5",
+            "Q_MethodSS",
+            "ask if S_ServicesUsedr5=1",
+            "block_force",
+            true
+        ],
+        [
+            "hQuestionMethod_Finalr3",
+            "Q_MethodSS",
+            "ask if hQuestionMethod_Finalr3=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr6",
+            "Q_MethodIC",
+            "ask if S_ServicesUsedr6=1",
+            "block_force",
+            true
+        ],
+        [
+            "hQuestionMethod_Finalr4",
+            "Q_MethodIC",
+            "ask if hQuestionMethod_Finalr4=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr2",
+            "Q_SPUsed",
+            "Base: selected r2 in S_ServicesUsed",
+            "block_force",
             true
         ]
     ],
-    "BF_SM": [],
-    "BF_MS": [],
-    "BF_MM": [],
+    "BF_SM": [
+        [
+            "S_SFProductr7",
+            [
+                "S_AgentConfirmr1",
+                "S_AgentConfirmr2",
+                "S_AgentConfirmr3",
+                "S_AgentConfirmr4",
+                "S_AgentConfirmr5",
+                "S_AgentConfirmr6",
+                "S_AgentConfirmr7",
+                "S_AgentConfirmr8",
+                "S_AgentConfirmr9"
+            ],
+            "ask if S_SFProductr7=1",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            [
+                "Q_PerformancePSr1",
+                "Q_PerformancePSr2",
+                "Q_PerformancePSr3",
+                "Q_PerformancePSr4",
+                "Q_PerformancePSr5",
+                "Q_PerformancePSr6",
+                "Q_PerformancePSr7",
+                "Q_PerformancePSr8",
+                "Q_PerformancePSr9",
+                "Q_PerformancePSr10",
+                "Q_PerformancePSr11",
+                "Q_PerformancePSr12",
+                "Q_PerformancePSr13",
+                "Q_PerformancePSr14",
+                "Q_PerformancePSr15",
+                "Q_PerformancePSr16",
+                "Q_PerformancePSr17",
+                "Q_PerformancePSr18"
+            ],
+            "selected r3 in S_ServicesUsed (used SF ProServe)",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            [
+                "Q_SliderPSr1",
+                "Q_SliderPSr2",
+                "Q_SliderPSr3",
+                "Q_SliderPSr4",
+                "Q_SliderPSr5"
+            ],
+            " selected r3 in S_ServicesUsed (used SF ProServe)",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            [
+                "Q_SliderPS_Sortr1",
+                "Q_SliderPS_Sortr2",
+                "Q_SliderPS_Sortr3",
+                "Q_SliderPS_Sortr4",
+                "Q_SliderPS_Sortr5"
+            ],
+            " selected r3 in S_ServicesUsed (used SF ProServe)",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr4",
+            [
+                "Q_PerformanceGCr1",
+                "Q_PerformanceGCr2",
+                "Q_PerformanceGCr3",
+                "Q_PerformanceGCr4",
+                "Q_PerformanceGCr5",
+                "Q_PerformanceGCr6",
+                "Q_PerformanceGCr7",
+                "Q_PerformanceGCr8",
+                "Q_PerformanceGCr9",
+                "Q_PerformanceGCr10",
+                "Q_PerformanceGCr11",
+                "Q_PerformanceGCr12",
+                "Q_PerformanceGCr13",
+                "Q_PerformanceGCr14",
+                "Q_PerformanceGCr15",
+                "Q_PerformanceGCr16",
+                "Q_PerformanceGCr17",
+                "Q_PerformanceGCr18"
+            ],
+            "Base: selected r4 in S_ServicesUsed (used Global Consulting)",
+            "block_force",
+            true
+        ],
+        [
+            "Q_PerformancePSr1",
+            [
+                "Q_PerformanceGCr1",
+                "Q_PerformanceGCr2",
+                "Q_PerformanceGCr3",
+                "Q_PerformanceGCr4",
+                "Q_PerformanceGCr5",
+                "Q_PerformanceGCr6",
+                "Q_PerformanceGCr7",
+                "Q_PerformanceGCr8",
+                "Q_PerformanceGCr9",
+                "Q_PerformanceGCr10",
+                "Q_PerformanceGCr11",
+                "Q_PerformanceGCr12",
+                "Q_PerformanceGCr13",
+                "Q_PerformanceGCr14",
+                "Q_PerformanceGCr15",
+                "Q_PerformanceGCr16",
+                "Q_PerformanceGCr17",
+                "Q_PerformanceGCr18"
+            ],
+            "ask if not selected Q_PerformancePS",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr5",
+            [
+                "Q_PerformanceSSr1",
+                "Q_PerformanceSSr2",
+                "Q_PerformanceSSr3",
+                "Q_PerformanceSSr4",
+                "Q_PerformanceSSr5",
+                "Q_PerformanceSSr6",
+                "Q_PerformanceSSr7",
+                "Q_PerformanceSSr8",
+                "Q_PerformanceSSr9",
+                "Q_PerformanceSSr10",
+                "Q_PerformanceSSr11",
+                "Q_PerformanceSSr12",
+                "Q_PerformanceSSr13",
+                "Q_PerformanceSSr14",
+                "Q_PerformanceSSr15",
+                "Q_PerformanceSSr16",
+                "Q_PerformanceSSr17",
+                "Q_PerformanceSSr18"
+            ],
+            "Base: selected r5 in S_ServicesUsed (used Small Specialists)",
+            "block_force",
+            true
+        ],
+        [
+            "Q_PerformancePSr1",
+            [
+                "Q_PerformanceSSr1",
+                "Q_PerformanceSSr2",
+                "Q_PerformanceSSr3",
+                "Q_PerformanceSSr4",
+                "Q_PerformanceSSr5",
+                "Q_PerformanceSSr6",
+                "Q_PerformanceSSr7",
+                "Q_PerformanceSSr8",
+                "Q_PerformanceSSr9",
+                "Q_PerformanceSSr10",
+                "Q_PerformanceSSr11",
+                "Q_PerformanceSSr12",
+                "Q_PerformanceSSr13",
+                "Q_PerformanceSSr14",
+                "Q_PerformanceSSr15",
+                "Q_PerformanceSSr16",
+                "Q_PerformanceSSr17",
+                "Q_PerformanceSSr18"
+            ],
+            "ask if not selected Q_PerformancePS",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr6",
+            [
+                "Q_PerformanceICr1",
+                "Q_PerformanceICr2",
+                "Q_PerformanceICr3",
+                "Q_PerformanceICr4",
+                "Q_PerformanceICr5",
+                "Q_PerformanceICr6",
+                "Q_PerformanceICr7",
+                "Q_PerformanceICr8",
+                "Q_PerformanceICr9",
+                "Q_PerformanceICr10",
+                "Q_PerformanceICr11",
+                "Q_PerformanceICr12",
+                "Q_PerformanceICr13",
+                "Q_PerformanceICr14",
+                "Q_PerformanceICr15",
+                "Q_PerformanceICr16",
+                "Q_PerformanceICr17",
+                "Q_PerformanceICr18"
+            ],
+            "Base: selected r6 in S_ServicesUsed (used Independent Contractors) ",
+            "block_force",
+            true
+        ],
+        [
+            "Q_PerformancePSr1",
+            [
+                "Q_PerformanceICr1",
+                "Q_PerformanceICr2",
+                "Q_PerformanceICr3",
+                "Q_PerformanceICr4",
+                "Q_PerformanceICr5",
+                "Q_PerformanceICr6",
+                "Q_PerformanceICr7",
+                "Q_PerformanceICr8",
+                "Q_PerformanceICr9",
+                "Q_PerformanceICr10",
+                "Q_PerformanceICr11",
+                "Q_PerformanceICr12",
+                "Q_PerformanceICr13",
+                "Q_PerformanceICr14",
+                "Q_PerformanceICr15",
+                "Q_PerformanceICr16",
+                "Q_PerformanceICr17",
+                "Q_PerformanceICr18"
+            ],
+            "ask if not selected Q_PerformancePS",
+            "block_force",
+            true
+        ],
+        [
+            "Q_SPUsed",
+            [
+                "Q_SPFeaturesr1",
+                "Q_SPFeaturesr2",
+                "Q_SPFeaturesr3",
+                "Q_SPFeaturesr4",
+                "Q_SPFeaturesr5",
+                "Q_SPFeaturesr6",
+                "Q_SPFeaturesr7",
+                "Q_SPFeaturesr8",
+                "Q_SPFeaturesr9",
+                "Q_SPFeaturesr10",
+                "Q_SPFeaturesr11",
+                "Q_SPFeaturesr12",
+                "Q_SPFeaturesr13",
+                "Q_SPFeaturesr14",
+                "Q_SPFeaturesr15",
+                "Q_SPFeaturesr16",
+                "Q_SPFeaturesr17",
+                "Q_SPFeaturesr18"
+            ],
+            "Base: r1-r3 selected in Q_SPUsed (aware of org\u2019s SuccessPlan)]   ",
+            "block_force",
+            true
+        ],
+        [
+            "Q_SPFeaturesr17",
+            [
+                "Q_SPValuer1",
+                "Q_SPValuer2",
+                "Q_SPValuer3",
+                "Q_SPValuer4",
+                "Q_SPValuer5",
+                "Q_SPValuer6",
+                "Q_SPValuer7",
+                "Q_SPValuer8",
+                "Q_SPValuer9",
+                "Q_SPValuer10",
+                "Q_SPValuer11",
+                "Q_SPValuer12",
+                "Q_SPValuer13",
+                "Q_SPValuer14",
+                "Q_SPValuer15",
+                "Q_SPValuer16"
+            ],
+            "Base: r17 or r18 NOT selected in Q_SPFeatures (used SP features)",
+            "block_force",
+            true
+        ],
+        [
+            "Q_SPFeaturesr18",
+            [
+                "Q_SPValuer1",
+                "Q_SPValuer2",
+                "Q_SPValuer3",
+                "Q_SPValuer4",
+                "Q_SPValuer5",
+                "Q_SPValuer6",
+                "Q_SPValuer7",
+                "Q_SPValuer8",
+                "Q_SPValuer9",
+                "Q_SPValuer10",
+                "Q_SPValuer11",
+                "Q_SPValuer12",
+                "Q_SPValuer13",
+                "Q_SPValuer14",
+                "Q_SPValuer15",
+                "Q_SPValuer16"
+            ],
+            "Base: r17 or r18 NOT selected in Q_SPFeatures (used SP features)",
+            "block_force",
+            true
+        ],
+        [
+            "Q_SPUsed",
+            [
+                "Q_SPUsersr1",
+                "Q_SPUsersr2",
+                "Q_SPUsersr3",
+                "Q_SPUsersr4",
+                "Q_SPUsersr5",
+                "Q_SPUsersr6",
+                "Q_SPUsersr7",
+                "Q_SPUsersr8",
+                "Q_SPUsersr9"
+            ],
+            "Base: r1-r3 selected in Q_SPUsed (aware of org\u2019s SuccessPlan)]   ",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr4",
+            [
+                "Q_JourneyPerfGCr1",
+                "Q_JourneyPerfGCr2",
+                "Q_JourneyPerfGCr3",
+                "Q_JourneyPerfGCr4",
+                "Q_JourneyPerfGCr5",
+                "Q_JourneyPerfGCr6",
+                "Q_JourneyPerfGCr7"
+            ],
+            "    Base: selected r4 in S_ServicesUsed (used Global Consulting)]  Show Q_Journey3P rows where at least 1% was entered in c4    ",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr5",
+            [
+                "Q_JourneyPerfSSr1",
+                "Q_JourneyPerfSSr2",
+                "Q_JourneyPerfSSr3",
+                "Q_JourneyPerfSSr4",
+                "Q_JourneyPerfSSr5",
+                "Q_JourneyPerfSSr6",
+                "Q_JourneyPerfSSr7"
+            ],
+            "Base: selected r5 in S_ServicesUsed (used Small Specialists)] ",
+            "block_force",
+            true
+        ],
+        [
+            "S_ServicesUsedr6",
+            [
+                "Q_JourneyPerfICr1",
+                "Q_JourneyPerfICr2",
+                "Q_JourneyPerfICr3",
+                "Q_JourneyPerfICr4",
+                "Q_JourneyPerfICr5",
+                "Q_JourneyPerfICr6",
+                "Q_JourneyPerfICr7"
+            ],
+            "[Base: selected r6 in S_ServicesUsed (used Independent Contractors)]",
+            "block_force",
+            true
+        ],
+        [
+            "Q_Agent",
+            [
+                "Q_AgentFunctionr1",
+                "Q_AgentFunctionr2",
+                "Q_AgentFunctionr3",
+                "Q_AgentFunctionr4",
+                "Q_AgentFunctionr5",
+                "Q_AgentFunctionr6",
+                "Q_AgentFunctionr7",
+                "Q_AgentFunctionr8",
+                "Q_AgentFunctionr9",
+                "Q_AgentFunctionr10",
+                "Q_AgentFunctionr11",
+                "Q_AgentFunctionr12",
+                "Q_AgentFunctionr13",
+                "Q_AgentFunctionr14",
+                "Q_AgentFunctionr15"
+            ],
+            "Base: r1 NOT selected in Q_Agent (considering or implementing agents)",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFStage1r5",
+            [
+                "Q_Journey3Pr5c1",
+                "Q_Journey3Pr5c2",
+                "Q_Journey3Pr5c3",
+                "Q_Journey3Pr5c4",
+                "Q_Journey3Pr5c5",
+                "Q_Journey3Pr5c6"
+            ],
+            "Only show if c5 selected in S_SFStage",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFStage1r6",
+            [
+                "Q_Journey3Pr6c1",
+                "Q_Journey3Pr6c2",
+                "Q_Journey3Pr6c3",
+                "Q_Journey3Pr6c4",
+                "Q_Journey3Pr6c5",
+                "Q_Journey3Pr6c6"
+            ],
+            "Only show if c6 selected in S_SFStage",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFStage1r7",
+            [
+                "Q_Journey3Pr7c1",
+                "Q_Journey3Pr7c2",
+                "Q_Journey3Pr7c3",
+                "Q_Journey3Pr7c4",
+                "Q_Journey3Pr7c5",
+                "Q_Journey3Pr7c6"
+            ],
+            "Only show if c7 selected in S_SFStage",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFProductr7",
+            [
+                "Q_AFDCStager1c1",
+                "Q_AFDCStager1c2",
+                "Q_AFDCStager1c3",
+                "Q_AFDCStager1c4",
+                "Q_AFDCStager1c5",
+                "Q_AFDCStager1c6",
+                "Q_AFDCStager1c7",
+                "Q_AFDCStager1c8",
+                "Q_AFDCStager1c9"
+            ],
+            "only show if r7 NOT selected in S_SFProduct",
+            "block_force",
+            true
+        ],
+        [
+            "S_SFProductr8",
+            [
+                "Q_AFDCStager2c1",
+                "Q_AFDCStager2c2",
+                "Q_AFDCStager2c3",
+                "Q_AFDCStager2c4",
+                "Q_AFDCStager2c5",
+                "Q_AFDCStager2c6",
+                "Q_AFDCStager2c7",
+                "Q_AFDCStager2c8",
+                "Q_AFDCStager2c9"
+            ],
+            "only show if r8 NOT selected in S_SFProduct",
+            "block_force",
+            true
+        ]
+    ],
+    "BF_MS": [
+        [
+            "S_LicenseChoice",
+            [
+                "S_SF3Pr1",
+                "S_SF3Pr2",
+                "S_SF3Pr3",
+                "S_SF3Pr4",
+                "S_SF3Pr5",
+                "S_SF3Pr6",
+                "S_SF3Pr7",
+                "S_SF3Pr8",
+                "S_SF3Pr9"
+            ],
+            "Ask by selected in S_SF3P more than 1 answer",
+            true
+        ]
+    ],
+    "BF_MM": [
+        [
+            [
+                "S_SFProductr1",
+                "S_SFProductr2",
+                "S_SFProductr3",
+                "S_SFProductr4",
+                "S_SFProductr5",
+                "S_SFProductr6",
+                "S_SFProductr7",
+                "S_SFProductr8"
+            ],
+            [
+                "S_SFStage1r1",
+                "S_SFStage1r2",
+                "S_SFStage1r3",
+                "S_SFStage1r4",
+                "S_SFStage1r5",
+                "S_SFStage1r6",
+                "S_SFStage1r7",
+                "S_SFStage1r8"
+            ],
+            [],
+            "ask by selected in Product",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_SFStage1r1",
+                "S_SFStage1r2",
+                "S_SFStage1r3",
+                "S_SFStage1r4",
+                "S_SFStage1r5",
+                "S_SFStage1r6",
+                "S_SFStage1r7",
+                "S_SFStage1r8"
+            ],
+            [
+                "S_SFTimingr1",
+                "S_SFTimingr2",
+                "S_SFTimingr3",
+                "S_SFTimingr4",
+                "S_SFTimingr5",
+                "S_SFTimingr6",
+                "S_SFTimingr7",
+                "S_SFTimingr8"
+            ],
+            [],
+            "ask by selected in Stage = 5-7",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_SFTimingr1",
+                "S_SFTimingr2",
+                "S_SFTimingr3",
+                "S_SFTimingr4",
+                "S_SFTimingr5",
+                "S_SFTimingr6",
+                "S_SFTimingr7",
+                "S_SFTimingr8"
+            ],
+            [
+                "S_SFInvolvementr1",
+                "S_SFInvolvementr2",
+                "S_SFInvolvementr3",
+                "S_SFInvolvementr4",
+                "S_SFInvolvementr5",
+                "S_SFInvolvementr6",
+                "S_SFInvolvementr7",
+                "S_SFInvolvementr8",
+                "S_SFInvolvementr9"
+            ],
+            [],
+            "ask by selected in Timing = 1-3",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_SFInvolvementr1",
+                "S_SFInvolvementr2",
+                "S_SFInvolvementr3",
+                "S_SFInvolvementr4",
+                "S_SFInvolvementr5",
+                "S_SFInvolvementr6",
+                "S_SFInvolvementr7",
+                "S_SFInvolvementr8",
+                "S_SFInvolvementr9"
+            ],
+            [
+                "S_SF3Pr1",
+                "S_SF3Pr2",
+                "S_SF3Pr3",
+                "S_SF3Pr4",
+                "S_SF3Pr5",
+                "S_SF3Pr6",
+                "S_SF3Pr7",
+                "S_SF3Pr8",
+                "S_SF3Pr9"
+            ],
+            [],
+            "ask by selected in Involvement=1",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "hQuestions_Eligibler1",
+                "hQuestions_Eligibler2",
+                "hQuestions_Eligibler3",
+                "hQuestions_Eligibler4"
+            ],
+            [],
+            "select by S_ServicesUsed",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "Q_SPFeaturesr1",
+                "Q_SPFeaturesr2",
+                "Q_SPFeaturesr3",
+                "Q_SPFeaturesr4",
+                "Q_SPFeaturesr5",
+                "Q_SPFeaturesr6",
+                "Q_SPFeaturesr7",
+                "Q_SPFeaturesr8",
+                "Q_SPFeaturesr9",
+                "Q_SPFeaturesr10",
+                "Q_SPFeaturesr11",
+                "Q_SPFeaturesr12",
+                "Q_SPFeaturesr13",
+                "Q_SPFeaturesr14",
+                "Q_SPFeaturesr15",
+                "Q_SPFeaturesr16"
+            ],
+            [
+                "Q_SPValuer1",
+                "Q_SPValuer2",
+                "Q_SPValuer3",
+                "Q_SPValuer4",
+                "Q_SPValuer5",
+                "Q_SPValuer6",
+                "Q_SPValuer7",
+                "Q_SPValuer8",
+                "Q_SPValuer9",
+                "Q_SPValuer10",
+                "Q_SPValuer11",
+                "Q_SPValuer12",
+                "Q_SPValuer13",
+                "Q_SPValuer14",
+                "Q_SPValuer15",
+                "Q_SPValuer16"
+            ],
+            [],
+            "Pipe rows r1-r16 selected in Q_SPFeatures",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr1c1",
+                "Q_Journey3Pr1c2",
+                "Q_Journey3Pr1c3",
+                "Q_Journey3Pr1c4",
+                "Q_Journey3Pr1c5",
+                "Q_Journey3Pr1c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed. If one row selected, fill 100% in all rows for that column   ",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr2c1",
+                "Q_Journey3Pr2c2",
+                "Q_Journey3Pr2c3",
+                "Q_Journey3Pr2c4",
+                "Q_Journey3Pr2c5",
+                "Q_Journey3Pr2c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed. If one row selected, fill 100% in all rows for that column   ",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr3c1",
+                "Q_Journey3Pr3c2",
+                "Q_Journey3Pr3c3",
+                "Q_Journey3Pr3c4",
+                "Q_Journey3Pr3c5",
+                "Q_Journey3Pr3c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed. If one row selected, fill 100% in all rows for that column   ",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr4c1",
+                "Q_Journey3Pr4c2",
+                "Q_Journey3Pr4c3",
+                "Q_Journey3Pr4c4",
+                "Q_Journey3Pr4c5",
+                "Q_Journey3Pr4c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed. If one row selected, fill 100% in all rows for that column   ",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr5c1",
+                "Q_Journey3Pr5c2",
+                "Q_Journey3Pr5c3",
+                "Q_Journey3Pr5c4",
+                "Q_Journey3Pr5c5",
+                "Q_Journey3Pr5c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr6c1",
+                "Q_Journey3Pr6c2",
+                "Q_Journey3Pr6c3",
+                "Q_Journey3Pr6c4",
+                "Q_Journey3Pr6c5",
+                "Q_Journey3Pr6c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed",
+            "block_force",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr1",
+                "S_ServicesUsedr2",
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            [
+                "Q_Journey3Pr7c1",
+                "Q_Journey3Pr7c2",
+                "Q_Journey3Pr7c3",
+                "Q_Journey3Pr7c4",
+                "Q_Journey3Pr7c5",
+                "Q_Journey3Pr7c6"
+            ],
+            [],
+            "Base: Multiple rows selected in S_ServicesUsed",
+            "block_force",
+            true
+        ]
+    ],
     "uniqueness": [],
     "count": [],
-    "recodings": [],
+    "recodings": [
+        [
+            "S_Geography",
+            "H_hiddenRegion",
+            "SS",
+            "recode region",
+            true
+        ],
+        [
+            "S_CompanySize",
+            "H_HiddenSize",
+            "SS",
+            "recode company size",
+            true
+        ],
+        [
+            "S_Department",
+            "DepartmentHidden",
+            "SS",
+            "recode Department",
+            true
+        ],
+        [
+            [
+                "S_Department",
+                "S_Seniority",
+                "S_DM"
+            ],
+            "H_HiddenRole",
+            "MS",
+            "recode Role",
+            true
+        ],
+        [
+            [
+                "S_SF3Pr1",
+                "S_SF3Pr2",
+                "S_SF3Pr3",
+                "S_SF3Pr4",
+                "S_SF3Pr5",
+                "S_SF3Pr6",
+                "S_SF3Pr7",
+                "S_SF3Pr8",
+                "S_SF3Pr9"
+            ],
+            "H_HiddenUserr1",
+            "MS",
+            "recode H_HiddenUserr1",
+            true
+        ],
+        [
+            [
+                "S_SF3Pr1",
+                "S_SF3Pr2",
+                "S_SF3Pr3",
+                "S_SF3Pr4",
+                "S_SF3Pr5",
+                "S_SF3Pr6",
+                "S_SF3Pr7",
+                "S_SF3Pr8",
+                "S_SF3Pr9"
+            ],
+            "H_HiddenUserr2",
+            "MS",
+            "recode H_HiddenUserr2",
+            true
+        ],
+        [
+            [
+                "S_SF3Pr1",
+                "S_SF3Pr2",
+                "S_SF3Pr3",
+                "S_SF3Pr4",
+                "S_SF3Pr5",
+                "S_SF3Pr6",
+                "S_SF3Pr7",
+                "S_SF3Pr8",
+                "S_SF3Pr9"
+            ],
+            "H_HiddenUserr3",
+            "MS",
+            "recode H_HiddenUserr3",
+            true
+        ],
+        [
+            [
+                "S_LicenseChoice",
+                "H_HiddenUserr2",
+                "H_HiddenUserr3"
+            ],
+            "H_HiddenPipe",
+            "MS",
+            "recode LicenseChoice and Hidden User",
+            true
+        ],
+        [
+            [
+                "S_ServicesUsedr3",
+                "S_ServicesUsedr4",
+                "S_ServicesUsedr5",
+                "S_ServicesUsedr6"
+            ],
+            "HidFlagServiceUsed",
+            "MS",
+            "recode service used",
+            true
+        ],
+        [
+            [
+                "Q_Aidedr1",
+                "Q_Aidedr2",
+                "Q_Aidedr3",
+                "Q_Aidedr4",
+                "Q_Aidedr5",
+                "S_ServicesUsedr3"
+            ],
+            "H_HiddenFlag",
+            "MS",
+            "recode 'S_ServicesUsedr3' is selected and never heard of any SuccessPlan",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            "hQuestions_Eligibler1",
+            "SS",
+            "recode by selected at S_ServicesUsedr3",
+            true
+        ],
+        [
+            "S_ServicesUsedr4",
+            "hQuestions_Eligibler2",
+            "SS",
+            "recode by selected at S_ServicesUsedr4",
+            true
+        ],
+        [
+            "S_ServicesUsedr5",
+            "hQuestions_Eligibler3",
+            "SS",
+            "recode by selected at S_ServicesUsedr5",
+            true
+        ],
+        [
+            "S_ServicesUsedr6",
+            "hQuestions_Eligibler4",
+            "SS",
+            "recode by selected at S_ServicesUsedr6",
+            true
+        ],
+        [
+            [
+                "hQuestions_Eligibler1",
+                "hQuestions_Eligibler2",
+                "hQuestions_Eligibler3",
+                "hQuestions_Eligibler4"
+            ],
+            "hQuestions_Final",
+            "MS",
+            "recode final",
+            true
+        ],
+        [
+            "Q_PromoterPS",
+            "Q_NPS_PromoterPS_Sortr1",
+            "SS",
+            "recode NPS",
+            true
+        ],
+        [
+            "S_ServicesUsedr3",
+            "hQuestionMethod_Eligibler1",
+            "SS",
+            "recode hQuestionMethod_Eligibler1",
+            true
+        ],
+        [
+            "S_ServicesUsedr4",
+            "hQuestionMethod_Eligibler2",
+            "SS",
+            "recode hQuestionMethod_Eligibler2",
+            true
+        ],
+        [
+            "S_ServicesUsedr5",
+            "hQuestionMethod_Eligibler3",
+            "SS",
+            "recode hQuestionMethod_Eligibler3",
+            true
+        ],
+        [
+            "S_ServicesUsedr6",
+            "hQuestionMethod_Eligibler4",
+            "SS",
+            "recode hQuestionMethod_Eligibler4",
+            true
+        ],
+        [
+            "hQuestionMethod_Eligibler1",
+            "hQuestionMethod_Finalr1",
+            "SS",
+            "recode hQuestionMethod_Finalr1",
+            true
+        ],
+        [
+            "hQuestionMethod_Eligibler2",
+            "hQuestionMethod_Finalr2",
+            "SS",
+            "recode hQuestionMethod_Finalr2",
+            true
+        ],
+        [
+            "hQuestionMethod_Eligibler3",
+            "hQuestionMethod_Finalr3",
+            "SS",
+            "recode hQuestionMethod_Finalr3",
+            true
+        ],
+        [
+            "hQuestionMethod_Eligibler4",
+            "hQuestionMethod_Finalr4",
+            "SS",
+            "recode hQuestionMethod_Finalr4",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c2",
+            "Q_Journey3P_Sort_C2r1",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r1",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c2",
+            "Q_Journey3P_Sort_C2r2",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r2",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c2",
+            "Q_Journey3P_Sort_C2r3",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r3",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c2",
+            "Q_Journey3P_Sort_C2r4",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r4",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c2",
+            "Q_Journey3P_Sort_C2r5",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r5",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c2",
+            "Q_Journey3P_Sort_C2r6",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r6",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c2",
+            "Q_Journey3P_Sort_C2r7",
+            "SS",
+            "recode Q_Journey3P_Sort_C2r7",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c3",
+            "Q_Journey3P_Sort_C3r1",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r1",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c3",
+            "Q_Journey3P_Sort_C3r2",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r2",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c3",
+            "Q_Journey3P_Sort_C3r3",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r3",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c3",
+            "Q_Journey3P_Sort_C3r4",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r4",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c3",
+            "Q_Journey3P_Sort_C3r5",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r5",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c3",
+            "Q_Journey3P_Sort_C3r6",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r6",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c3",
+            "Q_Journey3P_Sort_C3r7",
+            "SS",
+            "recode Q_Journey3P_Sort_C3r7",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c4",
+            "Q_Journey3P_Sort_C4r1",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r1",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c4",
+            "Q_Journey3P_Sort_C4r2",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r2",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c4",
+            "Q_Journey3P_Sort_C4r3",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r3",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c4",
+            "Q_Journey3P_Sort_C4r4",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r4",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c4",
+            "Q_Journey3P_Sort_C4r5",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r5",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c4",
+            "Q_Journey3P_Sort_C4r6",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r6",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c4",
+            "Q_Journey3P_Sort_C4r7",
+            "SS",
+            "recode Q_Journey3P_Sort_C4r7",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c5",
+            "Q_Journey3P_Sort_C5r1",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r1",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c5",
+            "Q_Journey3P_Sort_C5r2",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r2",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c5",
+            "Q_Journey3P_Sort_C5r3",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r3",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c5",
+            "Q_Journey3P_Sort_C5r4",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r4",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c5",
+            "Q_Journey3P_Sort_C5r5",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r5",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c5",
+            "Q_Journey3P_Sort_C5r6",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r6",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c5",
+            "Q_Journey3P_Sort_C5r7",
+            "SS",
+            "recode Q_Journey3P_Sort_C5r7",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c6",
+            "Q_Journey3P_Sort_C6r1",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r1",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c6",
+            "Q_Journey3P_Sort_C6r2",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r2",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c6",
+            "Q_Journey3P_Sort_C6r3",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r3",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c6",
+            "Q_Journey3P_Sort_C6r4",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r4",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c6",
+            "Q_Journey3P_Sort_C6r5",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r5",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c6",
+            "Q_Journey3P_Sort_C6r6",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r6",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c6",
+            "Q_Journey3P_Sort_C6r7",
+            "SS",
+            "recode Q_Journey3P_Sort_C6r7",
+            true
+        ],
+        [
+            "Q_Journey3Pr1c1",
+            "Q_Journey3P_Sort_C1r1",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r1",
+            true
+        ],
+        [
+            "Q_Journey3Pr2c1",
+            "Q_Journey3P_Sort_C1r2",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r2",
+            true
+        ],
+        [
+            "Q_Journey3Pr3c1",
+            "Q_Journey3P_Sort_C1r3",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r3",
+            true
+        ],
+        [
+            "Q_Journey3Pr4c1",
+            "Q_Journey3P_Sort_C1r4",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r4",
+            true
+        ],
+        [
+            "Q_Journey3Pr5c1",
+            "Q_Journey3P_Sort_C1r5",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r5",
+            true
+        ],
+        [
+            "Q_Journey3Pr6c1",
+            "Q_Journey3P_Sort_C1r6",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r6",
+            true
+        ],
+        [
+            "Q_Journey3Pr7c1",
+            "Q_Journey3P_Sort_C1r7",
+            "SS",
+            "recode Q_Journey3P_Sort_C1r7",
+            true
+        ]
+    ],
     "NOTAs": [
         [
             [
-                "S2F100#1",
-                "S2F100#2",
-                "S2F100#3",
-                "S2F100#4",
-                "S2F100#5",
-                "S2F100#6",
-                "S2F100#7",
-                "S2F100#8",
-                "S2F100#9",
-                "S2F100#10",
-                "S2F100#11",
-                "S2F100#12",
-                "S2F100#13",
-                "S2F100#14",
-                "S2F100#15",
-                "S2F100#16",
-                "S2F100#17",
-                "S2F100#18",
-                "S2F100#19",
-                "S2F100#20",
-                "S2F100#21",
-                "S2F100#22",
-                "S2F100#23",
-                "S2F100#24",
-                "S2F100#25",
-                "S2F100#27",
-                "S2F100#28",
-                "S2F100#29",
-                "S2F100#30",
-                "S2F100#31",
-                "S2F100#99"
+                "S_TechUsager1",
+                "S_TechUsager2",
+                "S_TechUsager3",
+                "S_TechUsager4",
+                "S_TechUsager5",
+                "S_TechUsager6",
+                "S_TechUsager7",
+                "S_TechUsager8",
+                "S_TechUsager9",
+                "S_TechUsager10",
+                "S_TechUsager11",
+                "S_TechUsager12",
+                "S_TechUsager13",
+                "S_TechUsager14",
+                "S_TechUsager15",
+                "S_TechUsager16",
+                "S_TechUsager17",
+                "S_TechUsager18",
+                "S_TechUsager19",
+                "S_TechUsager20",
+                "S_TechUsager21",
+                "S_TechUsager22",
+                "S_TechUsager23"
             ],
-            "S2F100#99",
+            "S_TechUsager23",
             [],
             true
         ],
         [
             [
-                "S2F110#1",
-                "S2F110#2",
-                "S2F110#3",
-                "S2F110#4",
-                "S2F110#5",
-                "S2F110#6",
-                "S2F110#7",
-                "S2F110#8",
-                "S2F110#9",
-                "S2F110#10",
-                "S2F110#11",
-                "S2F110#12",
-                "S2F110#13",
-                "S2F110#14",
-                "S2F110#15",
-                "S2F110#16",
-                "S2F110#17",
-                "S2F110#18",
-                "S2F110#19",
-                "S2F110#20",
-                "S2F110#21",
-                "S2F110#22",
-                "S2F110#23",
-                "S2F110#24",
-                "S2F110#25",
-                "S2F110#27",
-                "S2F110#28",
-                "S2F110#29",
-                "S2F110#30",
-                "S2F110#31",
-                "S2F110#99"
+                "S_SFProductr1",
+                "S_SFProductr2",
+                "S_SFProductr3",
+                "S_SFProductr4",
+                "S_SFProductr5",
+                "S_SFProductr6",
+                "S_SFProductr7",
+                "S_SFProductr8",
+                "S_SFProductr9",
+                "S_SFProductr10",
+                "S_SFProductr11",
+                "S_SFProductr12",
+                "S_SFProductr13",
+                "S_SFProductr14"
             ],
-            "S2F110#99",
+            "S_SFProductr14",
             [],
             true
         ],
         [
             [
-                "S2F120#1",
-                "S2F120#2",
-                "S2F120#3",
-                "S2F120#4",
-                "S2F120#5",
-                "S2F120#6",
-                "S2F120#7",
-                "S2F120#8",
-                "S2F120#9",
-                "S2F120#10",
-                "S2F120#11",
-                "S2F120#12",
-                "S2F120#13",
-                "S2F120#14",
-                "S2F120#15",
-                "S2F120#16",
-                "S2F120#17",
-                "S2F120#18",
-                "S2F120#19",
-                "S2F120#20",
-                "S2F120#21",
-                "S2F120#22",
-                "S2F120#23",
-                "S2F120#24",
-                "S2F120#25",
-                "S2F120#27",
-                "S2F120#28",
-                "S2F120#29",
-                "S2F120#30",
-                "S2F120#31",
-                "S2F120#99"
+                "S_SFInvolvementr1",
+                "S_SFInvolvementr2",
+                "S_SFInvolvementr3",
+                "S_SFInvolvementr4",
+                "S_SFInvolvementr5",
+                "S_SFInvolvementr6",
+                "S_SFInvolvementr7",
+                "S_SFInvolvementr8",
+                "S_SFInvolvementr9"
             ],
-            "S2F120#99",
+            "S_SFInvolvementr9",
             [],
             true
         ],
         [
             [
-                "S2F200#1",
-                "S2F200#2",
-                "S2F200#3",
-                "S2F200#4",
-                "S2F200#5",
-                "S2F200#6",
-                "S2F200#7",
-                "S2F200#8",
-                "S2F200#9",
-                "S2F200#10",
-                "S2F200#11",
-                "S2F200#12",
-                "S2F200#13",
-                "S2F200#14",
-                "S2F200#15",
-                "S2F200#16",
-                "S2F200#17",
-                "S2F200#18",
-                "S2F200#19",
-                "S2F200#20",
-                "S2F200#21",
-                "S2F200#22",
-                "S2F200#23",
-                "S2F200#24",
-                "S2F200#25",
-                "S2F200#27",
-                "S2F200#28",
-                "S2F200#29",
-                "S2F200#30",
-                "S2F200#31",
-                "S2F200#99"
+                "S_SF3Pr1",
+                "S_SF3Pr2",
+                "S_SF3Pr3",
+                "S_SF3Pr4",
+                "S_SF3Pr5",
+                "S_SF3Pr6",
+                "S_SF3Pr7",
+                "S_SF3Pr8",
+                "S_SF3Pr9"
             ],
-            "S2F200#99",
+            "S_SF3Pr9",
             [],
             true
         ],
         [
             [
-                "S2F210#1",
-                "S2F210#2",
-                "S2F210#3",
-                "S2F210#4",
-                "S2F210#5",
-                "S2F210#6",
-                "S2F210#7",
-                "S2F210#8",
-                "S2F210#9",
-                "S2F210#10",
-                "S2F210#11",
-                "S2F210#12",
-                "S2F210#13",
-                "S2F210#14",
-                "S2F210#15",
-                "S2F210#16",
-                "S2F210#17",
-                "S2F210#18",
-                "S2F210#19",
-                "S2F210#20",
-                "S2F210#21",
-                "S2F210#22",
-                "S2F210#23",
-                "S2F210#24",
-                "S2F210#25",
-                "S2F210#27",
-                "S2F210#28",
-                "S2F210#29",
-                "S2F210#30",
-                "S2F210#31",
-                "S2F210#99"
+                "Q_3PIdealr1c1",
+                "Q_3PIdealr1c2",
+                "Q_3PIdealr1c3",
+                "Q_3PIdealr1c4",
+                "Q_3PIdealr1c5",
+                "Q_3PIdealr1c6",
+                "Q_3PIdealr1c7",
+                "Q_3PIdealr1c8",
+                "Q_3PIdealr1c9"
             ],
-            "S2F210#99",
+            "Q_3PIdealr1c9",
             [],
             true
         ],
         [
             [
-                "S2F300#1",
-                "S2F300#2",
-                "S2F300#3",
-                "S2F300#4",
-                "S2F300#5",
-                "S2F300#6",
-                "S2F300#7",
-                "S2F300#8",
-                "S2F300#9",
-                "S2F300#10",
-                "S2F300#11",
-                "S2F300#12",
-                "S2F300#13",
-                "S2F300#14",
-                "S2F300#15",
-                "S2F300#16",
-                "S2F300#17",
-                "S2F300#18",
-                "S2F300#19",
-                "S2F300#20",
-                "S2F300#21",
-                "S2F300#22",
-                "S2F300#23",
-                "S2F300#24",
-                "S2F300#25",
-                "S2F300#27",
-                "S2F300#28",
-                "S2F300#29",
-                "S2F300#30",
-                "S2F300#31",
-                "S2F300#99"
+                "Q_3PIdealr2c1",
+                "Q_3PIdealr2c2",
+                "Q_3PIdealr2c3",
+                "Q_3PIdealr2c4",
+                "Q_3PIdealr2c5",
+                "Q_3PIdealr2c6",
+                "Q_3PIdealr2c7",
+                "Q_3PIdealr2c8",
+                "Q_3PIdealr2c9"
             ],
-            "S2F300#99",
+            "Q_3PIdealr2c9",
             [],
             true
         ],
         [
             [
-                "S2F300#1",
-                "S2F300#2",
-                "S2F300#3",
-                "S2F300#4",
-                "S2F300#5",
-                "S2F300#6",
-                "S2F300#7",
-                "S2F300#8",
-                "S2F300#9",
-                "S2F300#10",
-                "S2F300#11",
-                "S2F300#12",
-                "S2F300#13",
-                "S2F300#14",
-                "S2F300#15",
-                "S2F300#16",
-                "S2F300#17",
-                "S2F300#18",
-                "S2F300#19",
-                "S2F300#20",
-                "S2F300#21",
-                "S2F300#22",
-                "S2F300#23",
-                "S2F300#24",
-                "S2F300#25",
-                "S2F300#27",
-                "S2F300#28",
-                "S2F300#29",
-                "S2F300#30",
-                "S2F300#31",
-                "S2F300#99",
-                "S2F300#99"
+                "Q_3PIdealr3c1",
+                "Q_3PIdealr3c2",
+                "Q_3PIdealr3c3",
+                "Q_3PIdealr3c4",
+                "Q_3PIdealr3c5",
+                "Q_3PIdealr3c6",
+                "Q_3PIdealr3c7",
+                "Q_3PIdealr3c8",
+                "Q_3PIdealr3c9"
             ],
-            "S2F300#99",
+            "Q_3PIdealr3c9",
             [],
             true
         ],
         [
             [
-                "S2F310#1",
-                "S2F310#2",
-                "S2F310#3",
-                "S2F310#4",
-                "S2F310#5",
-                "S2F310#6",
-                "S2F310#7",
-                "S2F310#8",
-                "S2F310#9",
-                "S2F310#10",
-                "S2F310#11",
-                "S2F310#12",
-                "S2F310#13",
-                "S2F310#14",
-                "S2F310#15",
-                "S2F310#16",
-                "S2F310#17",
-                "S2F310#18",
-                "S2F310#19",
-                "S2F310#20",
-                "S2F310#21",
-                "S2F310#22",
-                "S2F310#23",
-                "S2F310#24",
-                "S2F310#25",
-                "S2F310#27",
-                "S2F310#28",
-                "S2F310#29",
-                "S2F310#30",
-                "S2F310#31",
-                "S2F310#99"
+                "Q_3PIdealr4c1",
+                "Q_3PIdealr4c2",
+                "Q_3PIdealr4c3",
+                "Q_3PIdealr4c4",
+                "Q_3PIdealr4c5",
+                "Q_3PIdealr4c6",
+                "Q_3PIdealr4c7",
+                "Q_3PIdealr4c8",
+                "Q_3PIdealr4c9"
             ],
-            "S2F310#99",
+            "Q_3PIdealr4c9",
             [],
             true
         ],
         [
             [
-                "S2F320#1",
-                "S2F320#2",
-                "S2F320#3",
-                "S2F320#4",
-                "S2F320#5",
-                "S2F320#6",
-                "S2F320#7",
-                "S2F320#8",
-                "S2F320#9",
-                "S2F320#10",
-                "S2F320#11",
-                "S2F320#12",
-                "S2F320#13",
-                "S2F320#14",
-                "S2F320#15",
-                "S2F320#16",
-                "S2F320#17",
-                "S2F320#18",
-                "S2F320#19",
-                "S2F320#20",
-                "S2F320#21",
-                "S2F320#22",
-                "S2F320#23",
-                "S2F320#24",
-                "S2F320#25",
-                "S2F320#27",
-                "S2F320#28",
-                "S2F320#29",
-                "S2F320#30",
-                "S2F320#31",
-                "S2F320#99"
+                "Q_3PIdealr5c1",
+                "Q_3PIdealr5c2",
+                "Q_3PIdealr5c3",
+                "Q_3PIdealr5c4",
+                "Q_3PIdealr5c5",
+                "Q_3PIdealr5c6",
+                "Q_3PIdealr5c7",
+                "Q_3PIdealr5c8",
+                "Q_3PIdealr5c9"
             ],
-            "S2F320#99",
+            "Q_3PIdealr5c9",
             [],
             true
         ],
         [
             [
-                "S2F330#1",
-                "S2F330#2",
-                "S2F330#3",
-                "S2F330#4",
-                "S2F330#5",
-                "S2F330#6",
-                "S2F330#7",
-                "S2F330#8",
-                "S2F330#9",
-                "S2F330#10",
-                "S2F330#11",
-                "S2F330#12",
-                "S2F330#13",
-                "S2F330#14",
-                "S2F330#15",
-                "S2F330#16",
-                "S2F330#17",
-                "S2F330#18",
-                "S2F330#19",
-                "S2F330#20",
-                "S2F330#21",
-                "S2F330#22",
-                "S2F330#23",
-                "S2F330#24",
-                "S2F330#25",
-                "S2F330#27",
-                "S2F330#28",
-                "S2F330#29",
-                "S2F330#30",
-                "S2F330#31",
-                "S2F330#99"
+                "Q_SPFeaturesr1",
+                "Q_SPFeaturesr2",
+                "Q_SPFeaturesr3",
+                "Q_SPFeaturesr4",
+                "Q_SPFeaturesr5",
+                "Q_SPFeaturesr6",
+                "Q_SPFeaturesr7",
+                "Q_SPFeaturesr8",
+                "Q_SPFeaturesr9",
+                "Q_SPFeaturesr10",
+                "Q_SPFeaturesr11",
+                "Q_SPFeaturesr12",
+                "Q_SPFeaturesr13",
+                "Q_SPFeaturesr14",
+                "Q_SPFeaturesr15",
+                "Q_SPFeaturesr16",
+                "Q_SPFeaturesr17",
+                "Q_SPFeaturesr18"
             ],
-            "S2F330#99",
+            "Q_SPFeaturesr17",
             [],
             true
         ],
         [
             [
-                "S2F340#1",
-                "S2F340#2",
-                "S2F340#3",
-                "S2F340#4",
-                "S2F340#5",
-                "S2F340#6",
-                "S2F340#7",
-                "S2F340#8",
-                "S2F340#9",
-                "S2F340#10",
-                "S2F340#11",
-                "S2F340#12",
-                "S2F340#13",
-                "S2F340#14",
-                "S2F340#15",
-                "S2F340#16",
-                "S2F340#17",
-                "S2F340#18",
-                "S2F340#19",
-                "S2F340#20",
-                "S2F340#21",
-                "S2F340#22",
-                "S2F340#23",
-                "S2F340#24",
-                "S2F340#25",
-                "S2F340#27",
-                "S2F340#28",
-                "S2F340#29",
-                "S2F340#30",
-                "S2F340#31",
-                "S2F340#99"
+                "Q_SPFeaturesr1",
+                "Q_SPFeaturesr2",
+                "Q_SPFeaturesr3",
+                "Q_SPFeaturesr4",
+                "Q_SPFeaturesr5",
+                "Q_SPFeaturesr6",
+                "Q_SPFeaturesr7",
+                "Q_SPFeaturesr8",
+                "Q_SPFeaturesr9",
+                "Q_SPFeaturesr10",
+                "Q_SPFeaturesr11",
+                "Q_SPFeaturesr12",
+                "Q_SPFeaturesr13",
+                "Q_SPFeaturesr14",
+                "Q_SPFeaturesr15",
+                "Q_SPFeaturesr16",
+                "Q_SPFeaturesr17",
+                "Q_SPFeaturesr18"
             ],
-            "S2F340#99",
+            "Q_SPFeaturesr18",
             [],
             true
         ],
         [
             [
-                "S2F350#1",
-                "S2F350#2",
-                "S2F350#3",
-                "S2F350#4",
-                "S2F350#5",
-                "S2F350#6",
-                "S2F350#7",
-                "S2F350#8",
-                "S2F350#9",
-                "S2F350#10",
-                "S2F350#11",
-                "S2F350#12",
-                "S2F350#13",
-                "S2F350#14",
-                "S2F350#15",
-                "S2F350#16",
-                "S2F350#17",
-                "S2F350#18",
-                "S2F350#19",
-                "S2F350#20",
-                "S2F350#21",
-                "S2F350#22",
-                "S2F350#23",
-                "S2F350#24",
-                "S2F350#25",
-                "S2F350#27",
-                "S2F350#28",
-                "S2F350#29",
-                "S2F350#30",
-                "S2F350#31",
-                "S2F350#99"
+                "Q_SPUsersr1",
+                "Q_SPUsersr2",
+                "Q_SPUsersr3",
+                "Q_SPUsersr4",
+                "Q_SPUsersr5",
+                "Q_SPUsersr6",
+                "Q_SPUsersr7",
+                "Q_SPUsersr8",
+                "Q_SPUsersr9"
             ],
-            "S2F350#99",
+            "Q_SPUsersr9",
             [],
             true
         ],
         [
             [
-                "S2F360#1",
-                "S2F360#2",
-                "S2F360#3",
-                "S2F360#4",
-                "S2F360#5",
-                "S2F360#6",
-                "S2F360#7",
-                "S2F360#8",
-                "S2F360#9",
-                "S2F360#10",
-                "S2F360#11",
-                "S2F360#12",
-                "S2F360#13",
-                "S2F360#14",
-                "S2F360#15",
-                "S2F360#16",
-                "S2F360#17",
-                "S2F360#18",
-                "S2F360#19",
-                "S2F360#20",
-                "S2F360#21",
-                "S2F360#22",
-                "S2F360#23",
-                "S2F360#24",
-                "S2F360#25",
-                "S2F360#27",
-                "S2F360#28",
-                "S2F360#29",
-                "S2F360#30",
-                "S2F360#31",
-                "S2F360#99"
+                "Q_AgentFunctionr1",
+                "Q_AgentFunctionr2",
+                "Q_AgentFunctionr3",
+                "Q_AgentFunctionr4",
+                "Q_AgentFunctionr5",
+                "Q_AgentFunctionr6",
+                "Q_AgentFunctionr7",
+                "Q_AgentFunctionr8",
+                "Q_AgentFunctionr9",
+                "Q_AgentFunctionr10",
+                "Q_AgentFunctionr11",
+                "Q_AgentFunctionr12",
+                "Q_AgentFunctionr13",
+                "Q_AgentFunctionr14",
+                "Q_AgentFunctionr15"
             ],
-            "S2F360#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F370#1",
-                "S2F370#2",
-                "S2F370#3",
-                "S2F370#4",
-                "S2F370#5",
-                "S2F370#6",
-                "S2F370#7",
-                "S2F370#8",
-                "S2F370#9",
-                "S2F370#10",
-                "S2F370#11",
-                "S2F370#12",
-                "S2F370#13",
-                "S2F370#14",
-                "S2F370#15",
-                "S2F370#16",
-                "S2F370#17",
-                "S2F370#18",
-                "S2F370#19",
-                "S2F370#20",
-                "S2F370#21",
-                "S2F370#22",
-                "S2F370#23",
-                "S2F370#24",
-                "S2F370#25",
-                "S2F370#27",
-                "S2F370#28",
-                "S2F370#29",
-                "S2F370#30",
-                "S2F370#31",
-                "S2F370#99"
-            ],
-            "S2F370#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F385#1",
-                "S2F385#2",
-                "S2F385#3",
-                "S2F385#4",
-                "S2F385#5",
-                "S2F385#6",
-                "S2F385#7",
-                "S2F385#8",
-                "S2F385#9",
-                "S2F385#10",
-                "S2F385#11",
-                "S2F385#12",
-                "S2F385#13",
-                "S2F385#14",
-                "S2F385#15",
-                "S2F385#16",
-                "S2F385#17",
-                "S2F385#18",
-                "S2F385#19",
-                "S2F385#20",
-                "S2F385#21",
-                "S2F385#22",
-                "S2F385#23",
-                "S2F385#24",
-                "S2F385#25",
-                "S2F385#27",
-                "S2F385#28",
-                "S2F385#29",
-                "S2F385#30",
-                "S2F385#31",
-                "S2F385#99"
-            ],
-            "S2F385#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F380#1",
-                "S2F380#2",
-                "S2F380#3",
-                "S2F380#4",
-                "S2F380#5",
-                "S2F380#6",
-                "S2F380#7",
-                "S2F380#8",
-                "S2F380#9",
-                "S2F380#10",
-                "S2F380#11",
-                "S2F380#12",
-                "S2F380#13",
-                "S2F380#14",
-                "S2F380#15",
-                "S2F380#16",
-                "S2F380#17",
-                "S2F380#18",
-                "S2F380#19",
-                "S2F380#20",
-                "S2F380#21",
-                "S2F380#22",
-                "S2F380#23",
-                "S2F380#24",
-                "S2F380#25",
-                "S2F380#27",
-                "S2F380#28",
-                "S2F380#29",
-                "S2F380#30",
-                "S2F380#31",
-                "S2F380#99"
-            ],
-            "S2F380#9",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F390#1",
-                "S2F390#2",
-                "S2F390#3",
-                "S2F390#4",
-                "S2F390#5",
-                "S2F390#6",
-                "S2F390#7",
-                "S2F390#8",
-                "S2F390#9",
-                "S2F390#10",
-                "S2F390#11",
-                "S2F390#12",
-                "S2F390#13",
-                "S2F390#14",
-                "S2F390#15",
-                "S2F390#16",
-                "S2F390#17",
-                "S2F390#18",
-                "S2F390#19",
-                "S2F390#20",
-                "S2F390#21",
-                "S2F390#22",
-                "S2F390#23",
-                "S2F390#24",
-                "S2F390#25",
-                "S2F390#27",
-                "S2F390#28",
-                "S2F390#29",
-                "S2F390#30",
-                "S2F390#31",
-                "S2F390#99"
-            ],
-            "S2F390#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F400#1",
-                "S2F400#2",
-                "S2F400#3",
-                "S2F400#4",
-                "S2F400#5",
-                "S2F400#6",
-                "S2F400#7",
-                "S2F400#8",
-                "S2F400#9",
-                "S2F400#10",
-                "S2F400#11",
-                "S2F400#12",
-                "S2F400#13",
-                "S2F400#14",
-                "S2F400#15",
-                "S2F400#16",
-                "S2F400#17",
-                "S2F400#18",
-                "S2F400#19",
-                "S2F400#20",
-                "S2F400#21",
-                "S2F400#22",
-                "S2F400#23",
-                "S2F400#24",
-                "S2F400#25",
-                "S2F400#27",
-                "S2F400#28",
-                "S2F400#29",
-                "S2F400#30",
-                "S2F400#31",
-                "S2F400#99"
-            ],
-            "S2F400#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F410#1",
-                "S2F410#2",
-                "S2F410#3",
-                "S2F410#4",
-                "S2F410#5",
-                "S2F410#6",
-                "S2F410#7",
-                "S2F410#8",
-                "S2F410#9",
-                "S2F410#10",
-                "S2F410#11",
-                "S2F410#12",
-                "S2F410#13",
-                "S2F410#14",
-                "S2F410#15",
-                "S2F410#16",
-                "S2F410#17",
-                "S2F410#18",
-                "S2F410#19",
-                "S2F410#20",
-                "S2F410#21",
-                "S2F410#22",
-                "S2F410#23",
-                "S2F410#24",
-                "S2F410#25",
-                "S2F410#27",
-                "S2F410#28",
-                "S2F410#29",
-                "S2F410#30",
-                "S2F410#31",
-                "S2F410#99"
-            ],
-            "S2F410#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F420#1",
-                "S2F420#2",
-                "S2F420#3",
-                "S2F420#4",
-                "S2F420#5",
-                "S2F420#6",
-                "S2F420#7",
-                "S2F420#8",
-                "S2F420#9",
-                "S2F420#10",
-                "S2F420#11",
-                "S2F420#12",
-                "S2F420#13",
-                "S2F420#14",
-                "S2F420#15",
-                "S2F420#16",
-                "S2F420#17",
-                "S2F420#18",
-                "S2F420#19",
-                "S2F420#20",
-                "S2F420#21",
-                "S2F420#22",
-                "S2F420#23",
-                "S2F420#24",
-                "S2F420#25",
-                "S2F420#27",
-                "S2F420#28",
-                "S2F420#29",
-                "S2F420#30",
-                "S2F420#31",
-                "S2F420#99"
-            ],
-            "S2F420#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F430#1",
-                "S2F430#2",
-                "S2F430#3",
-                "S2F430#4",
-                "S2F430#5",
-                "S2F430#6",
-                "S2F430#7",
-                "S2F430#8",
-                "S2F430#9",
-                "S2F430#10",
-                "S2F430#11",
-                "S2F430#12",
-                "S2F430#13",
-                "S2F430#14",
-                "S2F430#15",
-                "S2F430#16",
-                "S2F430#17",
-                "S2F430#18",
-                "S2F430#19",
-                "S2F430#20",
-                "S2F430#21",
-                "S2F430#22",
-                "S2F430#23",
-                "S2F430#24",
-                "S2F430#25",
-                "S2F430#27",
-                "S2F430#28",
-                "S2F430#29",
-                "S2F430#30",
-                "S2F430#31",
-                "S2F430#99"
-            ],
-            "S2F430#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F435#1",
-                "S2F435#2",
-                "S2F435#3",
-                "S2F435#4",
-                "S2F435#5",
-                "S2F435#6",
-                "S2F435#7",
-                "S2F435#8",
-                "S2F435#9",
-                "S2F435#10",
-                "S2F435#11",
-                "S2F435#12",
-                "S2F435#13",
-                "S2F435#14",
-                "S2F435#15",
-                "S2F435#16",
-                "S2F435#17",
-                "S2F435#18",
-                "S2F435#19",
-                "S2F435#20",
-                "S2F435#21",
-                "S2F435#22",
-                "S2F435#23",
-                "S2F435#24",
-                "S2F435#25",
-                "S2F435#27",
-                "S2F435#28",
-                "S2F435#29",
-                "S2F435#30",
-                "S2F435#31",
-                "S2F435#99"
-            ],
-            "S2F435#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F440#1",
-                "S2F440#2",
-                "S2F440#3",
-                "S2F440#4",
-                "S2F440#5",
-                "S2F440#6",
-                "S2F440#7",
-                "S2F440#8",
-                "S2F440#9",
-                "S2F440#10",
-                "S2F440#11",
-                "S2F440#12",
-                "S2F440#13",
-                "S2F440#14",
-                "S2F440#15",
-                "S2F440#16",
-                "S2F440#17",
-                "S2F440#18",
-                "S2F440#19",
-                "S2F440#20",
-                "S2F440#21",
-                "S2F440#22",
-                "S2F440#23",
-                "S2F440#24",
-                "S2F440#25",
-                "S2F440#27",
-                "S2F440#28",
-                "S2F440#29",
-                "S2F440#30",
-                "S2F440#31",
-                "S2F440#99"
-            ],
-            "S2F440#99",
-            [],
-            true
-        ],
-        [
-            [
-                "S2F450#1",
-                "S2F450#2",
-                "S2F450#3",
-                "S2F450#4",
-                "S2F450#5",
-                "S2F450#6",
-                "S2F450#7",
-                "S2F450#8",
-                "S2F450#9",
-                "S2F450#10",
-                "S2F450#11",
-                "S2F450#12",
-                "S2F450#13",
-                "S2F450#14",
-                "S2F450#15",
-                "S2F450#16",
-                "S2F450#17",
-                "S2F450#18",
-                "S2F450#19",
-                "S2F450#20",
-                "S2F450#21",
-                "S2F450#22",
-                "S2F450#23",
-                "S2F450#24",
-                "S2F450#25",
-                "S2F450#27",
-                "S2F450#28",
-                "S2F450#29",
-                "S2F450#30",
-                "S2F450#31",
-                "S2F450#99"
-            ],
-            "S2F450#99",
+            "Q_AgentFunctionr15",
             [],
             true
         ]
@@ -940,135 +1890,15 @@
     "parallel piping": [],
     "custom": [
         [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F110#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F110#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]",
+            "Count",
+            "sum \u2264 1",
+            "df_check=df[df[['S_AgentConfirmr6', 'S_AgentConfirmr7', 'S_AgentConfirmr8', 'S_AgentConfirmr9']].sum(axis=1) > 1][['S_AgentConfirmr6', 'S_AgentConfirmr7', 'S_AgentConfirmr8', 'S_AgentConfirmr9']]",
             true
         ],
         [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F120#{i}'].notna()) & (df[f'S2F110#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F120#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F110#{i}' for i in [*range(1,26), *range(27,32)]]]",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F200#{i}'].notna()) & (df[f'S2F110#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F200#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F110#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F210#{i}'].notna()) & (df[f'S2F110#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F210#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F110#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F300#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F300#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F310#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F310#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F320#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F320#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F330#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F330#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F340#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F340#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F350#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F350#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F360#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F360#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F370#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F370#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F385#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F385#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F380#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F380#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F390#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F390#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F400#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F400#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F410#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F410#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F420#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F420#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F430#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F430#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F435#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F435#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F440#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F440#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
-            true
-        ],
-        [
-            "Parallel Piping",
-            "Piping funnel",
-            "df_check = df.loc[np.any([(df[f'S2F450#{i}'].notna()) & (df[f'S2F100#{i}'].isna()) for i in [*range(1,26), *range(27,32)]], axis=0), [f'S2F450#{i}' for i in [*range(1,26), *range(27,32)]] + [f'S2F100#{i}' for i in [*range(1,26), *range(27,32)]]]\n",
+            "Count",
+            "sum > 0",
+            "df_check=df[df[['S_ServicesUsedr3',\n 'S_ServicesUsedr4',\n 'S_ServicesUsedr5',\n 'S_ServicesUsedr6']].sum(axis=1) > 1][['S_ServicesUsedr3',\n 'S_ServicesUsedr4',\n 'S_ServicesUsedr5',\n 'S_ServicesUsedr6']]",
             true
         ]
     ]

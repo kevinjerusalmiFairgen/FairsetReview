@@ -8,11 +8,45 @@ import streamlit as st
 import tempfile
 import pyreadstat
 import traceback
+from datetime import datetime
+import numpy as np
+
 
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 if APP_ROOT not in sys.path:
     sys.path.insert(0, APP_ROOT)
+
+
+def to_jsonable(obj):
+    # NumPy & pandas scalars
+    if isinstance(obj, (np.integer,)):
+        return int(obj)
+    if isinstance(obj, (np.floating,)):
+        return float(obj)
+    if isinstance(obj, (np.bool_,)):
+        return bool(obj)
+
+    # Arrays / Series / Index
+    if isinstance(obj, (np.ndarray, pd.Series, pd.Index)):
+        return obj.tolist()
+
+    # Timestamps / datetimes
+    if isinstance(obj, (pd.Timestamp, datetime)):
+        return obj.isoformat()
+
+    # Sets/tuples
+    if isinstance(obj, (set, tuple)):
+        return list(obj)
+
+    # NaN/NaT handling (optional)
+    try:
+        if pd.isna(obj):
+            return None
+    except Exception:
+        pass
+
+    raise TypeError(f"Object of type {obj.__class__.__name__} is not JSON serializable")
 
 
 def load_file(uploaded_file, japanase_chars=False, convert_categoricals = True):
@@ -53,8 +87,9 @@ def run_fairset_analysis(priorfile, train, fairset, output_constraintsjson, outp
 
     logic_instance = fairset_check.LogicFunctions("Dataset", train, fairset, empty_values=[])
     output_report = logic_instance.run_analysis(constraints)
-    with open(output_report_path, 'w') as f:
-        f.write(json.dumps(output_report, indent=4))
+    with open(output_report_path, 'w', encoding='utf-8') as f:
+        st.write(output_report)
+        f.write(json.dumps(output_report, indent=4, ensure_ascii=False, default=to_jsonable))
 
 
     ## <======= PART 3: Generate report =======>
