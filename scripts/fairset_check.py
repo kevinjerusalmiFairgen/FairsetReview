@@ -1079,13 +1079,23 @@ class LogicFunctions:
 
     @staticmethod
     def applyQueryCustom_query(df, instruction):
+        # Try to convert columns to numeric where possible to avoid type comparison errors
+        df_converted = df.copy()
+        for col in df_converted.columns:
+            df_converted[col] = pd.to_numeric(df_converted[col], errors='ignore')
+        
         row_filter, columns = instruction.rsplit(";", 1)
         columns = [col.strip() for col in columns.split(",")]
-        return df.query(row_filter, engine="python")[columns]
+        return df_converted.query(row_filter, engine="python")[columns]
 
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
-        env = {"df": df, "np": np, "pd": pd}
+        # Try to convert columns to numeric where possible to avoid type comparison errors
+        df_converted = df.copy()
+        for col in df_converted.columns:
+            df_converted[col] = pd.to_numeric(df_converted[col], errors='ignore')
+        
+        env = {"df": df_converted, "np": np, "pd": pd}
         try:
             exec(instruction, env)
             if "df_check" not in env or env["df_check"] is None:
