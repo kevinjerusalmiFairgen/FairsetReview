@@ -19,8 +19,12 @@ class LogicFunctions:
         self.fairset.replace(empty_values, np.nan, inplace=True)
         self.format = format
         self.wrong_rows = set()
-        # Pre-convert fairset to numeric for custom constraints (faster than converting each time)
-        self.fairset_numeric = self.fairset.apply(pd.to_numeric, errors='ignore')
+        
+        # Convert all columns to numeric where possible to avoid type comparison errors
+        for col in self.train.columns:
+            self.train[col] = pd.to_numeric(self.train[col], errors='ignore')
+        for col in self.fairset.columns:
+            self.fairset[col] = pd.to_numeric(self.fairset[col], errors='ignore')
 
 
     def detect_violations_SS(self, col1, col2, detail, block_force, is_supported=True):
@@ -1156,7 +1160,7 @@ class LogicFunctions:
             except ValueError:
                 constraint_type, description, query = constraint
 
-            dataframe = LogicFunctions.applyQueryCustom_query(self.fairset_numeric, query)
+            dataframe = LogicFunctions.applyQueryCustom_query(self.fairset, query)
             if not dataframe.empty:
                 self.wrong_rows.update(dataframe.index.tolist())
             result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset)
@@ -1168,7 +1172,7 @@ class LogicFunctions:
                 constraint_type, description, code = constraint
                 is_implemented = True
 
-            dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset_numeric, code)
+            dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset, code)
             if not dataframe.empty:
                 try:
                     self.wrong_rows.update(dataframe.index.tolist())
