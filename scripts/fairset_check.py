@@ -1099,13 +1099,23 @@ class LogicFunctions:
 
     @staticmethod
     def applyQueryCustom_query(df, instruction):
+        # Force numeric conversion for all columns
+        df = df.apply(lambda col: pd.to_numeric(col, errors='coerce').fillna(col))
         row_filter, columns = instruction.rsplit(";", 1)
         columns = [col.strip() for col in columns.split(",")]
         return df.query(row_filter, engine="python")[columns]
 
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
-        env = {"df": df, "np": np, "pd": pd}
+        # Force numeric conversion for all columns before executing custom code
+        df_converted = df.copy()
+        for col in df_converted.columns:
+            numeric_col = pd.to_numeric(df_converted[col], errors='coerce')
+            # Only replace if conversion was successful (not all NaN)
+            if not numeric_col.isna().all():
+                df_converted[col] = numeric_col.combine_first(df_converted[col])
+        
+        env = {"df": df_converted, "np": np, "pd": pd}
         try:
             exec(instruction, env)
             if "df_check" not in env or env["df_check"] is None:
