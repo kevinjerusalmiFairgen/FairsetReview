@@ -5,6 +5,6 @@ streamlit==1.43.2
 tqdm==4.67.1
 XlsxWriter==3.2.2
 openpyxl
-selenium
-webdriver-manager
+# selenium  # Removed for local execution
+# webdriver-manager  # Removed for local execution
 pyreadstat

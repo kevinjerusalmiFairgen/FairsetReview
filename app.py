@@ -1,6 +1,6 @@
 import sys
 import os
-import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check, scripts.scrapper as scrapper
+import scripts.priorFile_extract as priorFile_extract, scripts.fairset_check as fairset_check
 import pandas as pd
 import json
 import scripts.generate_report as generate_report
