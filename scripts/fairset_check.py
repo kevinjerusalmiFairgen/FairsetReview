@@ -11,20 +11,34 @@ warnings.filterwarnings("ignore")
 
 class LogicFunctions:
 
+    @staticmethod
+    def _convert_to_numeric(df):
+        """Convert columns to numeric where possible, element by element."""
+        def try_numeric(val):
+            if pd.isna(val):
+                return val
+            try:
+                return float(val)
+            except (ValueError, TypeError):
+                return val
+        
+        result = df.copy()
+        for col in result.columns:
+            result[col] = result[col].apply(try_numeric)
+        return result
+
     def __init__(self, name, train, fairset, empty_values, format=None):
         self.name = name
-        self.train = train
-        self.fairset = fairset
+        self.train = train.copy()
+        self.fairset = fairset.copy()
         self.train.replace(empty_values, np.nan, inplace=True)
         self.fairset.replace(empty_values, np.nan, inplace=True)
         self.format = format
         self.wrong_rows = set()
         
         # Convert all columns to numeric where possible to avoid type comparison errors
-        for col in self.train.columns:
-            self.train[col] = pd.to_numeric(self.train[col], errors='ignore')
-        for col in self.fairset.columns:
-            self.fairset[col] = pd.to_numeric(self.fairset[col], errors='ignore')
+        self.train = self._convert_to_numeric(self.train)
+        self.fairset = self._convert_to_numeric(self.fairset)
 
 
     def detect_violations_SS(self, col1, col2, detail, block_force, is_supported=True):
