@@ -2,7 +2,7 @@ import math
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from stqdm import stqdm
+# stqdm removed for local execution - use tqdm instead
 import warnings
 import streamlit as st
 import traceback
