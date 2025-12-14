@@ -19,6 +19,8 @@ class LogicFunctions:
         self.fairset.replace(empty_values, np.nan, inplace=True)
         self.format = format
         self.wrong_rows = set()
+        # Pre-convert fairset to numeric for custom constraints (faster than converting each time)
+        self.fairset_numeric = self.fairset.apply(pd.to_numeric, errors='ignore')
 
 
     def detect_violations_SS(self, col1, col2, detail, block_force, is_supported=True):
@@ -1079,23 +1081,13 @@ class LogicFunctions:
 
     @staticmethod
     def applyQueryCustom_query(df, instruction):
-        # Try to convert columns to numeric where possible to avoid type comparison errors
-        df_converted = df.copy()
-        for col in df_converted.columns:
-            df_converted[col] = pd.to_numeric(df_converted[col], errors='ignore')
-        
         row_filter, columns = instruction.rsplit(";", 1)
         columns = [col.strip() for col in columns.split(",")]
-        return df_converted.query(row_filter, engine="python")[columns]
+        return df.query(row_filter, engine="python")[columns]
 
     @staticmethod
     def applyQueryCustom_freecode(df, instruction):
-        # Try to convert columns to numeric where possible to avoid type comparison errors
-        df_converted = df.copy()
-        for col in df_converted.columns:
-            df_converted[col] = pd.to_numeric(df_converted[col], errors='ignore')
-        
-        env = {"df": df_converted, "np": np, "pd": pd}
+        env = {"df": df, "np": np, "pd": pd}
         try:
             exec(instruction, env)
             if "df_check" not in env or env["df_check"] is None:
@@ -1164,7 +1156,7 @@ class LogicFunctions:
             except ValueError:
                 constraint_type, description, query = constraint
 
-            dataframe = LogicFunctions.applyQueryCustom_query(self.fairset, query)
+            dataframe = LogicFunctions.applyQueryCustom_query(self.fairset_numeric, query)
             if not dataframe.empty:
                 self.wrong_rows.update(dataframe.index.tolist())
             result = LogicFunctions.custom(dataframe, constraint_type, description, self.fairset)
@@ -1176,7 +1168,7 @@ class LogicFunctions:
                 constraint_type, description, code = constraint
                 is_implemented = True
 
-            dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset, code)
+            dataframe = LogicFunctions.applyQueryCustom_freecode(self.fairset_numeric, code)
             if not dataframe.empty:
                 try:
                     self.wrong_rows.update(dataframe.index.tolist())
