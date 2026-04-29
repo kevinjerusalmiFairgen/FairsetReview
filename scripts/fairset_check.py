@@ -629,6 +629,12 @@ class LogicFunctions:
         train = self.train.copy()
         fairset = self.fairset.copy()
 
+        # Normalize single-element lists to scalars (priorFile may pass ['A03'] from "['A03']" in CSV)
+        if isinstance(prefix1, list) and len(prefix1) == 1:
+            prefix1 = prefix1[0]
+        if isinstance(prefix2, list) and len(prefix2) == 1:
+            prefix2 = prefix2[0]
+
         if mode == "SS":
             valid_combinations = set(train[[prefix1, prefix2]].drop_duplicates().itertuples(index=False, name=None))
 
@@ -789,7 +795,7 @@ class LogicFunctions:
             & (
                 ~train[cols]
                 .astype(str)  # <-- Add this
-                .applymap(lambda x: x.lower().startswith(("no", "0", "non")) or x in ["", " ", "nan"])
+                .map(lambda x: x.lower().startswith(("no", "0", "non")) or x in ["", " ", "nan"])
                 .all(axis=1)
             )
             ][cols + [nota]]
@@ -800,7 +806,7 @@ class LogicFunctions:
                 & (
                     ~fairset[cols]
                     .astype(str)  # <-- Add this
-                    .applymap(lambda x: x.lower().startswith(("no", "0", "non")) or x in ["", " ", "nan"])
+                    .map(lambda x: x.lower().startswith(("no", "0", "non")) or x in ["", " ", "nan"])
                     .all(axis=1)
                 )
                 ][cols + [nota]]
@@ -854,7 +860,7 @@ class LogicFunctions:
             (train[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0"))))
             & (
                 ~train[cols]
-                .applymap(
+                .map(
                     lambda x: (
                         np.isnan(x) if isinstance(x, float) and x != 0.0 else str(x).lower().startswith(("no", "0"))
                     )
@@ -868,7 +874,7 @@ class LogicFunctions:
                 (fairset[nota].astype(str).apply(lambda x: not x.lower().startswith(("no", "0"))))
                 & (
                     ~fairset[cols]
-                    .applymap(
+                    .map(
                         lambda x: (
                             np.isnan(x) if isinstance(x, float) and x != 0.0 else str(x).lower().startswith(("no", "0"))
                         )
@@ -928,7 +934,7 @@ class LogicFunctions:
             )
             & (
                 ~train[cols]
-                .applymap(
+                .map(
                     lambda x: (
                         np.isnan(x)
                         if isinstance(x, float)
@@ -947,7 +953,7 @@ class LogicFunctions:
                 )
                 & (
                     ~fairset[cols]
-                    .applymap(lambda x: np.isnan(x) if isinstance(x, float) else str(x).lower().startswith(("no", "0")))
+                    .map(lambda x: np.isnan(x) if isinstance(x, float) else str(x).lower().startswith(("no", "0")))
                     .all(axis=1)
                 )
                 ][cols + [aota]]
